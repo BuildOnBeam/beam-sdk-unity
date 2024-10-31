@@ -32,38 +32,6 @@ namespace BeamPlayerClient.Model
     public partial class CommonOperationResponseTransactionsInner
     {
         /// <summary>
-        /// Defines Type
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum OpenfortTransaction for value: OpenfortTransaction
-            /// </summary>
-            [EnumMember(Value = "OpenfortTransaction")]
-            OpenfortTransaction = 1,
-
-            /// <summary>
-            /// Enum OpenfortReservoirOrder for value: OpenfortReservoirOrder
-            /// </summary>
-            [EnumMember(Value = "OpenfortReservoirOrder")]
-            OpenfortReservoirOrder = 2,
-
-            /// <summary>
-            /// Enum OpenfortRevokeSession for value: OpenfortRevokeSession
-            /// </summary>
-            [EnumMember(Value = "OpenfortRevokeSession")]
-            OpenfortRevokeSession = 3
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public TypeEnum Type { get; set; }
-        /// <summary>
         /// Defines Status
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -108,6 +76,38 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public StatusEnum Status { get; set; }
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum OpenfortTransaction for value: OpenfortTransaction
+            /// </summary>
+            [EnumMember(Value = "OpenfortTransaction")]
+            OpenfortTransaction = 1,
+
+            /// <summary>
+            /// Enum OpenfortReservoirOrder for value: OpenfortReservoirOrder
+            /// </summary>
+            [EnumMember(Value = "OpenfortReservoirOrder")]
+            OpenfortReservoirOrder = 2,
+
+            /// <summary>
+            /// Enum OpenfortRevokeSession for value: OpenfortRevokeSession
+            /// </summary>
+            [EnumMember(Value = "OpenfortRevokeSession")]
+            OpenfortRevokeSession = 3
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public TypeEnum Type { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CommonOperationResponseTransactionsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -116,19 +116,21 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonOperationResponseTransactionsInner" /> class.
         /// </summary>
-        /// <param name="type">type (required).</param>
         /// <param name="status">status (required).</param>
         /// <param name="id">id (required).</param>
+        /// <param name="openfortId">openfortId (required).</param>
+        /// <param name="sponsored">sponsored (required).</param>
+        /// <param name="actionId">actionId (required).</param>
+        /// <param name="hash">hash (required).</param>
+        /// <param name="type">type (required).</param>
         /// <param name="externalId">externalId (required).</param>
         /// <param name="signature">signature (required).</param>
         /// <param name="transactionHash">transactionHash (required).</param>
         /// <param name="operationId">operationId (required).</param>
         /// <param name="data">data.</param>
-        /// <param name="hash">hash (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponseTransactionsInner(TypeEnum type = default(TypeEnum), StatusEnum status = default(StatusEnum), string id = default(string), string externalId = default(string), string signature = default(string), string transactionHash = default(string), string operationId = default(string), Object data = default(Object), string hash = default(string))
+        public CommonOperationResponseTransactionsInner(StatusEnum status = default(StatusEnum), string id = default(string), string openfortId = default(string), bool sponsored = default(bool), string actionId = default(string), string hash = default(string), TypeEnum type = default(TypeEnum), string externalId = default(string), string signature = default(string), string transactionHash = default(string), string operationId = default(string), Object data = default(Object))
         {
-            this.Type = type;
             this.Status = status;
             // to ensure "id" is required (not null)
             if (id == null)
@@ -136,6 +138,26 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("id is a required property for CommonOperationResponseTransactionsInner and cannot be null");
             }
             this.Id = id;
+            // to ensure "openfortId" is required (not null)
+            if (openfortId == null)
+            {
+                throw new ArgumentNullException("openfortId is a required property for CommonOperationResponseTransactionsInner and cannot be null");
+            }
+            this.OpenfortId = openfortId;
+            this.Sponsored = sponsored;
+            // to ensure "actionId" is required (not null)
+            if (actionId == null)
+            {
+                throw new ArgumentNullException("actionId is a required property for CommonOperationResponseTransactionsInner and cannot be null");
+            }
+            this.ActionId = actionId;
+            // to ensure "hash" is required (not null)
+            if (hash == null)
+            {
+                throw new ArgumentNullException("hash is a required property for CommonOperationResponseTransactionsInner and cannot be null");
+            }
+            this.Hash = hash;
+            this.Type = type;
             // to ensure "externalId" is required (not null)
             if (externalId == null)
             {
@@ -160,12 +182,6 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("operationId is a required property for CommonOperationResponseTransactionsInner and cannot be null");
             }
             this.OperationId = operationId;
-            // to ensure "hash" is required (not null)
-            if (hash == null)
-            {
-                throw new ArgumentNullException("hash is a required property for CommonOperationResponseTransactionsInner and cannot be null");
-            }
-            this.Hash = hash;
             this.Data = data;
         }
 
@@ -175,6 +191,34 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OpenfortId
+        /// </summary>
+        [DataMember(Name = "openfortId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string OpenfortId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sponsored
+        /// </summary>
+        [DataMember(Name = "sponsored", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public bool Sponsored { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ActionId
+        /// </summary>
+        [DataMember(Name = "actionId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string ActionId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Hash
+        /// </summary>
+        [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string Hash { get; set; }
 
         /// <summary>
         /// Gets or Sets ExternalId
@@ -212,13 +256,6 @@ namespace BeamPlayerClient.Model
         public Object Data { get; set; }
 
         /// <summary>
-        /// Gets or Sets Hash
-        /// </summary>
-        [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string Hash { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -227,15 +264,18 @@ namespace BeamPlayerClient.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CommonOperationResponseTransactionsInner {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  OpenfortId: ").Append(OpenfortId).Append("\n");
+            sb.Append("  Sponsored: ").Append(Sponsored).Append("\n");
+            sb.Append("  ActionId: ").Append(ActionId).Append("\n");
+            sb.Append("  Hash: ").Append(Hash).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  ExternalId: ").Append(ExternalId).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("  TransactionHash: ").Append(TransactionHash).Append("\n");
             sb.Append("  OperationId: ").Append(OperationId).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Hash: ").Append(Hash).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

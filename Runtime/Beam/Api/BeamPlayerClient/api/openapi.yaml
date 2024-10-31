@@ -1777,6 +1777,36 @@ paths:
       summary: Get asset activity
       tags:
       - Activity
+  /v1/player/ramp/on/{entityId}:
+    post:
+      operationId: createOnrampRequest
+      parameters:
+      - explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOnrampRequestInput'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateOnrampRequestResponse'
+          description: ""
+      security:
+      - beam-api-key: []
+      - beam-api-key: []
+      summary: ""
+      tags:
+      - Ramp
 components:
   schemas:
     GetAssetsForUserBodyInput:
@@ -1980,6 +2010,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -1995,31 +2026,40 @@ components:
         transactions:
         - data: ""
           signature: signature
+          actionId: actionId
           externalId: externalId
           operationId: operationId
+          sponsored: true
           id: id
+          openfortId: openfortId
           type: OpenfortTransaction
-          transactionHash: transactionHash
           hash: hash
+          transactionHash: transactionHash
           status: Pending
         - data: ""
           signature: signature
+          actionId: actionId
           externalId: externalId
           operationId: operationId
+          sponsored: true
           id: id
+          openfortId: openfortId
           type: OpenfortTransaction
-          transactionHash: transactionHash
           hash: hash
+          transactionHash: transactionHash
           status: Pending
         userId: userId
+        actions:
+        - null
+        - null
         url: https://openapi-generator.tech
-        status: Signed
+        status: Pending
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         status:
           enum:
-          - Signed
           - Pending
+          - Signed
           - Rejected
           - Executed
           - Error
@@ -2049,11 +2089,16 @@ components:
         url:
           format: uri
           type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/CommonOperationResponse_actions_inner'
+          type: array
         transactions:
           items:
             $ref: '#/components/schemas/CommonOperationResponse_transactions_inner'
           type: array
       required:
+      - actions
       - chainId
       - createdAt
       - gameId
@@ -2107,6 +2152,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2152,6 +2198,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2687,6 +2734,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2729,6 +2777,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2759,6 +2808,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       type: object
@@ -2811,6 +2861,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2853,6 +2904,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2884,6 +2936,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
         chainId:
@@ -3224,6 +3277,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3355,10 +3409,18 @@ components:
           type: OpenfortTransaction
         - data: ""
           type: OpenfortTransaction
+        actions:
+        - null
+        - null
         operationProcessing: Execute
       properties:
         entityId:
           type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner'
+          nullable: true
+          type: array
         transactions:
           items:
             $ref: '#/components/schemas/CreateOperationRequestInput_transactions_inner'
@@ -3375,11 +3437,11 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
       - entityId
-      - transactions
       type: object
     ConfirmOperationRequest:
       example:
@@ -3388,12 +3450,12 @@ components:
           id: id
         - signature: signature
           id: id
-        status: Signed
+        status: Pending
       properties:
         status:
           enum:
-          - Signed
           - Pending
+          - Signed
           - Rejected
           - Executed
           - Error
@@ -3475,6 +3537,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3516,6 +3579,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3554,6 +3618,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3628,27 +3693,36 @@ components:
       type: object
     RevokeSessionRequestInput:
       example:
+        sponsor: true
         address: address
+        policyId: policyId
         chainId: 0
         operationId: operationId
         operationProcessing: Execute
       properties:
         address:
           type: string
-        operationId:
+        sponsor:
+          default: true
+          type: boolean
+        policyId:
           format: cuid
           nullable: true
           type: string
+        chainId:
+          default: 13337
+          format: int64
+          type: integer
         operationProcessing:
           default: Execute
           enum:
           - SignOnly
           - Execute
           type: string
-        chainId:
-          default: 13337
-          format: int64
-          type: integer
+        operationId:
+          format: cuid
+          nullable: true
+          type: string
       required:
       - address
       type: object
@@ -3998,6 +4072,44 @@ components:
           nullable: true
           type: string
       type: object
+    CreateOnrampRequestInput:
+      example:
+        chainId: 0
+        fiatAmount: fiatAmount
+        tokenAmount: "100"
+        paymentCurrency: USD
+        token: BEAM
+      properties:
+        token:
+          default: BEAM
+          enum:
+          - BEAM
+          type: string
+        tokenAmount:
+          default: "100"
+          type: string
+        fiatAmount:
+          type: string
+        paymentCurrency:
+          default: USD
+          enum:
+          - USD
+          - EUR
+          type: string
+        chainId:
+          default: 13337
+          format: int64
+          type: integer
+      type: object
+    CreateOnrampRequestResponse:
+      example:
+        url: url
+      properties:
+        url:
+          type: string
+      required:
+      - url
+      type: object
     check_200_response_info_value:
       additionalProperties: true
       properties:
@@ -4255,24 +4367,37 @@ components:
       - assetAddress
       - assetId
       type: object
-    CommonOperationResponse_transactions_inner:
-      example:
-        data: ""
-        signature: signature
-        externalId: externalId
-        operationId: operationId
-        id: id
-        type: OpenfortTransaction
-        transactionHash: transactionHash
-        hash: hash
-        status: Pending
+    CommonOperationResponse_actions_inner_allOf_signature:
+      nullable: true
       properties:
         type:
           enum:
-          - OpenfortTransaction
-          - OpenfortReservoirOrder
-          - OpenfortRevokeSession
+          - Message
+          - TypedData
           type: string
+        id:
+          format: cuid
+          type: string
+        data:
+          nullable: true
+        signature:
+          nullable: true
+          type: string
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          nullable: true
+          type: string
+      required:
+      - actionId
+      - id
+      - signature
+      - type
+      type: object
+    CommonOperationResponse_actions_inner_allOf_transaction:
+      nullable: true
+      properties:
         status:
           enum:
           - Pending
@@ -4284,6 +4409,109 @@ components:
         id:
           format: cuid
           type: string
+        openfortId:
+          nullable: true
+          type: string
+        sponsored:
+          type: boolean
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          nullable: true
+          type: string
+      required:
+      - actionId
+      - hash
+      - id
+      - openfortId
+      - sponsored
+      - status
+      type: object
+    CommonOperationResponse_actions_inner:
+      allOf:
+      - properties:
+          type:
+            enum:
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          operationId:
+            nullable: true
+            type: string
+          context: {}
+        required:
+        - context
+        - id
+        - index
+        - operationId
+        - type
+        type: object
+      - properties:
+          signature:
+            $ref: '#/components/schemas/CommonOperationResponse_actions_inner_allOf_signature'
+          transaction:
+            $ref: '#/components/schemas/CommonOperationResponse_actions_inner_allOf_transaction'
+        type: object
+    CommonOperationResponse_transactions_inner:
+      example:
+        data: ""
+        signature: signature
+        actionId: actionId
+        externalId: externalId
+        operationId: operationId
+        sponsored: true
+        id: id
+        openfortId: openfortId
+        type: OpenfortTransaction
+        hash: hash
+        transactionHash: transactionHash
+        status: Pending
+      properties:
+        status:
+          enum:
+          - Pending
+          - Signed
+          - Rejected
+          - Executed
+          - Error
+          type: string
+        id:
+          format: cuid
+          type: string
+        openfortId:
+          nullable: true
+          type: string
+        sponsored:
+          type: boolean
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          type: string
+        type:
+          enum:
+          - OpenfortTransaction
+          - OpenfortReservoirOrder
+          - OpenfortRevokeSession
+          nullable: true
+          type: string
         externalId:
           nullable: true
           type: string
@@ -4294,18 +4522,20 @@ components:
           nullable: true
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
         data:
           nullable: true
-        hash:
-          type: string
       required:
+      - actionId
       - externalId
       - hash
       - id
+      - openfortId
       - operationId
       - signature
+      - sponsored
       - status
       - transactionHash
       - type
@@ -5046,6 +5276,364 @@ components:
       - id
       - wallets
       type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf:
+      properties:
+        type:
+          enum:
+          - Message
+          type: string
+        data:
+          type: string
+      required:
+      - data
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf_1:
+      properties:
+        type:
+          enum:
+          - TypedData
+          type: string
+        data:
+          properties: {}
+          type: object
+      required:
+      - data
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_signature:
+      allOf:
+      - properties:
+          type:
+            enum:
+            - Message
+            - TypedData
+            type: string
+        required:
+        - type
+        type: object
+      - discriminator:
+          propertyName: type
+        oneOf:
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf_1'
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction:
+      properties:
+        openfortId:
+          nullable: true
+          type: string
+        sponsored:
+          type: boolean
+      required:
+      - sponsored
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_context_assets_inner:
+      properties:
+        receiverAddress:
+          type: string
+        contractAddress:
+          type: string
+        assetId:
+          type: string
+        amount:
+          type: number
+      required:
+      - amount
+      - assetId
+      - contractAddress
+      - receiverAddress
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_context:
+      properties:
+        assets:
+          items:
+            $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_context_assets_inner'
+          type: array
+      required:
+      - assets
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf:
+      properties:
+        type:
+          enum:
+          - TransferNFTs
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+        context:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_context'
+      required:
+      - context
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_1_context:
+      properties:
+        amount:
+          type: string
+        contractAddress:
+          type: string
+        receiverAddress:
+          type: string
+      required:
+      - amount
+      - contractAddress
+      - receiverAddress
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_1:
+      properties:
+        type:
+          enum:
+          - TransferToken
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+        context:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_1_context'
+      required:
+      - context
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_2:
+      properties:
+        type:
+          enum:
+          - MarketplaceCreateOffer
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+      required:
+      - signature
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_3:
+      properties:
+        type:
+          enum:
+          - MarketplaceCancelOffer
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_4:
+      properties:
+        type:
+          enum:
+          - MarketplaceAcceptOffer
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_5:
+      properties:
+        type:
+          enum:
+          - MarketplaceListAsset
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+      required:
+      - signature
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_6:
+      properties:
+        type:
+          enum:
+          - MarketplaceBuyAsset
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_7:
+      properties:
+        type:
+          enum:
+          - MarketplaceCancelListing
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_8:
+      properties:
+        type:
+          enum:
+          - SessionRevoke
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_9:
+      properties:
+        type:
+          enum:
+          - CustomTransaction
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context_input:
+      properties:
+        address:
+          type: string
+        amount:
+          type: string
+      required:
+      - address
+      - amount
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context:
+      properties:
+        input:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context_input'
+        output:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context_input'
+      required:
+      - input
+      - output
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_10:
+      properties:
+        type:
+          enum:
+          - ExchangeConvert
+          type: string
+        context:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context'
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - context
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_11_context:
+      properties:
+        amount:
+          type: string
+      required:
+      - amount
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_11:
+      properties:
+        type:
+          enum:
+          - ExchangeWrap
+          type: string
+        context:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_11_context'
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - context
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner_allOf_oneOf_12:
+      properties:
+        type:
+          enum:
+          - ExchangeUnwrap
+          type: string
+        context:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_11_context'
+        signature:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+      required:
+      - context
+      - signature
+      - transaction
+      - type
+      type: object
+    CreateOperationRequestInput_actions_inner:
+      allOf:
+      - properties:
+          type:
+            enum:
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+        required:
+        - type
+        type: object
+      - discriminator:
+          propertyName: type
+        oneOf:
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_1'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_2'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_3'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_4'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_5'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_6'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_7'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_8'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_9'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_11'
+        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_12'
     CreateOperationRequestInput_transactions_inner:
       example:
         data: ""

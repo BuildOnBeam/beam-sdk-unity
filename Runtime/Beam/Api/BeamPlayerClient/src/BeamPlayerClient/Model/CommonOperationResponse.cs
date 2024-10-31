@@ -38,16 +38,16 @@ namespace BeamPlayerClient.Model
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum Signed for value: Signed
-            /// </summary>
-            [EnumMember(Value = "Signed")]
-            Signed = 1,
-
-            /// <summary>
             /// Enum Pending for value: Pending
             /// </summary>
             [EnumMember(Value = "Pending")]
-            Pending = 2,
+            Pending = 1,
+
+            /// <summary>
+            /// Enum Signed for value: Signed
+            /// </summary>
+            [EnumMember(Value = "Signed")]
+            Signed = 2,
 
             /// <summary>
             /// Enum Rejected for value: Rejected
@@ -119,9 +119,10 @@ namespace BeamPlayerClient.Model
         /// <param name="userId">userId (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="url">url (required).</param>
+        /// <param name="actions">actions (required).</param>
         /// <param name="transactions">transactions (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), string url = default(string), List<CommonOperationResponseTransactionsInner> transactions = default(List<CommonOperationResponseTransactionsInner>))
+        public CommonOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), string url = default(string), List<CommonOperationResponseActionsInner> actions = default(List<CommonOperationResponseActionsInner>), List<CommonOperationResponseTransactionsInner> transactions = default(List<CommonOperationResponseTransactionsInner>))
         {
             this.Status = status;
             this.Processing = processing;
@@ -157,6 +158,12 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("url is a required property for CommonOperationResponse and cannot be null");
             }
             this.Url = url;
+            // to ensure "actions" is required (not null)
+            if (actions == null)
+            {
+                throw new ArgumentNullException("actions is a required property for CommonOperationResponse and cannot be null");
+            }
+            this.Actions = actions;
             // to ensure "transactions" is required (not null)
             if (transactions == null)
             {
@@ -215,6 +222,13 @@ namespace BeamPlayerClient.Model
         public string Url { get; set; }
 
         /// <summary>
+        /// Gets or Sets Actions
+        /// </summary>
+        [DataMember(Name = "actions", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public List<CommonOperationResponseActionsInner> Actions { get; set; }
+
+        /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
         [DataMember(Name = "transactions", IsRequired = true, EmitDefaultValue = true)]
@@ -239,6 +253,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

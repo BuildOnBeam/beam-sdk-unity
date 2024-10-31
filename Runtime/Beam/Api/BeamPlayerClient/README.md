@@ -154,6 +154,7 @@ Class | Method | HTTP request | Description
 *OperationApi* | [**ExecuteSignedOperation**](OperationApi.md#executesignedoperation) | **POST** /v1/player/operation/{opId}/execute | Executes operation for given id
 *OperationApi* | [**GetOperation**](OperationApi.md#getoperation) | **GET** /v1/player/operation/{opId} | Returns operation data for given id. Used by Game SDKs to get transaction results.
 *OperationApi* | [**ProcessOperation**](OperationApi.md#processoperation) | **PATCH** /v1/player/operation/{opId} | Updates operation result for given id
+*RampApi* | [**CreateOnrampRequest**](RampApi.md#createonramprequest) | **POST** /v1/player/ramp/on/{entityId} | 
 *SessionsApi* | [**CreateSessionRequest**](SessionsApi.md#createsessionrequest) | **POST** /v1/player/sessions/users/{entityId}/request | 
 *SessionsApi* | [**GetActiveSession**](SessionsApi.md#getactivesession) | **GET** /v1/player/sessions/users/{entityId}/{accountAddress}/active | 
 *SessionsApi* | [**GetAllActiveSessions**](SessionsApi.md#getallactivesessions) | **GET** /v1/player/sessions/users/{entityId}/active | 
@@ -190,6 +191,9 @@ Class | Method | HTTP request | Description
  - [Model.CommonAssetActivityRequestInput](CommonAssetActivityRequestInput.md)
  - [Model.CommonContractActivityRequestInput](CommonContractActivityRequestInput.md)
  - [Model.CommonOperationResponse](CommonOperationResponse.md)
+ - [Model.CommonOperationResponseActionsInner](CommonOperationResponseActionsInner.md)
+ - [Model.CommonOperationResponseActionsInnerAllOfSignature](CommonOperationResponseActionsInnerAllOfSignature.md)
+ - [Model.CommonOperationResponseActionsInnerAllOfTransaction](CommonOperationResponseActionsInnerAllOfTransaction.md)
  - [Model.CommonOperationResponseTransactionsInner](CommonOperationResponseTransactionsInner.md)
  - [Model.CommonStatsRequestInput](CommonStatsRequestInput.md)
  - [Model.CommonStatsResponse](CommonStatsResponse.md)
@@ -201,7 +205,33 @@ Class | Method | HTTP request | Description
  - [Model.CreateAssetOfferRequestInput](CreateAssetOfferRequestInput.md)
  - [Model.CreateConnectionRequestInput](CreateConnectionRequestInput.md)
  - [Model.CreateConnectionRequestResponse](CreateConnectionRequestResponse.md)
+ - [Model.CreateOnrampRequestInput](CreateOnrampRequestInput.md)
+ - [Model.CreateOnrampRequestResponse](CreateOnrampRequestResponse.md)
  - [Model.CreateOperationRequestInput](CreateOperationRequestInput.md)
+ - [Model.CreateOperationRequestInputActionsInner](CreateOperationRequestInputActionsInner.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf](CreateOperationRequestInputActionsInnerAllOfOneOf.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf1](CreateOperationRequestInputActionsInnerAllOfOneOf1.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf10](CreateOperationRequestInputActionsInnerAllOfOneOf10.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf10Context](CreateOperationRequestInputActionsInnerAllOfOneOf10Context.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf10ContextInput](CreateOperationRequestInputActionsInnerAllOfOneOf10ContextInput.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf11](CreateOperationRequestInputActionsInnerAllOfOneOf11.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf11Context](CreateOperationRequestInputActionsInnerAllOfOneOf11Context.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf12](CreateOperationRequestInputActionsInnerAllOfOneOf12.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf1Context](CreateOperationRequestInputActionsInnerAllOfOneOf1Context.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf2](CreateOperationRequestInputActionsInnerAllOfOneOf2.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf3](CreateOperationRequestInputActionsInnerAllOfOneOf3.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf4](CreateOperationRequestInputActionsInnerAllOfOneOf4.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf5](CreateOperationRequestInputActionsInnerAllOfOneOf5.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf6](CreateOperationRequestInputActionsInnerAllOfOneOf6.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf7](CreateOperationRequestInputActionsInnerAllOfOneOf7.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf8](CreateOperationRequestInputActionsInnerAllOfOneOf8.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOf9](CreateOperationRequestInputActionsInnerAllOfOneOf9.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOfContext](CreateOperationRequestInputActionsInnerAllOfOneOfContext.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOfContextAssetsInner](CreateOperationRequestInputActionsInnerAllOfOneOfContextAssetsInner.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOfSignature](CreateOperationRequestInputActionsInnerAllOfOneOfSignature.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOfSignatureAllOfOneOf](CreateOperationRequestInputActionsInnerAllOfOneOfSignatureAllOfOneOf.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOfSignatureAllOfOneOf1](CreateOperationRequestInputActionsInnerAllOfOneOfSignatureAllOfOneOf1.md)
+ - [Model.CreateOperationRequestInputActionsInnerAllOfOneOfTransaction](CreateOperationRequestInputActionsInnerAllOfOneOfTransaction.md)
  - [Model.CreateOperationRequestInputTransactionsInner](CreateOperationRequestInputTransactionsInner.md)
  - [Model.CreateTransactionRequestInput](CreateTransactionRequestInput.md)
  - [Model.CreateTransactionRequestInputInteractionsInner](CreateTransactionRequestInputInteractionsInner.md)

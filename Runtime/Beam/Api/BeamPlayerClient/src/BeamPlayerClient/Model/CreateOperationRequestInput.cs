@@ -67,12 +67,13 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateOperationRequestInput" /> class.
         /// </summary>
         /// <param name="entityId">entityId (required).</param>
-        /// <param name="transactions">transactions (required).</param>
+        /// <param name="actions">actions.</param>
+        /// <param name="transactions">transactions.</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
         /// <param name="operationId">operationId.</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateOperationRequestInput(string entityId = default(string), List<CreateOperationRequestInputTransactionsInner> transactions = default(List<CreateOperationRequestInputTransactionsInner>), long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, string operationId = default(string))
+        public CreateOperationRequestInput(string entityId = default(string), List<CreateOperationRequestInputActionsInner> actions = default(List<CreateOperationRequestInputActionsInner>), List<CreateOperationRequestInputTransactionsInner> transactions = default(List<CreateOperationRequestInputTransactionsInner>), long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, string operationId = default(string))
         {
             // to ensure "entityId" is required (not null)
             if (entityId == null)
@@ -80,11 +81,7 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("entityId is a required property for CreateOperationRequestInput and cannot be null");
             }
             this.EntityId = entityId;
-            // to ensure "transactions" is required (not null)
-            if (transactions == null)
-            {
-                throw new ArgumentNullException("transactions is a required property for CreateOperationRequestInput and cannot be null");
-            }
+            this.Actions = actions;
             this.Transactions = transactions;
             this.ChainId = chainId;
             this.OperationProcessing = operationProcessing;
@@ -99,9 +96,16 @@ namespace BeamPlayerClient.Model
         public string EntityId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Actions
+        /// </summary>
+        [DataMember(Name = "actions", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public List<CreateOperationRequestInputActionsInner> Actions { get; set; }
+
+        /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
-        [DataMember(Name = "transactions", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "transactions", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public List<CreateOperationRequestInputTransactionsInner> Transactions { get; set; }
 
@@ -129,6 +133,7 @@ namespace BeamPlayerClient.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateOperationRequestInput {\n");
             sb.Append("  EntityId: ").Append(EntityId).Append("\n");
+            sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");

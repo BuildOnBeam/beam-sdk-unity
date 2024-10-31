@@ -38,16 +38,16 @@ namespace BeamPlayerClient.Model
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum Signed for value: Signed
-            /// </summary>
-            [EnumMember(Value = "Signed")]
-            Signed = 1,
-
-            /// <summary>
             /// Enum Pending for value: Pending
             /// </summary>
             [EnumMember(Value = "Pending")]
-            Pending = 2,
+            Pending = 1,
+
+            /// <summary>
+            /// Enum Signed for value: Signed
+            /// </summary>
+            [EnumMember(Value = "Signed")]
+            Signed = 2,
 
             /// <summary>
             /// Enum Rejected for value: Rejected
