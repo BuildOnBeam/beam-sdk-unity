@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Beam.Extensions;
 using Beam.Models;
 using Beam.Storage;
@@ -416,7 +417,7 @@ namespace Beam
 
             // start polling for results of the operation
             var now = DateTimeOffset.Now;
-            var pollingResult = await PollForResult(
+            var pollingResult = await PollForResult<CommonOperationResponse>(
                 actionToPerform: () => OperationApi.GetOperationAsync(operation.Id, cancellationToken),
                 shouldRetry: res => res == null ||
                                     res.Status != CommonOperationResponse.StatusEnum.Pending ||
@@ -472,36 +473,41 @@ namespace Beam
                 ConfirmOperationRequest.StatusEnum.Pending,
                 transactions: new List<ConfirmOperationRequestTransactionsInner>());
 
-            foreach (var transaction in operation.Transactions)
+            Log($"Signing operation({operation.Id}) actions...");
+            foreach (var concreteAction in operation.Actions)
             {
-                Log($"Signing operation({operation.Id}) transaction({transaction.ExternalId})...");
+                var action = (BaseActionResponse)concreteAction.ActualInstance;
                 try
                 {
-                    string signature;
-                    switch (transaction.Type)
+                    if (action.Type == BaseActionResponse.TypeEnum.SessionRevoke)
                     {
-                        case CommonOperationResponseTransactionsInner.TypeEnum.OpenfortRevokeSession:
-                            throw new Exception(
-                                $"Revoke Session Operation has to be performed via {nameof(RevokeSessionAsync)}() method only");
-                        case CommonOperationResponseTransactionsInner.TypeEnum.OpenfortTransaction:
-                            signature = activeSessionKeyPair.SignMessage(Convert.ToString(transaction.Data));
+                        throw new Exception(
+                            $"Revoke Session Operation has to be performed via {nameof(RevokeSessionAsync)}() method only");
+                    }
+
+                    string signature;
+                    switch (action.Signature.Type)
+                    {
+                        case BaseSignatureRequest.TypeEnum.Message:
+                            signature = activeSessionKeyPair.SignMessage(Convert.ToString(action.Signature.Hash));
                             break;
-                        case CommonOperationResponseTransactionsInner.TypeEnum.OpenfortReservoirOrder:
-                            signature = activeSessionKeyPair.SignMarketplaceTransactionHash(transaction.Hash);
+                        case BaseSignatureRequest.TypeEnum.TypedData:
+                            signature = activeSessionKeyPair.SignMarketplaceTransactionHash(action.Signature.Hash);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+                    signature = activeSessionKeyPair.SignMessage(Convert.ToString(action.Signature.Hash));
 
                     confirmationModel.Transactions.Add(
-                        new ConfirmOperationRequestTransactionsInner(transaction.Id, signature));
+                        new ConfirmOperationRequestTransactionsInner(action.Id, signature));
                 }
                 catch (ApiException e)
                 {
                     Log(
-                        $"Encountered an error when signing transaction({transaction.Id}): {e.Message} {e.ErrorContent}");
+                        $"Encountered an error when signing action({action.Id}): {e.Message} {e.ErrorContent}");
                     return new BeamResult<CommonOperationResponse.StatusEnum>(e,
-                        $"Encountered an exception while approving {transaction.Type.ToString()}");
+                        $"Encountered an exception while approving action{action.Id} of type {action.Type.ToString()}");
                 }
             }
 

@@ -70,12 +70,12 @@ namespace BeamPlayerClient.Api
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>GetQuoteResponse</returns>
-        GetQuoteResponse GetQuoteForInput(string tokenIn, string tokenOut, string amountOut, long? chainId);
+        GetQuoteResponse GetQuoteForInput(string amountOut, string tokenOut, string tokenIn, long? chainId);
 
         /// <summary>
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
@@ -84,22 +84,22 @@ namespace BeamPlayerClient.Api
         /// 
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of GetQuoteResponse</returns>
-        ApiResponse<GetQuoteResponse> GetQuoteForInputWithHttpInfo(string tokenIn, string tokenOut, string amountOut, long? chainId);
+        ApiResponse<GetQuoteResponse> GetQuoteForInputWithHttpInfo(string amountOut, string tokenOut, string tokenIn, long? chainId);
         /// <summary>
         /// Returns the minimum expected output amount for a token trade, given an input amount
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>GetQuoteResponse</returns>
-        GetQuoteResponse GetQuoteForOutput(string tokenIn, string tokenOut, string amountIn, long? chainId);
+        GetQuoteResponse GetQuoteForOutput(string amountIn, string tokenOut, string tokenIn, long? chainId);
 
         /// <summary>
         /// Returns the minimum expected output amount for a token trade, given an input amount
@@ -108,12 +108,12 @@ namespace BeamPlayerClient.Api
         /// 
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of GetQuoteResponse</returns>
-        ApiResponse<GetQuoteResponse> GetQuoteForOutputWithHttpInfo(string tokenIn, string tokenOut, string amountIn, long? chainId);
+        ApiResponse<GetQuoteResponse> GetQuoteForOutputWithHttpInfo(string amountIn, string tokenOut, string tokenIn, long? chainId);
         /// <summary>
         /// Unwrap an amount of wrapped to native token
         /// </summary>
@@ -220,13 +220,13 @@ namespace BeamPlayerClient.Api
         /// 
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string tokenIn, string tokenOut, string amountOut, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
@@ -235,13 +235,13 @@ namespace BeamPlayerClient.Api
         /// 
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string tokenIn, string tokenOut, string amountOut, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Returns the minimum expected output amount for a token trade, given an input amount
         /// </summary>
@@ -249,13 +249,13 @@ namespace BeamPlayerClient.Api
         /// 
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string tokenIn, string tokenOut, string amountIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns the minimum expected output amount for a token trade, given an input amount
@@ -264,13 +264,13 @@ namespace BeamPlayerClient.Api
         /// 
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string tokenIn, string tokenOut, string amountIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Unwrap an amount of wrapped to native token
         /// </summary>
@@ -757,14 +757,14 @@ namespace BeamPlayerClient.Api
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>GetQuoteResponse</returns>
-        public GetQuoteResponse GetQuoteForInput(string tokenIn, string tokenOut, string amountOut, long? chainId)
+        public GetQuoteResponse GetQuoteForInput(string amountOut, string tokenOut, string tokenIn, long? chainId)
         {
-            BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = GetQuoteForInputWithHttpInfo(tokenIn, tokenOut, amountOut, chainId);
+            BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = GetQuoteForInputWithHttpInfo(amountOut, tokenOut, tokenIn, chainId);
             return localVarResponse.Data;
         }
 
@@ -772,24 +772,24 @@ namespace BeamPlayerClient.Api
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of GetQuoteResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> GetQuoteForInputWithHttpInfo(string tokenIn, string tokenOut, string amountOut, long? chainId)
+        public BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> GetQuoteForInputWithHttpInfo(string amountOut, string tokenOut, string tokenIn, long? chainId)
         {
-            // verify the required parameter 'tokenIn' is set
-            if (tokenIn == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForInput");
+            // verify the required parameter 'amountOut' is set
+            if (amountOut == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountOut' when calling ExchangeApi->GetQuoteForInput");
 
             // verify the required parameter 'tokenOut' is set
             if (tokenOut == null)
                 throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenOut' when calling ExchangeApi->GetQuoteForInput");
 
-            // verify the required parameter 'amountOut' is set
-            if (amountOut == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountOut' when calling ExchangeApi->GetQuoteForInput");
+            // verify the required parameter 'tokenIn' is set
+            if (tokenIn == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForInput");
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
 
@@ -807,13 +807,13 @@ namespace BeamPlayerClient.Api
             var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
             localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "amountOut", amountOut));
             if (chainId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
             }
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
 
             // authentication (beam-api-key) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
@@ -837,15 +837,15 @@ namespace BeamPlayerClient.Api
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string tokenIn, string tokenOut, string amountOut, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetQuoteForInputWithHttpInfoAsync(tokenIn, tokenOut, amountOut, chainId, cancellationToken);
+            var task = GetQuoteForInputWithHttpInfoAsync(amountOut, tokenOut, tokenIn, chainId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
@@ -854,25 +854,25 @@ namespace BeamPlayerClient.Api
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountOut"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string tokenIn, string tokenOut, string amountOut, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'tokenIn' is set
-            if (tokenIn == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForInput");
+            // verify the required parameter 'amountOut' is set
+            if (amountOut == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountOut' when calling ExchangeApi->GetQuoteForInput");
 
             // verify the required parameter 'tokenOut' is set
             if (tokenOut == null)
                 throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenOut' when calling ExchangeApi->GetQuoteForInput");
 
-            // verify the required parameter 'amountOut' is set
-            if (amountOut == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountOut' when calling ExchangeApi->GetQuoteForInput");
+            // verify the required parameter 'tokenIn' is set
+            if (tokenIn == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForInput");
 
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
@@ -892,13 +892,13 @@ namespace BeamPlayerClient.Api
             var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
             localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "amountOut", amountOut));
             if (chainId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
             }
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
 
             // authentication (beam-api-key) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
@@ -925,14 +925,14 @@ namespace BeamPlayerClient.Api
         /// Returns the minimum expected output amount for a token trade, given an input amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>GetQuoteResponse</returns>
-        public GetQuoteResponse GetQuoteForOutput(string tokenIn, string tokenOut, string amountIn, long? chainId)
+        public GetQuoteResponse GetQuoteForOutput(string amountIn, string tokenOut, string tokenIn, long? chainId)
         {
-            BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = GetQuoteForOutputWithHttpInfo(tokenIn, tokenOut, amountIn, chainId);
+            BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = GetQuoteForOutputWithHttpInfo(amountIn, tokenOut, tokenIn, chainId);
             return localVarResponse.Data;
         }
 
@@ -940,24 +940,24 @@ namespace BeamPlayerClient.Api
         /// Returns the minimum expected output amount for a token trade, given an input amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of GetQuoteResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> GetQuoteForOutputWithHttpInfo(string tokenIn, string tokenOut, string amountIn, long? chainId)
+        public BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> GetQuoteForOutputWithHttpInfo(string amountIn, string tokenOut, string tokenIn, long? chainId)
         {
-            // verify the required parameter 'tokenIn' is set
-            if (tokenIn == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForOutput");
+            // verify the required parameter 'amountIn' is set
+            if (amountIn == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountIn' when calling ExchangeApi->GetQuoteForOutput");
 
             // verify the required parameter 'tokenOut' is set
             if (tokenOut == null)
                 throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenOut' when calling ExchangeApi->GetQuoteForOutput");
 
-            // verify the required parameter 'amountIn' is set
-            if (amountIn == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountIn' when calling ExchangeApi->GetQuoteForOutput");
+            // verify the required parameter 'tokenIn' is set
+            if (tokenIn == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForOutput");
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
 
@@ -975,13 +975,13 @@ namespace BeamPlayerClient.Api
             var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
             localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "amountIn", amountIn));
             if (chainId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
             }
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
 
             // authentication (beam-api-key) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
@@ -1005,15 +1005,15 @@ namespace BeamPlayerClient.Api
         /// Returns the minimum expected output amount for a token trade, given an input amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string tokenIn, string tokenOut, string amountIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetQuoteForOutputWithHttpInfoAsync(tokenIn, tokenOut, amountIn, chainId, cancellationToken);
+            var task = GetQuoteForOutputWithHttpInfoAsync(amountIn, tokenOut, tokenIn, chainId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
@@ -1022,25 +1022,25 @@ namespace BeamPlayerClient.Api
         /// Returns the minimum expected output amount for a token trade, given an input amount 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tokenIn"></param>
-        /// <param name="tokenOut"></param>
         /// <param name="amountIn"></param>
+        /// <param name="tokenOut"></param>
+        /// <param name="tokenIn"></param>
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string tokenIn, string tokenOut, string amountIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'tokenIn' is set
-            if (tokenIn == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForOutput");
+            // verify the required parameter 'amountIn' is set
+            if (amountIn == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountIn' when calling ExchangeApi->GetQuoteForOutput");
 
             // verify the required parameter 'tokenOut' is set
             if (tokenOut == null)
                 throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenOut' when calling ExchangeApi->GetQuoteForOutput");
 
-            // verify the required parameter 'amountIn' is set
-            if (amountIn == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'amountIn' when calling ExchangeApi->GetQuoteForOutput");
+            // verify the required parameter 'tokenIn' is set
+            if (tokenIn == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'tokenIn' when calling ExchangeApi->GetQuoteForOutput");
 
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
@@ -1060,13 +1060,13 @@ namespace BeamPlayerClient.Api
             var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
-            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
             localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "amountIn", amountIn));
             if (chainId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
             }
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenOut", tokenOut));
+            localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "tokenIn", tokenIn));
 
             // authentication (beam-api-key) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))

@@ -2,27 +2,29 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "7.2.0",
+    "version": "7.9.0",
     "generators": {
       "unity-player-client": {
         "generatorName": "csharp",
         "output": "../Runtime/Beam/Api/BeamPlayerClient",
         "library": "unityWebRequest",
         "templateDir": "./templates",
-        "inputSpec": "https://api.testnet.onbeam.com/api/player-json",
+        "inputSpec": "http://localhost:4001/api/player-json",
         "skipValidateSpec": true,
         "globalProperty": {
           "modelTests": false,
           "apiTests": false,
           "modelDocs": false,
-          "apiDocs": false
+          "apiDocs": false,
+          "legacyDiscriminatorBehavior": false
         },
         "additionalProperties": {
           "packageName": "BeamPlayerClient",
           "returnICollection": true,
           "optionalMethodArgument": false,
           "nullableReferenceTypes": false,
-          "optionalProjectFile": false
+          "optionalProjectFile": false,
+          "useOneOfDiscriminatorLookup": true
         }
       }
     }

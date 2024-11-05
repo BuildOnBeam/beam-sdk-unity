@@ -38,10 +38,10 @@ namespace BeamPlayerClient.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum ExchangeUnwrap for value: ExchangeUnwrap
+            /// Enum Sign for value: Sign
             /// </summary>
-            [EnumMember(Value = "ExchangeUnwrap")]
-            ExchangeUnwrap = 1
+            [EnumMember(Value = "Sign")]
+            Sign = 1
         }
 
 
@@ -65,7 +65,7 @@ namespace BeamPlayerClient.Model
         /// <param name="transaction">transaction (required).</param>
         /// <param name="context">context (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateOperationRequestInputActionsInner(TypeEnum type = default(TypeEnum), CreateOperationRequestInputActionsInnerAllOfOneOfSignature signature = default(CreateOperationRequestInputActionsInnerAllOfOneOfSignature), CreateOperationRequestInputActionsInnerAllOfOneOfTransaction transaction = default(CreateOperationRequestInputActionsInnerAllOfOneOfTransaction), CreateOperationRequestInputActionsInnerAllOfOneOf11Context context = default(CreateOperationRequestInputActionsInnerAllOfOneOf11Context))
+        public CreateOperationRequestInputActionsInner(TypeEnum type = default(TypeEnum), CreateCustomTransactionActionSignature signature = default(CreateCustomTransactionActionSignature), CreateTransaction transaction = default(CreateTransaction), ContextExchangeUnwrap context = default(ContextExchangeUnwrap))
         {
             this.Type = type;
             // to ensure "signature" is required (not null)
@@ -93,21 +93,21 @@ namespace BeamPlayerClient.Model
         /// </summary>
         [DataMember(Name = "signature", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public CreateOperationRequestInputActionsInnerAllOfOneOfSignature Signature { get; set; }
+        public CreateCustomTransactionActionSignature Signature { get; set; }
 
         /// <summary>
         /// Gets or Sets Transaction
         /// </summary>
         [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public CreateOperationRequestInputActionsInnerAllOfOneOfTransaction Transaction { get; set; }
+        public CreateTransaction Transaction { get; set; }
 
         /// <summary>
         /// Gets or Sets Context
         /// </summary>
         [DataMember(Name = "context", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public CreateOperationRequestInputActionsInnerAllOfOneOf11Context Context { get; set; }
+        public ContextExchangeUnwrap Context { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

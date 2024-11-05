@@ -1221,20 +1221,6 @@ paths:
       parameters:
       - explode: true
         in: query
-        name: tokenIn
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenOut
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: amountOut
         required: true
         schema:
@@ -1247,6 +1233,20 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - explode: true
+        in: query
+        name: tokenOut
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenIn
+        required: true
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -1267,20 +1267,6 @@ paths:
       parameters:
       - explode: true
         in: query
-        name: tokenIn
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenOut
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: amountIn
         required: true
         schema:
@@ -1293,6 +1279,20 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - explode: true
+        in: query
+        name: tokenOut
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenIn
+        required: true
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -2050,8 +2050,62 @@ components:
           status: Pending
         userId: userId
         actions:
-        - null
-        - null
+        - signature:
+            data: ""
+            signature: signature
+            actionId: actionId
+            id: id
+            type: Message
+            hash: hash
+          context:
+            assets:
+            - receiverAddress: receiverAddress
+              amount: 6.027456183070403
+              assetId: assetId
+              contractAddress: contractAddress
+            - receiverAddress: receiverAddress
+              amount: 6.027456183070403
+              assetId: assetId
+              contractAddress: contractAddress
+          index: 5
+          operationId: operationId
+          id: id
+          type: Sign
+          transaction:
+            actionId: actionId
+            sponsored: true
+            id: id
+            openfortId: openfortId
+            hash: hash
+            status: Pending
+        - signature:
+            data: ""
+            signature: signature
+            actionId: actionId
+            id: id
+            type: Message
+            hash: hash
+          context:
+            assets:
+            - receiverAddress: receiverAddress
+              amount: 6.027456183070403
+              assetId: assetId
+              contractAddress: contractAddress
+            - receiverAddress: receiverAddress
+              amount: 6.027456183070403
+              assetId: assetId
+              contractAddress: contractAddress
+          index: 5
+          operationId: operationId
+          id: id
+          type: Sign
+          transaction:
+            actionId: actionId
+            sponsored: true
+            id: id
+            openfortId: openfortId
+            hash: hash
+            status: Pending
         url: https://openapi-generator.tech
         status: Pending
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -2086,9 +2140,6 @@ components:
         chainId:
           format: int64
           type: integer
-        url:
-          format: uri
-          type: string
         actions:
           items:
             $ref: '#/components/schemas/CommonOperationResponse_actions_inner'
@@ -2097,6 +2148,9 @@ components:
           items:
             $ref: '#/components/schemas/CommonOperationResponse_transactions_inner'
           type: array
+        url:
+          format: uri
+          type: string
       required:
       - actions
       - chainId
@@ -3410,8 +3464,8 @@ components:
         - data: ""
           type: OpenfortTransaction
         actions:
-        - null
-        - null
+        - type: Sign
+        - type: Sign
         operationProcessing: Execute
       properties:
         entityId:
@@ -3450,6 +3504,11 @@ components:
           id: id
         - signature: signature
           id: id
+        actions:
+        - signature: signature
+          id: id
+        - signature: signature
+          id: id
         status: Pending
       properties:
         status:
@@ -3461,6 +3520,11 @@ components:
           - Error
           type: string
         transactions:
+          items:
+            $ref: '#/components/schemas/ConfirmOperationRequest_transactions_inner'
+          nullable: true
+          type: array
+        actions:
           items:
             $ref: '#/components/schemas/ConfirmOperationRequest_transactions_inner'
           nullable: true
@@ -4110,6 +4174,43 @@ components:
       required:
       - url
       type: object
+    BaseActionResponse:
+      properties:
+        id:
+          format: cuid
+          type: string
+        index:
+          type: integer
+        type:
+          enum:
+          - Sign
+          - SessionRevoke
+          - MarketplaceCreateOffer
+          - MarketplaceCancelOffer
+          - MarketplaceAcceptOffer
+          - MarketplaceBuyAsset
+          - MarketplaceListAsset
+          - MarketplaceCancelListing
+          - ExchangeConvert
+          - ExchangeWrap
+          - ExchangeUnwrap
+          - TransferNFTs
+          - TransferToken
+          - CustomTransaction
+          type: string
+        operationId:
+          nullable: true
+          type: string
+        signature:
+          $ref: '#/components/schemas/BaseSignatureRequest'
+      required:
+      - id
+      - index
+      - operationId
+      - signature
+      - type
+      title: BaseActionResponse
+      type: object
     check_200_response_info_value:
       additionalProperties: true
       properties:
@@ -4155,6 +4256,21 @@ components:
           type: object
       type: object
     check_503_response:
+      example:
+        details:
+          database:
+            status: up
+          redis:
+            status: down
+            message: Could not connect
+        error:
+          redis:
+            status: down
+            message: Could not connect
+        status: error
+        info:
+          database:
+            status: up
       properties:
         status:
           example: error
@@ -4367,8 +4483,55 @@ components:
       - assetAddress
       - assetId
       type: object
-    CommonOperationResponse_actions_inner_allOf_signature:
-      nullable: true
+    ContextTransferNFTs_assets_inner:
+      example:
+        receiverAddress: receiverAddress
+        amount: 6.027456183070403
+        assetId: assetId
+        contractAddress: contractAddress
+      properties:
+        receiverAddress:
+          type: string
+        contractAddress:
+          type: string
+        assetId:
+          type: string
+        amount:
+          type: number
+      required:
+      - amount
+      - assetId
+      - contractAddress
+      - receiverAddress
+      type: object
+    ContextTransferNFTs:
+      example:
+        assets:
+        - receiverAddress: receiverAddress
+          amount: 6.027456183070403
+          assetId: assetId
+          contractAddress: contractAddress
+        - receiverAddress: receiverAddress
+          amount: 6.027456183070403
+          assetId: assetId
+          contractAddress: contractAddress
+      properties:
+        assets:
+          items:
+            $ref: '#/components/schemas/ContextTransferNFTs_assets_inner'
+          type: array
+      required:
+      - assets
+      title: ContextTransferNFTs
+      type: object
+    BaseSignatureRequest:
+      example:
+        data: ""
+        signature: signature
+        actionId: actionId
+        id: id
+        type: Message
+        hash: hash
       properties:
         type:
           enum:
@@ -4378,11 +4541,49 @@ components:
         id:
           format: cuid
           type: string
-        data:
-          nullable: true
+        data: {}
         signature:
           nullable: true
           type: string
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          type: string
+      required:
+      - actionId
+      - data
+      - hash
+      - id
+      - signature
+      - type
+      title: BaseSignatureRequest
+      type: object
+    Transaction:
+      example:
+        actionId: actionId
+        sponsored: true
+        id: id
+        openfortId: openfortId
+        hash: hash
+        status: Pending
+      properties:
+        status:
+          enum:
+          - Pending
+          - Signed
+          - Rejected
+          - Executed
+          - Error
+          type: string
+        id:
+          format: cuid
+          type: string
+        openfortId:
+          nullable: true
+          type: string
+        sponsored:
+          type: boolean
         actionId:
           nullable: true
           type: string
@@ -4391,12 +4592,610 @@ components:
           type: string
       required:
       - actionId
+      - hash
       - id
-      - signature
-      - type
+      - openfortId
+      - sponsored
+      - status
+      title: Transaction
       type: object
-    CommonOperationResponse_actions_inner_allOf_transaction:
-      nullable: true
+    TransferNFTsAction:
+      allOf:
+      - properties:
+          context:
+            $ref: '#/components/schemas/ContextTransferNFTs'
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - context
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      example:
+        signature:
+          data: ""
+          signature: signature
+          actionId: actionId
+          id: id
+          type: Message
+          hash: hash
+        context:
+          assets:
+          - receiverAddress: receiverAddress
+            amount: 6.027456183070403
+            assetId: assetId
+            contractAddress: contractAddress
+          - receiverAddress: receiverAddress
+            amount: 6.027456183070403
+            assetId: assetId
+            contractAddress: contractAddress
+        index: 5
+        operationId: operationId
+        id: id
+        type: Sign
+        transaction:
+          actionId: actionId
+          sponsored: true
+          id: id
+          openfortId: openfortId
+          hash: hash
+          status: Pending
+      title: TransferNFTsAction
+    ContextTransferToken:
+      properties:
+        amount:
+          type: string
+        contractAddress:
+          type: string
+        receiverAddress:
+          type: string
+      required:
+      - amount
+      - contractAddress
+      - receiverAddress
+      title: ContextTransferToken
+      type: object
+    TransferTokenAction:
+      allOf:
+      - properties:
+          context:
+            $ref: '#/components/schemas/ContextTransferToken'
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - context
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: TransferTokenAction
+    MarketplaceCreateOfferAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: MarketplaceCreateOfferAction
+    MarketplaceCancelOfferAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: MarketplaceCancelOfferAction
+    MarketplaceAcceptOfferAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: MarketplaceAcceptOfferAction
+    MarketplaceListAssetAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: MarketplaceListAssetAction
+    MarketplaceBuyAssetAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: MarketplaceBuyAssetAction
+    MarketplaceCancelListingAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: MarketplaceCancelListingAction
+    SessionRevokeAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: SessionRevokeAction
+    ContextExchangeConvert_input:
+      properties:
+        address:
+          type: string
+        amount:
+          type: string
+      required:
+      - address
+      - amount
+      type: object
+    ContextExchangeConvert:
+      properties:
+        input:
+          $ref: '#/components/schemas/ContextExchangeConvert_input'
+        output:
+          $ref: '#/components/schemas/ContextExchangeConvert_input'
+      required:
+      - input
+      - output
+      title: ContextExchangeConvert
+      type: object
+    ExchangeConvertAction:
+      allOf:
+      - properties:
+          context:
+            $ref: '#/components/schemas/ContextExchangeConvert'
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - context
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: ExchangeConvertAction
+    ContextExchangeWrap:
+      properties:
+        amount:
+          type: string
+      required:
+      - amount
+      title: ContextExchangeWrap
+      type: object
+    ExchangeWrapAction:
+      allOf:
+      - properties:
+          context:
+            $ref: '#/components/schemas/ContextExchangeWrap'
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - context
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: ExchangeWrapAction
+    ContextExchangeUnwrap:
+      properties:
+        amount:
+          type: string
+      required:
+      - amount
+      title: ContextExchangeUnwrap
+      type: object
+    ExchangeUnwrapAction:
+      allOf:
+      - properties:
+          context:
+            $ref: '#/components/schemas/ContextExchangeUnwrap'
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/Transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - context
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: ExchangeUnwrapAction
+    CustomTransactionAction_allOf_transaction:
       properties:
         status:
           enum:
@@ -4428,11 +5227,21 @@ components:
       - sponsored
       - status
       type: object
-    CommonOperationResponse_actions_inner:
+    CustomTransactionAction:
       allOf:
       - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
+          transaction:
+            $ref: '#/components/schemas/CustomTransactionAction_allOf_transaction'
+          id:
+            format: cuid
+            type: string
+          index:
+            type: integer
           type:
             enum:
+            - Sign
             - SessionRevoke
             - MarketplaceCreateOffer
             - MarketplaceCancelOffer
@@ -4447,28 +5256,91 @@ components:
             - TransferToken
             - CustomTransaction
             type: string
+          operationId:
+            nullable: true
+            type: string
+        required:
+        - id
+        - index
+        - operationId
+        - signature
+        - transaction
+        - type
+        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: CustomTransactionAction
+    SignAction:
+      allOf:
+      - properties:
+          signature:
+            $ref: '#/components/schemas/BaseSignatureRequest'
           id:
             format: cuid
             type: string
           index:
             type: integer
+          type:
+            enum:
+            - Sign
+            - SessionRevoke
+            - MarketplaceCreateOffer
+            - MarketplaceCancelOffer
+            - MarketplaceAcceptOffer
+            - MarketplaceBuyAsset
+            - MarketplaceListAsset
+            - MarketplaceCancelListing
+            - ExchangeConvert
+            - ExchangeWrap
+            - ExchangeUnwrap
+            - TransferNFTs
+            - TransferToken
+            - CustomTransaction
+            type: string
           operationId:
             nullable: true
             type: string
-          context: {}
         required:
-        - context
         - id
         - index
         - operationId
+        - signature
         - type
         type: object
-      - properties:
-          signature:
-            $ref: '#/components/schemas/CommonOperationResponse_actions_inner_allOf_signature'
-          transaction:
-            $ref: '#/components/schemas/CommonOperationResponse_actions_inner_allOf_transaction'
-        type: object
+      - $ref: '#/components/schemas/BaseActionResponse'
+      title: SignAction
+    CommonOperationResponse_actions_inner:
+      discriminator:
+        mapping:
+          TransferNFTs: TransferNFTsAction
+          TransferToken: TransferTokenAction
+          MarketplaceCancelOffer: MarketplaceCancelOfferAction
+          MarketplaceAcceptOffer: MarketplaceAcceptOfferAction
+          MarketplaceBuyAsset: MarketplaceBuyAssetAction
+          MarketplaceCancelListing: MarketplaceCancelListingAction
+          SessionRevoke: SessionRevokeAction
+          ExchangeConvert: ExchangeConvertAction
+          ExchangeWrap: ExchangeWrapAction
+          ExchangeUnwrap: ExchangeUnwrapAction
+          CustomTransaction: CustomTransactionAction
+          Sign: SignAction
+          MarketplaceCreateOffer: MarketplaceCreateOfferAction
+          MarketplaceListAsset: MarketplaceListAssetAction
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/TransferNFTsAction'
+      - $ref: '#/components/schemas/TransferTokenAction'
+      - $ref: '#/components/schemas/MarketplaceCreateOfferAction'
+      - $ref: '#/components/schemas/MarketplaceCancelOfferAction'
+      - $ref: '#/components/schemas/MarketplaceAcceptOfferAction'
+      - $ref: '#/components/schemas/MarketplaceListAssetAction'
+      - $ref: '#/components/schemas/MarketplaceBuyAssetAction'
+      - $ref: '#/components/schemas/MarketplaceCancelListingAction'
+      - $ref: '#/components/schemas/SessionRevokeAction'
+      - $ref: '#/components/schemas/ExchangeConvertAction'
+      - $ref: '#/components/schemas/ExchangeWrapAction'
+      - $ref: '#/components/schemas/ExchangeUnwrapAction'
+      - $ref: '#/components/schemas/CustomTransactionAction'
+      - $ref: '#/components/schemas/SignAction'
     CommonOperationResponse_transactions_inner:
       example:
         data: ""
@@ -5276,7 +6148,7 @@ components:
       - id
       - wallets
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf:
+    CreateSignatureMessage:
       properties:
         type:
           enum:
@@ -5287,37 +6159,9 @@ components:
       required:
       - data
       - type
+      title: CreateSignatureMessage
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf_1:
-      properties:
-        type:
-          enum:
-          - TypedData
-          type: string
-        data:
-          properties: {}
-          type: object
-      required:
-      - data
-      - type
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_signature:
-      allOf:
-      - properties:
-          type:
-            enum:
-            - Message
-            - TypedData
-            type: string
-        required:
-        - type
-        type: object
-      - discriminator:
-          propertyName: type
-        oneOf:
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature_allOf_oneOf_1'
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction:
+    CreateTransaction:
       properties:
         openfortId:
           nullable: true
@@ -5326,281 +6170,293 @@ components:
           type: boolean
       required:
       - sponsored
+      title: CreateTransaction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_context_assets_inner:
-      properties:
-        receiverAddress:
-          type: string
-        contractAddress:
-          type: string
-        assetId:
-          type: string
-        amount:
-          type: number
-      required:
-      - amount
-      - assetId
-      - contractAddress
-      - receiverAddress
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_context:
-      properties:
-        assets:
-          items:
-            $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_context_assets_inner'
-          type: array
-      required:
-      - assets
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf:
+    CreateTransferNFTsAction:
       properties:
         type:
           enum:
           - TransferNFTs
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
         context:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_context'
+          $ref: '#/components/schemas/ContextTransferNFTs'
       required:
       - context
       - signature
       - transaction
       - type
+      title: CreateTransferNFTsAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_1_context:
-      properties:
-        amount:
-          type: string
-        contractAddress:
-          type: string
-        receiverAddress:
-          type: string
-      required:
-      - amount
-      - contractAddress
-      - receiverAddress
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_1:
+    CreateTransferTokenAction:
       properties:
         type:
           enum:
           - TransferToken
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
         context:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_1_context'
+          $ref: '#/components/schemas/ContextTransferToken'
       required:
       - context
       - signature
       - transaction
       - type
+      title: CreateTransferTokenAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_2:
+    CreateSignatureTypedData_data_types_value_inner:
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+      required:
+      - name
+      - type
+      type: object
+    CreateSignatureTypedData_data:
+      properties:
+        domain: {}
+        types:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/CreateSignatureTypedData_data_types_value_inner'
+            type: array
+          type: object
+        message:
+          additionalProperties:
+            type: string
+          type: object
+        primaryType:
+          type: string
+        hash:
+          type: string
+      required:
+      - message
+      - primaryType
+      - types
+      type: object
+    CreateSignatureTypedData:
+      properties:
+        type:
+          enum:
+          - TypedData
+          type: string
+        data:
+          $ref: '#/components/schemas/CreateSignatureTypedData_data'
+      required:
+      - data
+      - type
+      title: CreateSignatureTypedData
+      type: object
+    CreateMarketplaceCreateOfferAction:
       properties:
         type:
           enum:
           - MarketplaceCreateOffer
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureTypedData'
       required:
       - signature
       - type
+      title: CreateMarketplaceCreateOfferAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_3:
+    CreateMarketplaceCancelOfferAction:
       properties:
         type:
           enum:
           - MarketplaceCancelOffer
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - signature
       - transaction
       - type
+      title: CreateMarketplaceCancelOfferAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_4:
+    CreateMarketplaceAcceptOfferAction:
       properties:
         type:
           enum:
           - MarketplaceAcceptOffer
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - signature
       - transaction
       - type
+      title: CreateMarketplaceAcceptOfferAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_5:
+    CreateMarketplaceListAssetAction:
       properties:
         type:
           enum:
           - MarketplaceListAsset
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureTypedData'
       required:
       - signature
       - type
+      title: CreateMarketplaceListAssetAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_6:
+    CreateMarketplaceBuyAssetAction:
       properties:
         type:
           enum:
           - MarketplaceBuyAsset
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - signature
       - transaction
       - type
+      title: CreateMarketplaceBuyAssetAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_7:
+    CreateMarketplaceCancelListingAction:
       properties:
         type:
           enum:
           - MarketplaceCancelListing
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - signature
       - transaction
       - type
+      title: CreateMarketplaceCancelListingAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_8:
+    CreateSessionRevokeAction:
       properties:
         type:
           enum:
           - SessionRevoke
           type: string
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - signature
       - transaction
       - type
+      title: CreateSessionRevokeAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_9:
-      properties:
-        type:
-          enum:
-          - CustomTransaction
-          type: string
-        signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
-        transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
-      required:
-      - signature
-      - transaction
-      - type
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context_input:
-      properties:
-        address:
-          type: string
-        amount:
-          type: string
-      required:
-      - address
-      - amount
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context:
-      properties:
-        input:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context_input'
-        output:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context_input'
-      required:
-      - input
-      - output
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_10:
+    CreateExchangeConvertAction:
       properties:
         type:
           enum:
           - ExchangeConvert
           type: string
         context:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10_context'
+          $ref: '#/components/schemas/ContextExchangeConvert'
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - context
       - signature
       - transaction
       - type
+      title: CreateExchangeConvertAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_11_context:
-      properties:
-        amount:
-          type: string
-      required:
-      - amount
-      type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_11:
+    CreateExchangeWrapAction:
       properties:
         type:
           enum:
           - ExchangeWrap
           type: string
         context:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_11_context'
+          $ref: '#/components/schemas/ContextExchangeWrap'
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - context
       - signature
       - transaction
       - type
+      title: CreateExchangeWrapAction
       type: object
-    CreateOperationRequestInput_actions_inner_allOf_oneOf_12:
+    CreateExchangeUnwrapAction:
       properties:
         type:
           enum:
           - ExchangeUnwrap
           type: string
         context:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_11_context'
+          $ref: '#/components/schemas/ContextExchangeUnwrap'
         signature:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_signature'
+          $ref: '#/components/schemas/CreateSignatureMessage'
         transaction:
-          $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_transaction'
+          $ref: '#/components/schemas/CreateTransaction'
       required:
       - context
       - signature
       - transaction
       - type
+      title: CreateExchangeUnwrapAction
+      type: object
+    CreateCustomTransactionAction_signature:
+      oneOf:
+      - $ref: '#/components/schemas/CreateSignatureMessage'
+      - $ref: '#/components/schemas/CreateSignatureTypedData'
+    CreateCustomTransactionAction:
+      properties:
+        type:
+          enum:
+          - CustomTransaction
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateCustomTransactionAction_signature'
+        transaction:
+          $ref: '#/components/schemas/CreateTransaction'
+      required:
+      - signature
+      - transaction
+      - type
+      title: CreateCustomTransactionAction
+      type: object
+    CreateSignAction:
+      properties:
+        type:
+          enum:
+          - Sign
+          type: string
+        signature:
+          $ref: '#/components/schemas/CreateCustomTransactionAction_signature'
+      required:
+      - signature
+      - type
+      title: CreateSignAction
       type: object
     CreateOperationRequestInput_actions_inner:
       allOf:
       - properties:
           type:
             enum:
+            - Sign
             - SessionRevoke
             - MarketplaceCreateOffer
             - MarketplaceCancelOffer
@@ -5621,19 +6477,22 @@ components:
       - discriminator:
           propertyName: type
         oneOf:
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_1'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_2'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_3'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_4'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_5'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_6'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_7'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_8'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_9'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_10'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_11'
-        - $ref: '#/components/schemas/CreateOperationRequestInput_actions_inner_allOf_oneOf_12'
+        - $ref: '#/components/schemas/CreateTransferNFTsAction'
+        - $ref: '#/components/schemas/CreateTransferTokenAction'
+        - $ref: '#/components/schemas/CreateMarketplaceCreateOfferAction'
+        - $ref: '#/components/schemas/CreateMarketplaceCancelOfferAction'
+        - $ref: '#/components/schemas/CreateMarketplaceAcceptOfferAction'
+        - $ref: '#/components/schemas/CreateMarketplaceListAssetAction'
+        - $ref: '#/components/schemas/CreateMarketplaceBuyAssetAction'
+        - $ref: '#/components/schemas/CreateMarketplaceCancelListingAction'
+        - $ref: '#/components/schemas/CreateSessionRevokeAction'
+        - $ref: '#/components/schemas/CreateExchangeConvertAction'
+        - $ref: '#/components/schemas/CreateExchangeWrapAction'
+        - $ref: '#/components/schemas/CreateExchangeUnwrapAction'
+        - $ref: '#/components/schemas/CreateCustomTransactionAction'
+        - $ref: '#/components/schemas/CreateSignAction'
+      example:
+        type: Sign
     CreateOperationRequestInput_transactions_inner:
       example:
         data: ""

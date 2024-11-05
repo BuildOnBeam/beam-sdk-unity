@@ -21,209 +21,411 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using OpenAPIDateConverter = BeamPlayerClient.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace BeamPlayerClient.Model
 {
     /// <summary>
     /// CommonOperationResponseActionsInner
     /// </summary>
+    [JsonConverter(typeof(CommonOperationResponseActionsInnerJsonConverter))]
     [DataContract(Name = "CommonOperationResponse_actions_inner")]
-    [UnityEngine.Scripting.Preserve]
-    public partial class CommonOperationResponseActionsInner
+    public partial class CommonOperationResponseActionsInner : AbstractOpenAPISchema
     {
         /// <summary>
-        /// Defines Type
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="TransferNFTsAction" /> class
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        /// <param name="actualInstance">An instance of TransferNFTsAction.</param>
+        public CommonOperationResponseActionsInner(TransferNFTsAction actualInstance)
         {
-            /// <summary>
-            /// Enum SessionRevoke for value: SessionRevoke
-            /// </summary>
-            [EnumMember(Value = "SessionRevoke")]
-            SessionRevoke = 1,
-
-            /// <summary>
-            /// Enum MarketplaceCreateOffer for value: MarketplaceCreateOffer
-            /// </summary>
-            [EnumMember(Value = "MarketplaceCreateOffer")]
-            MarketplaceCreateOffer = 2,
-
-            /// <summary>
-            /// Enum MarketplaceCancelOffer for value: MarketplaceCancelOffer
-            /// </summary>
-            [EnumMember(Value = "MarketplaceCancelOffer")]
-            MarketplaceCancelOffer = 3,
-
-            /// <summary>
-            /// Enum MarketplaceAcceptOffer for value: MarketplaceAcceptOffer
-            /// </summary>
-            [EnumMember(Value = "MarketplaceAcceptOffer")]
-            MarketplaceAcceptOffer = 4,
-
-            /// <summary>
-            /// Enum MarketplaceBuyAsset for value: MarketplaceBuyAsset
-            /// </summary>
-            [EnumMember(Value = "MarketplaceBuyAsset")]
-            MarketplaceBuyAsset = 5,
-
-            /// <summary>
-            /// Enum MarketplaceListAsset for value: MarketplaceListAsset
-            /// </summary>
-            [EnumMember(Value = "MarketplaceListAsset")]
-            MarketplaceListAsset = 6,
-
-            /// <summary>
-            /// Enum MarketplaceCancelListing for value: MarketplaceCancelListing
-            /// </summary>
-            [EnumMember(Value = "MarketplaceCancelListing")]
-            MarketplaceCancelListing = 7,
-
-            /// <summary>
-            /// Enum ExchangeConvert for value: ExchangeConvert
-            /// </summary>
-            [EnumMember(Value = "ExchangeConvert")]
-            ExchangeConvert = 8,
-
-            /// <summary>
-            /// Enum ExchangeWrap for value: ExchangeWrap
-            /// </summary>
-            [EnumMember(Value = "ExchangeWrap")]
-            ExchangeWrap = 9,
-
-            /// <summary>
-            /// Enum ExchangeUnwrap for value: ExchangeUnwrap
-            /// </summary>
-            [EnumMember(Value = "ExchangeUnwrap")]
-            ExchangeUnwrap = 10,
-
-            /// <summary>
-            /// Enum TransferNFTs for value: TransferNFTs
-            /// </summary>
-            [EnumMember(Value = "TransferNFTs")]
-            TransferNFTs = 11,
-
-            /// <summary>
-            /// Enum TransferToken for value: TransferToken
-            /// </summary>
-            [EnumMember(Value = "TransferToken")]
-            TransferToken = 12,
-
-            /// <summary>
-            /// Enum CustomTransaction for value: CustomTransaction
-            /// </summary>
-            [EnumMember(Value = "CustomTransaction")]
-            CustomTransaction = 13
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public TypeEnum Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
-        protected CommonOperationResponseActionsInner() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class.
-        /// </summary>
-        /// <param name="type">type (required).</param>
-        /// <param name="id">id (required).</param>
-        /// <param name="index">index (required).</param>
-        /// <param name="operationId">operationId (required).</param>
-        /// <param name="context">context (required).</param>
-        /// <param name="signature">signature.</param>
-        /// <param name="transaction">transaction.</param>
-        [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponseActionsInner(TypeEnum type = default(TypeEnum), string id = default(string), int index = default(int), string operationId = default(string), Object context = default(Object), CommonOperationResponseActionsInnerAllOfSignature signature = default(CommonOperationResponseActionsInnerAllOfSignature), CommonOperationResponseActionsInnerAllOfTransaction transaction = default(CommonOperationResponseActionsInnerAllOfTransaction))
-        {
-            this.Type = type;
-            // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new ArgumentNullException("id is a required property for CommonOperationResponseActionsInner and cannot be null");
-            }
-            this.Id = id;
-            this.Index = index;
-            // to ensure "operationId" is required (not null)
-            if (operationId == null)
-            {
-                throw new ArgumentNullException("operationId is a required property for CommonOperationResponseActionsInner and cannot be null");
-            }
-            this.OperationId = operationId;
-            // to ensure "context" is required (not null)
-            if (context == null)
-            {
-                throw new ArgumentNullException("context is a required property for CommonOperationResponseActionsInner and cannot be null");
-            }
-            this.Context = context;
-            this.Signature = signature;
-            this.Transaction = transaction;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="TransferTokenAction" /> class
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string Id { get; set; }
+        /// <param name="actualInstance">An instance of TransferTokenAction.</param>
+        public CommonOperationResponseActionsInner(TransferTokenAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets Index
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="MarketplaceCreateOfferAction" /> class
         /// </summary>
-        [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public int Index { get; set; }
+        /// <param name="actualInstance">An instance of MarketplaceCreateOfferAction.</param>
+        public CommonOperationResponseActionsInner(MarketplaceCreateOfferAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets OperationId
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="MarketplaceCancelOfferAction" /> class
         /// </summary>
-        [DataMember(Name = "operationId", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string OperationId { get; set; }
+        /// <param name="actualInstance">An instance of MarketplaceCancelOfferAction.</param>
+        public CommonOperationResponseActionsInner(MarketplaceCancelOfferAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets Context
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="MarketplaceAcceptOfferAction" /> class
         /// </summary>
-        [DataMember(Name = "context", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public Object Context { get; set; }
+        /// <param name="actualInstance">An instance of MarketplaceAcceptOfferAction.</param>
+        public CommonOperationResponseActionsInner(MarketplaceAcceptOfferAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets Signature
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="MarketplaceListAssetAction" /> class
         /// </summary>
-        [DataMember(Name = "signature", EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponseActionsInnerAllOfSignature Signature { get; set; }
+        /// <param name="actualInstance">An instance of MarketplaceListAssetAction.</param>
+        public CommonOperationResponseActionsInner(MarketplaceListAssetAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Gets or Sets Transaction
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="MarketplaceBuyAssetAction" /> class
         /// </summary>
-        [DataMember(Name = "transaction", EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponseActionsInnerAllOfTransaction Transaction { get; set; }
+        /// <param name="actualInstance">An instance of MarketplaceBuyAssetAction.</param>
+        public CommonOperationResponseActionsInner(MarketplaceBuyAssetAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="MarketplaceCancelListingAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of MarketplaceCancelListingAction.</param>
+        public CommonOperationResponseActionsInner(MarketplaceCancelListingAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="SessionRevokeAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of SessionRevokeAction.</param>
+        public CommonOperationResponseActionsInner(SessionRevokeAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="ExchangeConvertAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of ExchangeConvertAction.</param>
+        public CommonOperationResponseActionsInner(ExchangeConvertAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="ExchangeWrapAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of ExchangeWrapAction.</param>
+        public CommonOperationResponseActionsInner(ExchangeWrapAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="ExchangeUnwrapAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of ExchangeUnwrapAction.</param>
+        public CommonOperationResponseActionsInner(ExchangeUnwrapAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="CustomTransactionAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of CustomTransactionAction.</param>
+        public CommonOperationResponseActionsInner(CustomTransactionAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// with the <see cref="SignAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of SignAction.</param>
+        public CommonOperationResponseActionsInner(SignAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
+
+        /// <summary>
+        /// Gets or Sets ActualInstance
+        /// </summary>
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(CustomTransactionAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ExchangeConvertAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ExchangeUnwrapAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ExchangeWrapAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MarketplaceAcceptOfferAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MarketplaceBuyAssetAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MarketplaceCancelListingAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MarketplaceCancelOfferAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MarketplaceCreateOfferAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MarketplaceListAssetAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(SessionRevokeAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(SignAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(TransferNFTsAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(TransferTokenAction))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CustomTransactionAction, ExchangeConvertAction, ExchangeUnwrapAction, ExchangeWrapAction, MarketplaceAcceptOfferAction, MarketplaceBuyAssetAction, MarketplaceCancelListingAction, MarketplaceCancelOfferAction, MarketplaceCreateOfferAction, MarketplaceListAssetAction, SessionRevokeAction, SignAction, TransferNFTsAction, TransferTokenAction");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `TransferNFTsAction`. If the actual instance is not `TransferNFTsAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of TransferNFTsAction</returns>
+        public TransferNFTsAction GetTransferNFTsAction()
+        {
+            return (TransferNFTsAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `TransferTokenAction`. If the actual instance is not `TransferTokenAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of TransferTokenAction</returns>
+        public TransferTokenAction GetTransferTokenAction()
+        {
+            return (TransferTokenAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `MarketplaceCreateOfferAction`. If the actual instance is not `MarketplaceCreateOfferAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of MarketplaceCreateOfferAction</returns>
+        public MarketplaceCreateOfferAction GetMarketplaceCreateOfferAction()
+        {
+            return (MarketplaceCreateOfferAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `MarketplaceCancelOfferAction`. If the actual instance is not `MarketplaceCancelOfferAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of MarketplaceCancelOfferAction</returns>
+        public MarketplaceCancelOfferAction GetMarketplaceCancelOfferAction()
+        {
+            return (MarketplaceCancelOfferAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `MarketplaceAcceptOfferAction`. If the actual instance is not `MarketplaceAcceptOfferAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of MarketplaceAcceptOfferAction</returns>
+        public MarketplaceAcceptOfferAction GetMarketplaceAcceptOfferAction()
+        {
+            return (MarketplaceAcceptOfferAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `MarketplaceListAssetAction`. If the actual instance is not `MarketplaceListAssetAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of MarketplaceListAssetAction</returns>
+        public MarketplaceListAssetAction GetMarketplaceListAssetAction()
+        {
+            return (MarketplaceListAssetAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `MarketplaceBuyAssetAction`. If the actual instance is not `MarketplaceBuyAssetAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of MarketplaceBuyAssetAction</returns>
+        public MarketplaceBuyAssetAction GetMarketplaceBuyAssetAction()
+        {
+            return (MarketplaceBuyAssetAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `MarketplaceCancelListingAction`. If the actual instance is not `MarketplaceCancelListingAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of MarketplaceCancelListingAction</returns>
+        public MarketplaceCancelListingAction GetMarketplaceCancelListingAction()
+        {
+            return (MarketplaceCancelListingAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `SessionRevokeAction`. If the actual instance is not `SessionRevokeAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of SessionRevokeAction</returns>
+        public SessionRevokeAction GetSessionRevokeAction()
+        {
+            return (SessionRevokeAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ExchangeConvertAction`. If the actual instance is not `ExchangeConvertAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ExchangeConvertAction</returns>
+        public ExchangeConvertAction GetExchangeConvertAction()
+        {
+            return (ExchangeConvertAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ExchangeWrapAction`. If the actual instance is not `ExchangeWrapAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ExchangeWrapAction</returns>
+        public ExchangeWrapAction GetExchangeWrapAction()
+        {
+            return (ExchangeWrapAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ExchangeUnwrapAction`. If the actual instance is not `ExchangeUnwrapAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ExchangeUnwrapAction</returns>
+        public ExchangeUnwrapAction GetExchangeUnwrapAction()
+        {
+            return (ExchangeUnwrapAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CustomTransactionAction`. If the actual instance is not `CustomTransactionAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CustomTransactionAction</returns>
+        public CustomTransactionAction GetCustomTransactionAction()
+        {
+            return (CustomTransactionAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `SignAction`. If the actual instance is not `SignAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of SignAction</returns>
+        public SignAction GetSignAction()
+        {
+            return (SignAction)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
-        [UnityEngine.Scripting.Preserve]
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CommonOperationResponseActionsInner {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
-            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
-            sb.Append("  Context: ").Append(Context).Append("\n");
-            sb.Append("  Signature: ").Append(Signature).Append("\n");
-            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -232,12 +434,465 @@ namespace BeamPlayerClient.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        [UnityEngine.Scripting.Preserve]
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, CommonOperationResponseActionsInner.SerializerSettings);
         }
 
+        /// <summary>
+        /// Converts the JSON string into an instance of CommonOperationResponseActionsInner
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CommonOperationResponseActionsInner</returns>
+        public static CommonOperationResponseActionsInner FromJson(string jsonString)
+        {
+            CommonOperationResponseActionsInner newCommonOperationResponseActionsInner = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCommonOperationResponseActionsInner;
+            }
+
+            try
+            {
+                var discriminatorObj = JObject.Parse(jsonString)["type"];
+                string discriminatorValue =  discriminatorObj == null ?string.Empty :discriminatorObj.ToString();
+                switch (discriminatorValue)
+                {
+                    case "CustomTransaction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "ExchangeConvert":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "ExchangeUnwrap":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "ExchangeWrap":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceAcceptOffer":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceBuyAsset":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceCancelListing":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceCancelOffer":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceCreateOffer":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceListAsset":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "SessionRevoke":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "Sign":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "TransferNFTs":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "TransferToken":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "CustomTransactionAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "ExchangeConvertAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "ExchangeUnwrapAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "ExchangeWrapAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceAcceptOfferAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceBuyAssetAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceCancelListingAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceCancelOfferAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceCreateOfferAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "MarketplaceListAssetAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "SessionRevokeAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "SignAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "TransferNFTsAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    case "TransferTokenAction":
+                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationResponseActionsInner;
+                    default:
+                        System.Diagnostics.Debug.WriteLine(string.Format("Failed to lookup discriminator value `{0}` for CommonOperationResponseActionsInner. Possible values: CustomTransaction ExchangeConvert ExchangeUnwrap ExchangeWrap MarketplaceAcceptOffer MarketplaceBuyAsset MarketplaceCancelListing MarketplaceCancelOffer MarketplaceCreateOffer MarketplaceListAsset SessionRevoke Sign TransferNFTs TransferToken CustomTransactionAction ExchangeConvertAction ExchangeUnwrapAction ExchangeWrapAction MarketplaceAcceptOfferAction MarketplaceBuyAssetAction MarketplaceCancelListingAction MarketplaceCancelOfferAction MarketplaceCreateOfferAction MarketplaceListAssetAction SessionRevokeAction SignAction TransferNFTsAction TransferTokenAction", discriminatorValue));
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to parse the json data : `{0}` {1}", jsonString, ex.ToString()));
+            }
+
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CustomTransactionAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CustomTransactionAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CustomTransactionAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ExchangeConvertAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ExchangeConvertAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ExchangeConvertAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ExchangeUnwrapAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ExchangeUnwrapAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ExchangeUnwrapAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ExchangeWrapAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ExchangeWrapAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ExchangeWrapAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(MarketplaceAcceptOfferAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("MarketplaceAcceptOfferAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MarketplaceAcceptOfferAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(MarketplaceBuyAssetAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("MarketplaceBuyAssetAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MarketplaceBuyAssetAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(MarketplaceCancelListingAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("MarketplaceCancelListingAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MarketplaceCancelListingAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(MarketplaceCancelOfferAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("MarketplaceCancelOfferAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MarketplaceCancelOfferAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(MarketplaceCreateOfferAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("MarketplaceCreateOfferAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MarketplaceCreateOfferAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(MarketplaceListAssetAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("MarketplaceListAssetAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MarketplaceListAssetAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SessionRevokeAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SessionRevokeAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SessionRevokeAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SignAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SignAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SignAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(TransferNFTsAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("TransferNFTsAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into TransferNFTsAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(TransferTokenAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                }
+                else
+                {
+                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("TransferTokenAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into TransferTokenAction: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newCommonOperationResponseActionsInner;
+        }
+
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CommonOperationResponseActionsInner
+    /// </summary>
+    public class CommonOperationResponseActionsInnerJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CommonOperationResponseActionsInner).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if(reader.TokenType != JsonToken.Null)
+            {
+                return CommonOperationResponseActionsInner.FromJson(JToken.Load(reader).ToString(Formatting.None));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
+        }
     }
 
 }

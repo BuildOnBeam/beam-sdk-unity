@@ -53,7 +53,7 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("raw is a required property for GetAssetListingsResponseDataInnerPriceAmount and cannot be null");
             }
             this.Raw = raw;
-            this.VarDecimal = varDecimal;
+            this.Decimal = varDecimal;
             this.Usd = usd;
             this.Native = native;
         }
@@ -66,11 +66,11 @@ namespace BeamPlayerClient.Model
         public string Raw { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarDecimal
+        /// Gets or Sets Decimal
         /// </summary>
         [DataMember(Name = "decimal", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public decimal VarDecimal { get; set; }
+        public decimal Decimal { get; set; }
 
         /// <summary>
         /// Gets or Sets Usd
@@ -96,7 +96,7 @@ namespace BeamPlayerClient.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetAssetListingsResponseDataInnerPriceAmount {\n");
             sb.Append("  Raw: ").Append(Raw).Append("\n");
-            sb.Append("  VarDecimal: ").Append(VarDecimal).Append("\n");
+            sb.Append("  Decimal: ").Append(Decimal).Append("\n");
             sb.Append("  Usd: ").Append(Usd).Append("\n");
             sb.Append("  Native: ").Append(Native).Append("\n");
             sb.Append("}\n");

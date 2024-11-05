@@ -118,11 +118,11 @@ namespace BeamPlayerClient.Model
         /// <param name="gameId">gameId (required).</param>
         /// <param name="userId">userId (required).</param>
         /// <param name="chainId">chainId (required).</param>
-        /// <param name="url">url (required).</param>
         /// <param name="actions">actions (required).</param>
         /// <param name="transactions">transactions (required).</param>
+        /// <param name="url">url (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), string url = default(string), List<CommonOperationResponseActionsInner> actions = default(List<CommonOperationResponseActionsInner>), List<CommonOperationResponseTransactionsInner> transactions = default(List<CommonOperationResponseTransactionsInner>))
+        public CommonOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), List<CommonOperationResponseActionsInner> actions = default(List<CommonOperationResponseActionsInner>), List<CommonOperationResponseTransactionsInner> transactions = default(List<CommonOperationResponseTransactionsInner>), string url = default(string))
         {
             this.Status = status;
             this.Processing = processing;
@@ -152,12 +152,6 @@ namespace BeamPlayerClient.Model
             }
             this.UserId = userId;
             this.ChainId = chainId;
-            // to ensure "url" is required (not null)
-            if (url == null)
-            {
-                throw new ArgumentNullException("url is a required property for CommonOperationResponse and cannot be null");
-            }
-            this.Url = url;
             // to ensure "actions" is required (not null)
             if (actions == null)
             {
@@ -170,6 +164,12 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("transactions is a required property for CommonOperationResponse and cannot be null");
             }
             this.Transactions = transactions;
+            // to ensure "url" is required (not null)
+            if (url == null)
+            {
+                throw new ArgumentNullException("url is a required property for CommonOperationResponse and cannot be null");
+            }
+            this.Url = url;
         }
 
         /// <summary>
@@ -215,13 +215,6 @@ namespace BeamPlayerClient.Model
         public long ChainId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Url
-        /// </summary>
-        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string Url { get; set; }
-
-        /// <summary>
         /// Gets or Sets Actions
         /// </summary>
         [DataMember(Name = "actions", IsRequired = true, EmitDefaultValue = true)]
@@ -234,6 +227,13 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "transactions", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public List<CommonOperationResponseTransactionsInner> Transactions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Url
+        /// </summary>
+        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string Url { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -252,9 +252,9 @@ namespace BeamPlayerClient.Model
             sb.Append("  GameId: ").Append(GameId).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
