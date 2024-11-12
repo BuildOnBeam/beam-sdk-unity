@@ -81,7 +81,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createConnectionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateConnectionRequestResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CreateConnectionRequestResponse> CreateConnectionRequestAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CreateConnectionRequestResponse> CreateConnectionRequestAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -93,7 +93,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createConnectionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateConnectionRequestResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CreateConnectionRequestResponse>> CreateConnectionRequestWithHttpInfoAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CreateConnectionRequestResponse>> CreateConnectionRequestWithHttpInfoAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -104,7 +104,7 @@ namespace BeamPlayerClient.Api
         /// <param name="requestId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetConnectionRequestResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetConnectionRequestResponse> GetConnectionRequestAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetConnectionRequestResponse> GetConnectionRequestAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -116,7 +116,7 @@ namespace BeamPlayerClient.Api
         /// <param name="requestId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConnectionRequestResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetConnectionRequestResponse>> GetConnectionRequestWithHttpInfoAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetConnectionRequestResponse>> GetConnectionRequestWithHttpInfoAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -329,7 +329,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createConnectionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateConnectionRequestResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CreateConnectionRequestResponse> CreateConnectionRequestAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CreateConnectionRequestResponse> CreateConnectionRequestAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = CreateConnectionRequestWithHttpInfoAsync(createConnectionRequestInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CreateConnectionRequestResponse> localVarResponse = await task;
@@ -343,7 +343,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createConnectionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateConnectionRequestResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CreateConnectionRequestResponse>> CreateConnectionRequestWithHttpInfoAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CreateConnectionRequestResponse>> CreateConnectionRequestWithHttpInfoAsync(CreateConnectionRequestInput createConnectionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createConnectionRequestInput' is set
             if (createConnectionRequestInput == null)
@@ -458,7 +458,7 @@ namespace BeamPlayerClient.Api
         /// <param name="requestId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetConnectionRequestResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetConnectionRequestResponse> GetConnectionRequestAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetConnectionRequestResponse> GetConnectionRequestAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetConnectionRequestWithHttpInfoAsync(requestId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetConnectionRequestResponse> localVarResponse = await task;
@@ -472,7 +472,7 @@ namespace BeamPlayerClient.Api
         /// <param name="requestId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConnectionRequestResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetConnectionRequestResponse>> GetConnectionRequestWithHttpInfoAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetConnectionRequestResponse>> GetConnectionRequestWithHttpInfoAsync(string requestId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'requestId' is set
             if (requestId == null)

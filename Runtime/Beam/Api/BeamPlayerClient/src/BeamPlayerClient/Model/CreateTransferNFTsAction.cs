@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateTransferNFTsAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateTransferNFTsAction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTransferNFTsAction" /> class.

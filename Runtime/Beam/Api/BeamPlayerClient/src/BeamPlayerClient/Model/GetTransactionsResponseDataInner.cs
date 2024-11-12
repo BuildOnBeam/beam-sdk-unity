@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetTransactionsResponseDataInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetTransactionsResponseDataInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTransactionsResponseDataInner" /> class.

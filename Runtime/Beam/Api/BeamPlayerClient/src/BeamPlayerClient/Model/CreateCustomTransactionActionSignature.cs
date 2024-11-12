@@ -70,11 +70,11 @@ namespace BeamPlayerClient.Model
             }
             set
             {
-                if (value.GetType() == typeof(CreateSignatureMessage))
+                if (value.GetType() == typeof(CreateSignatureMessage) || value is CreateSignatureMessage)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(CreateSignatureTypedData))
+                else if (value.GetType() == typeof(CreateSignatureTypedData) || value is CreateSignatureTypedData)
                 {
                     this._actualInstance = value;
                 }
@@ -224,11 +224,15 @@ namespace BeamPlayerClient.Model
         /// <returns>The object converted from the JSON string</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if(reader.TokenType != JsonToken.Null)
+            switch(reader.TokenType) 
             {
-                return CreateCustomTransactionActionSignature.FromJson(JToken.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartObject:
+                    return CreateCustomTransactionActionSignature.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreateCustomTransactionActionSignature.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
             }
-            return null;
         }
 
         /// <summary>

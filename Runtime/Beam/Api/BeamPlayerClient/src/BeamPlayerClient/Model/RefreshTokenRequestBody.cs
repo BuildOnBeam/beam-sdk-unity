@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="RefreshTokenRequestBody" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected RefreshTokenRequestBody() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="RefreshTokenRequestBody" /> class.

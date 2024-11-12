@@ -33,7 +33,7 @@ src/BeamPlayerClient/Client/WebRequestPathBuilder.cs
 src/BeamPlayerClient/Model/AbstractOpenAPISchema.cs
 src/BeamPlayerClient/Model/AcceptAssetOfferRequestInput.cs
 src/BeamPlayerClient/Model/BaseActionResponse.cs
-src/BeamPlayerClient/Model/BaseSignatureRequest.cs
+src/BeamPlayerClient/Model/BaseActionSignatureResponse.cs
 src/BeamPlayerClient/Model/BuyAssetRequestInput.cs
 src/BeamPlayerClient/Model/CancelAssetListingRequestInput.cs
 src/BeamPlayerClient/Model/CancelAssetOfferRequestInput.cs
@@ -48,8 +48,8 @@ src/BeamPlayerClient/Model/CommonActivityResponseDataInnerOrder.cs
 src/BeamPlayerClient/Model/CommonActivityResponseDataInnerTransaction.cs
 src/BeamPlayerClient/Model/CommonAssetActivityRequestInput.cs
 src/BeamPlayerClient/Model/CommonContractActivityRequestInput.cs
+src/BeamPlayerClient/Model/CommonOperationAction.cs
 src/BeamPlayerClient/Model/CommonOperationResponse.cs
-src/BeamPlayerClient/Model/CommonOperationResponseActionsInner.cs
 src/BeamPlayerClient/Model/CommonOperationResponseTransactionsInner.cs
 src/BeamPlayerClient/Model/CommonStatsRequestInput.cs
 src/BeamPlayerClient/Model/CommonStatsResponse.cs
@@ -88,15 +88,14 @@ src/BeamPlayerClient/Model/CreateSessionRevokeAction.cs
 src/BeamPlayerClient/Model/CreateSignAction.cs
 src/BeamPlayerClient/Model/CreateSignatureMessage.cs
 src/BeamPlayerClient/Model/CreateSignatureTypedData.cs
-src/BeamPlayerClient/Model/CreateSignatureTypedDataData.cs
-src/BeamPlayerClient/Model/CreateSignatureTypedDataDataTypesValueInner.cs
 src/BeamPlayerClient/Model/CreateTransaction.cs
 src/BeamPlayerClient/Model/CreateTransactionRequestInput.cs
 src/BeamPlayerClient/Model/CreateTransactionRequestInputInteractionsInner.cs
 src/BeamPlayerClient/Model/CreateTransferNFTsAction.cs
 src/BeamPlayerClient/Model/CreateTransferTokenAction.cs
 src/BeamPlayerClient/Model/CustomTransactionAction.cs
-src/BeamPlayerClient/Model/CustomTransactionActionAllOfTransaction.cs
+src/BeamPlayerClient/Model/CustomTransactionActionTransaction.cs
+src/BeamPlayerClient/Model/CustomTransactionSignature.cs
 src/BeamPlayerClient/Model/ExchangeConvertAction.cs
 src/BeamPlayerClient/Model/ExchangeUnwrapAction.cs
 src/BeamPlayerClient/Model/ExchangeWrapAction.cs
@@ -165,6 +164,9 @@ src/BeamPlayerClient/Model/RevokeSessionRequestInput.cs
 src/BeamPlayerClient/Model/SellAssetRequestInput.cs
 src/BeamPlayerClient/Model/SessionRevokeAction.cs
 src/BeamPlayerClient/Model/SignAction.cs
+src/BeamPlayerClient/Model/SignActionSignature.cs
+src/BeamPlayerClient/Model/SignatureRequestMessage.cs
+src/BeamPlayerClient/Model/SignatureRequestTypedData.cs
 src/BeamPlayerClient/Model/Transaction.cs
 src/BeamPlayerClient/Model/TransferAssetRequestInput.cs
 src/BeamPlayerClient/Model/TransferAssetRequestInputAssetsInner.cs

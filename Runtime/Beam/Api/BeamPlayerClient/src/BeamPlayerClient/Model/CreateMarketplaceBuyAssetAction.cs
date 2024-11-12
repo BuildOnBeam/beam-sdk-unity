@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateMarketplaceBuyAssetAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateMarketplaceBuyAssetAction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMarketplaceBuyAssetAction" /> class.

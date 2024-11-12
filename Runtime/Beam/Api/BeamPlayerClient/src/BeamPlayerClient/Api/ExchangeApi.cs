@@ -174,7 +174,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Swap an exact amount of &#x60;tokenIn&#x60; for a minimum amount of &#x60;tokenOut&#x60;
@@ -187,7 +187,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Swap a maximum amount of &#x60;tokenIn&#x60; for an exact amount of &#x60;tokenOut&#x60;
         /// </summary>
@@ -199,7 +199,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Swap a maximum amount of &#x60;tokenIn&#x60; for an exact amount of &#x60;tokenOut&#x60;
@@ -212,7 +212,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
         /// </summary>
@@ -226,7 +226,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
@@ -241,7 +241,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Returns the minimum expected output amount for a token trade, given an input amount
         /// </summary>
@@ -255,7 +255,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns the minimum expected output amount for a token trade, given an input amount
@@ -270,7 +270,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Unwrap an amount of wrapped to native token
         /// </summary>
@@ -282,7 +282,7 @@ namespace BeamPlayerClient.Api
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Unwrap an amount of wrapped to native token
@@ -295,7 +295,7 @@ namespace BeamPlayerClient.Api
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Wrap an amount of native token to wrapped native token
         /// </summary>
@@ -307,7 +307,7 @@ namespace BeamPlayerClient.Api
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Wrap an amount of native token to wrapped native token
@@ -320,7 +320,7 @@ namespace BeamPlayerClient.Api
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -541,7 +541,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = ConvertInputWithHttpInfoAsync(entityId, convertTokenRequestInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
@@ -556,7 +556,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -685,7 +685,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = ConvertToOutputWithHttpInfoAsync(entityId, convertTokenRequestInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
@@ -700,7 +700,7 @@ namespace BeamPlayerClient.Api
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -843,7 +843,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForInputAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetQuoteForInputWithHttpInfoAsync(amountOut, tokenOut, tokenIn, chainId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = await task;
@@ -860,7 +860,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForInputWithHttpInfoAsync(string amountOut, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'amountOut' is set
             if (amountOut == null)
@@ -1011,7 +1011,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetQuoteResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetQuoteResponse> GetQuoteForOutputAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetQuoteForOutputWithHttpInfoAsync(amountIn, tokenOut, tokenIn, chainId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetQuoteResponse> localVarResponse = await task;
@@ -1028,7 +1028,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetQuoteResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetQuoteResponse>> GetQuoteForOutputWithHttpInfoAsync(string amountIn, string tokenOut, string tokenIn, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'amountIn' is set
             if (amountIn == null)
@@ -1165,7 +1165,7 @@ namespace BeamPlayerClient.Api
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = UnwrapNativeWithHttpInfoAsync(entityId, unwrappingTokenInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
@@ -1180,7 +1180,7 @@ namespace BeamPlayerClient.Api
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -1309,7 +1309,7 @@ namespace BeamPlayerClient.Api
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = WrapNativeWithHttpInfoAsync(entityId, wrappingTokenInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
@@ -1324,7 +1324,7 @@ namespace BeamPlayerClient.Api
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)

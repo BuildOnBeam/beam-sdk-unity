@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateExchangeUnwrapAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateExchangeUnwrapAction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateExchangeUnwrapAction" /> class.

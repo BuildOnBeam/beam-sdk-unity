@@ -41,7 +41,9 @@
         /// <value>{{.}}</value>
         {{/description}}
         {{#example}}
-        /// <example>{{.}}</example>
+        /*
+        <example>{{.}}</example>
+        */
         {{/example}}
         {{^conditionalSerialization}}
         [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
@@ -123,11 +125,11 @@
         /// Initializes a new instance of the <see cref="{{classname}}" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         {{^isAdditionalPropertiesTrue}}
         protected {{classname}}() { }
         {{/isAdditionalPropertiesTrue}}
         {{#isAdditionalPropertiesTrue}}
+        [UnityEngine.Scripting.Preserve]
         protected {{classname}}()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
@@ -225,12 +227,16 @@
         /// </summary>{{#description}}
         /// <value>{{.}}</value>{{/description}}
         {{#example}}
-        /// <example>{{.}}</example>
+        /*
+        <example>{{.}}</example>
+        */
         {{/example}}
         {{^conditionalSerialization}}
         [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#isDate}}
+        {{^supportsDateOnly}}
         [JsonConverter(typeof(OpenAPIDateConverter))]
+        {{/supportsDateOnly}}
         {{/isDate}}
         {{#deprecated}}
         [Obsolete]
@@ -266,6 +272,7 @@
         /// Returns false as {{name}} should not be serialized given that it's read-only.
         /// </summary>
         /// <returns>false (boolean)</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool ShouldSerialize{{name}}()
         {
             return false;

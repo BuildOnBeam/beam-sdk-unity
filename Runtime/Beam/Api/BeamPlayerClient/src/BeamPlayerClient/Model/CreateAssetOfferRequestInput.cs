@@ -44,28 +44,22 @@ namespace BeamPlayerClient.Model
             WBEAM = 1,
 
             /// <summary>
-            /// Enum WIMX for value: WIMX
-            /// </summary>
-            [EnumMember(Value = "WIMX")]
-            WIMX = 2,
-
-            /// <summary>
             /// Enum WSOPH for value: WSOPH
             /// </summary>
             [EnumMember(Value = "WSOPH")]
-            WSOPH = 3,
+            WSOPH = 2,
 
             /// <summary>
             /// Enum RAT for value: RAT
             /// </summary>
             [EnumMember(Value = "RAT")]
-            RAT = 4,
+            RAT = 3,
 
             /// <summary>
             /// Enum USDC for value: USDC
             /// </summary>
             [EnumMember(Value = "USDC")]
-            USDC = 5
+            USDC = 4
         }
 
 
@@ -105,7 +99,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateAssetOfferRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateAssetOfferRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAssetOfferRequestInput" /> class.

@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateOnrampRequestResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateOnrampRequestResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOnrampRequestResponse" /> class.

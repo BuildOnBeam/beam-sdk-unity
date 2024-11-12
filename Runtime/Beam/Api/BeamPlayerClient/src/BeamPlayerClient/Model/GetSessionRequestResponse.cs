@@ -67,7 +67,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetSessionRequestResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetSessionRequestResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSessionRequestResponse" /> class.

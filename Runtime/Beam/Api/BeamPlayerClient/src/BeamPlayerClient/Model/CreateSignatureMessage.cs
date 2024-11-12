@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateSignatureMessage" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateSignatureMessage() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSignatureMessage" /> class.

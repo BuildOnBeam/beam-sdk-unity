@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateTransferTokenAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateTransferTokenAction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTransferTokenAction" /> class.

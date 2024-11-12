@@ -44,46 +44,34 @@ namespace BeamPlayerClient.Model
             BEAM = 1,
 
             /// <summary>
-            /// Enum IMX for value: IMX
-            /// </summary>
-            [EnumMember(Value = "IMX")]
-            IMX = 2,
-
-            /// <summary>
             /// Enum SOPH for value: SOPH
             /// </summary>
             [EnumMember(Value = "SOPH")]
-            SOPH = 3,
+            SOPH = 2,
 
             /// <summary>
             /// Enum WBEAM for value: WBEAM
             /// </summary>
             [EnumMember(Value = "WBEAM")]
-            WBEAM = 4,
-
-            /// <summary>
-            /// Enum WIMX for value: WIMX
-            /// </summary>
-            [EnumMember(Value = "WIMX")]
-            WIMX = 5,
+            WBEAM = 3,
 
             /// <summary>
             /// Enum WSOPH for value: WSOPH
             /// </summary>
             [EnumMember(Value = "WSOPH")]
-            WSOPH = 6,
+            WSOPH = 4,
 
             /// <summary>
             /// Enum RAT for value: RAT
             /// </summary>
             [EnumMember(Value = "RAT")]
-            RAT = 7,
+            RAT = 5,
 
             /// <summary>
             /// Enum USDC for value: USDC
             /// </summary>
             [EnumMember(Value = "USDC")]
-            USDC = 8
+            USDC = 6
         }
 
 
@@ -97,7 +85,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetChainCurrenciesResponseDataInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetChainCurrenciesResponseDataInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetChainCurrenciesResponseDataInner" /> class.

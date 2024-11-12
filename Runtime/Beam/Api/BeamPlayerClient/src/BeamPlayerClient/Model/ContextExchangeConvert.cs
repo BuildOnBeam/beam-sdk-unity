@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="ContextExchangeConvert" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected ContextExchangeConvert() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="ContextExchangeConvert" /> class.

@@ -67,7 +67,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateConnectionRequestResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateConnectionRequestResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateConnectionRequestResponse" /> class.

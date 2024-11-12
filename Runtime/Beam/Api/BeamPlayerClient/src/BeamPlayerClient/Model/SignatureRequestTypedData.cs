@@ -25,11 +25,11 @@ using OpenAPIDateConverter = BeamPlayerClient.Client.OpenAPIDateConverter;
 namespace BeamPlayerClient.Model
 {
     /// <summary>
-    /// CommonOperationResponseActionsInnerAllOfSignature
+    /// SignatureRequestTypedData
     /// </summary>
-    [DataContract(Name = "CommonOperationResponse_actions_inner_allOf_signature")]
+    [DataContract(Name = "SignatureRequestTypedData")]
     [UnityEngine.Scripting.Preserve]
-    public partial class CommonOperationResponseActionsInnerAllOfSignature
+    public partial class SignatureRequestTypedData
     {
         /// <summary>
         /// Defines Type
@@ -38,16 +38,10 @@ namespace BeamPlayerClient.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Message for value: Message
-            /// </summary>
-            [EnumMember(Value = "Message")]
-            Message = 1,
-
-            /// <summary>
             /// Enum TypedData for value: TypedData
             /// </summary>
             [EnumMember(Value = "TypedData")]
-            TypedData = 2
+            TypedData = 1
         }
 
 
@@ -58,44 +52,48 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInnerAllOfSignature" /> class.
+        /// Initializes a new instance of the <see cref="SignatureRequestTypedData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
-        protected CommonOperationResponseActionsInnerAllOfSignature() { }
+        protected SignatureRequestTypedData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInnerAllOfSignature" /> class.
+        /// Initializes a new instance of the <see cref="SignatureRequestTypedData" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="id">id (required).</param>
         /// <param name="data">data.</param>
         /// <param name="signature">signature (required).</param>
         /// <param name="actionId">actionId (required).</param>
-        /// <param name="hash">hash.</param>
+        /// <param name="hash">hash (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponseActionsInnerAllOfSignature(TypeEnum type = default(TypeEnum), string id = default(string), Object data = default(Object), string signature = default(string), string actionId = default(string), string hash = default(string))
+        public SignatureRequestTypedData(TypeEnum type = default(TypeEnum), string id = default(string), Object data = default(Object), string signature = default(string), string actionId = default(string), string hash = default(string))
         {
             this.Type = type;
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for CommonOperationResponseActionsInnerAllOfSignature and cannot be null");
+                throw new ArgumentNullException("id is a required property for SignatureRequestTypedData and cannot be null");
             }
             this.Id = id;
             // to ensure "signature" is required (not null)
             if (signature == null)
             {
-                throw new ArgumentNullException("signature is a required property for CommonOperationResponseActionsInnerAllOfSignature and cannot be null");
+                throw new ArgumentNullException("signature is a required property for SignatureRequestTypedData and cannot be null");
             }
             this.Signature = signature;
             // to ensure "actionId" is required (not null)
             if (actionId == null)
             {
-                throw new ArgumentNullException("actionId is a required property for CommonOperationResponseActionsInnerAllOfSignature and cannot be null");
+                throw new ArgumentNullException("actionId is a required property for SignatureRequestTypedData and cannot be null");
             }
             this.ActionId = actionId;
-            this.Data = data;
+            // to ensure "hash" is required (not null)
+            if (hash == null)
+            {
+                throw new ArgumentNullException("hash is a required property for SignatureRequestTypedData and cannot be null");
+            }
             this.Hash = hash;
+            this.Data = data;
         }
 
         /// <summary>
@@ -129,7 +127,7 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Gets or Sets Hash
         /// </summary>
-        [DataMember(Name = "hash", EmitDefaultValue = true)]
+        [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public string Hash { get; set; }
 
@@ -141,7 +139,7 @@ namespace BeamPlayerClient.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CommonOperationResponseActionsInnerAllOfSignature {\n");
+            sb.Append("class SignatureRequestTypedData {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");

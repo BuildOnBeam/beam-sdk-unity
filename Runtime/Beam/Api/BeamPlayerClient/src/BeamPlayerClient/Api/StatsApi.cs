@@ -89,7 +89,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonStatsResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetAssetStatsAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetAssetStatsAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Get asset stats
@@ -103,7 +103,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonStatsResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonStatsResponse>> GetAssetStatsWithHttpInfoAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonStatsResponse>> GetAssetStatsWithHttpInfoAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Get contract stats
         /// </summary>
@@ -115,7 +115,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonStatsResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetContractStatsAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetContractStatsAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Get contract stats
@@ -128,7 +128,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonStatsResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonStatsResponse>> GetContractStatsWithHttpInfoAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonStatsResponse>> GetContractStatsWithHttpInfoAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -357,7 +357,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonStatsResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetAssetStatsAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetAssetStatsAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetAssetStatsWithHttpInfoAsync(assetAddress, assetId, commonStatsRequestInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonStatsResponse> localVarResponse = await task;
@@ -373,7 +373,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonStatsResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonStatsResponse>> GetAssetStatsWithHttpInfoAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonStatsResponse>> GetAssetStatsWithHttpInfoAsync(string assetAddress, string assetId, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'assetAddress' is set
             if (assetAddress == null)
@@ -507,7 +507,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonStatsResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetContractStatsAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonStatsResponse> GetContractStatsAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetContractStatsWithHttpInfoAsync(assetAddress, commonStatsRequestInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonStatsResponse> localVarResponse = await task;
@@ -522,7 +522,7 @@ namespace BeamPlayerClient.Api
         /// <param name="commonStatsRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonStatsResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonStatsResponse>> GetContractStatsWithHttpInfoAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonStatsResponse>> GetContractStatsWithHttpInfoAsync(string assetAddress, CommonStatsRequestInput commonStatsRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'assetAddress' is set
             if (assetAddress == null)

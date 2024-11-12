@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="ConfirmOperationRequestTransactionsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected ConfirmOperationRequestTransactionsInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmOperationRequestTransactionsInner" /> class.

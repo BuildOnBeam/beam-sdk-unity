@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetAttributesResponseDataInnerValuesInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetAttributesResponseDataInnerValuesInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAttributesResponseDataInnerValuesInner" /> class.

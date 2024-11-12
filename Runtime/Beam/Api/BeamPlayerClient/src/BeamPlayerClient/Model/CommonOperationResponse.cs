@@ -105,7 +105,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CommonOperationResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CommonOperationResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonOperationResponse" /> class.
@@ -122,7 +121,7 @@ namespace BeamPlayerClient.Model
         /// <param name="transactions">transactions (required).</param>
         /// <param name="url">url (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CommonOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), List<CommonOperationResponseActionsInner> actions = default(List<CommonOperationResponseActionsInner>), List<CommonOperationResponseTransactionsInner> transactions = default(List<CommonOperationResponseTransactionsInner>), string url = default(string))
+        public CommonOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), List<CommonOperationAction> actions = default(List<CommonOperationAction>), List<CommonOperationResponseTransactionsInner> transactions = default(List<CommonOperationResponseTransactionsInner>), string url = default(string))
         {
             this.Status = status;
             this.Processing = processing;
@@ -219,7 +218,7 @@ namespace BeamPlayerClient.Model
         /// </summary>
         [DataMember(Name = "actions", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public List<CommonOperationResponseActionsInner> Actions { get; set; }
+        public List<CommonOperationAction> Actions { get; set; }
 
         /// <summary>
         /// Gets or Sets Transactions

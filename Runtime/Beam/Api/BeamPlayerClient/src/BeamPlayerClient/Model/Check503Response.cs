@@ -50,7 +50,9 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        /// <example>error</example>
+        /*
+        <example>error</example>
+        */
         [DataMember(Name = "status", EmitDefaultValue = false)]
         [UnityEngine.Scripting.Preserve]
         public string Status { get; set; }
@@ -58,7 +60,9 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Gets or Sets Info
         /// </summary>
-        /// <example>{&quot;database&quot;:{&quot;status&quot;:&quot;up&quot;}}</example>
+        /*
+        <example>{&quot;database&quot;:{&quot;status&quot;:&quot;up&quot;}}</example>
+        */
         [DataMember(Name = "info", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public Dictionary<string, Check200ResponseInfoValue> Info { get; set; }
@@ -66,7 +70,9 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Gets or Sets Error
         /// </summary>
-        /// <example>{&quot;redis&quot;:{&quot;status&quot;:&quot;down&quot;,&quot;message&quot;:&quot;Could not connect&quot;}}</example>
+        /*
+        <example>{&quot;redis&quot;:{&quot;status&quot;:&quot;down&quot;,&quot;message&quot;:&quot;Could not connect&quot;}}</example>
+        */
         [DataMember(Name = "error", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public Dictionary<string, Check200ResponseInfoValue> Error { get; set; }
@@ -74,7 +80,9 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Gets or Sets Details
         /// </summary>
-        /// <example>{&quot;database&quot;:{&quot;status&quot;:&quot;up&quot;},&quot;redis&quot;:{&quot;status&quot;:&quot;down&quot;,&quot;message&quot;:&quot;Could not connect&quot;}}</example>
+        /*
+        <example>{&quot;database&quot;:{&quot;status&quot;:&quot;up&quot;},&quot;redis&quot;:{&quot;status&quot;:&quot;down&quot;,&quot;message&quot;:&quot;Could not connect&quot;}}</example>
+        */
         [DataMember(Name = "details", EmitDefaultValue = false)]
         [UnityEngine.Scripting.Preserve]
         public Dictionary<string, Check200ResponseInfoValue> Details { get; set; }

@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateSessionRevokeAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateSessionRevokeAction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSessionRevokeAction" /> class.

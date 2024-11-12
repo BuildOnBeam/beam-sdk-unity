@@ -79,7 +79,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="Transaction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected Transaction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="Transaction" /> class.

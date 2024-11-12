@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetActiveSessionsResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetActiveSessionsResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetActiveSessionsResponse" /> class.

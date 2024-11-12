@@ -111,7 +111,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CommonOperationResponseTransactionsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CommonOperationResponseTransactionsInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonOperationResponseTransactionsInner" /> class.

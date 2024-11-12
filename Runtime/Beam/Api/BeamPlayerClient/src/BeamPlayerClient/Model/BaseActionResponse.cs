@@ -133,7 +133,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="BaseActionResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected BaseActionResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseActionResponse" /> class.
@@ -142,9 +141,8 @@ namespace BeamPlayerClient.Model
         /// <param name="index">index (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="operationId">operationId (required).</param>
-        /// <param name="signature">signature (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public BaseActionResponse(string id = default(string), int index = default(int), TypeEnum type = default(TypeEnum), string operationId = default(string), BaseSignatureRequest signature = default(BaseSignatureRequest))
+        public BaseActionResponse(string id = default(string), int index = default(int), TypeEnum type = default(TypeEnum), string operationId = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -160,12 +158,6 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("operationId is a required property for BaseActionResponse and cannot be null");
             }
             this.OperationId = operationId;
-            // to ensure "signature" is required (not null)
-            if (signature == null)
-            {
-                throw new ArgumentNullException("signature is a required property for BaseActionResponse and cannot be null");
-            }
-            this.Signature = signature;
         }
 
         /// <summary>
@@ -190,13 +182,6 @@ namespace BeamPlayerClient.Model
         public string OperationId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Signature
-        /// </summary>
-        [DataMember(Name = "signature", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public BaseSignatureRequest Signature { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -209,7 +194,6 @@ namespace BeamPlayerClient.Model
             sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  OperationId: ").Append(OperationId).Append("\n");
-            sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

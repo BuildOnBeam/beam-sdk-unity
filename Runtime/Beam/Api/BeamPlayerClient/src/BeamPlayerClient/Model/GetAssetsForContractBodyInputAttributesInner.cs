@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetAssetsForContractBodyInputAttributesInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetAssetsForContractBodyInputAttributesInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAssetsForContractBodyInputAttributesInner" /> class.

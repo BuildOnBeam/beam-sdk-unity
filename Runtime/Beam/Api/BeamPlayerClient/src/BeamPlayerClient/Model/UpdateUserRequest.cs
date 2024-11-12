@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="UpdateUserRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected UpdateUserRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateUserRequest" /> class.

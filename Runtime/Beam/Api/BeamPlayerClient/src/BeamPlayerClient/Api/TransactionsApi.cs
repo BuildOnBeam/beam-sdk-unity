@@ -126,7 +126,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Creating a new transaction on behalf of a user
@@ -139,7 +139,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Getting a transaction
         /// </summary>
@@ -150,7 +150,7 @@ namespace BeamPlayerClient.Api
         /// <param name="transactionId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTransactionResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetTransactionResponse> GetTransactionAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetTransactionResponse> GetTransactionAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Getting a transaction
@@ -162,7 +162,7 @@ namespace BeamPlayerClient.Api
         /// <param name="transactionId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTransactionResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetTransactionResponse>> GetTransactionWithHttpInfoAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetTransactionResponse>> GetTransactionWithHttpInfoAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Get a paginated list of transactions from your game
         /// </summary>
@@ -174,7 +174,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTransactionsResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetTransactionsAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetTransactionsAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Get a paginated list of transactions from your game
@@ -187,7 +187,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTransactionsResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetTransactionsResponse>> GetTransactionsWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetTransactionsResponse>> GetTransactionsWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Get a paginated list of transactions created on behalf of a user
         /// </summary>
@@ -200,7 +200,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTransactionsResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetUserTransactionsAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetUserTransactionsAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Get a paginated list of transactions created on behalf of a user
@@ -214,7 +214,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTransactionsResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetTransactionsResponse>> GetUserTransactionsWithHttpInfoAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetTransactionsResponse>> GetUserTransactionsWithHttpInfoAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -435,7 +435,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = CreateUserTransactionWithHttpInfoAsync(entityId, createTransactionRequestInput, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
@@ -450,7 +450,7 @@ namespace BeamPlayerClient.Api
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -570,7 +570,7 @@ namespace BeamPlayerClient.Api
         /// <param name="transactionId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTransactionResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetTransactionResponse> GetTransactionAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetTransactionResponse> GetTransactionAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetTransactionWithHttpInfoAsync(transactionId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetTransactionResponse> localVarResponse = await task;
@@ -584,7 +584,7 @@ namespace BeamPlayerClient.Api
         /// <param name="transactionId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTransactionResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetTransactionResponse>> GetTransactionWithHttpInfoAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetTransactionResponse>> GetTransactionWithHttpInfoAsync(string transactionId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'transactionId' is set
             if (transactionId == null)
@@ -704,7 +704,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTransactionsResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetTransactionsAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetTransactionsAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetTransactionsWithHttpInfoAsync(limit, offset, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetTransactionsResponse> localVarResponse = await task;
@@ -719,7 +719,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTransactionsResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetTransactionsResponse>> GetTransactionsWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetTransactionsResponse>> GetTransactionsWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
@@ -850,7 +850,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTransactionsResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetUserTransactionsAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetTransactionsResponse> GetUserTransactionsAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetUserTransactionsWithHttpInfoAsync(entityId, limit, offset, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetTransactionsResponse> localVarResponse = await task;
@@ -866,7 +866,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTransactionsResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetTransactionsResponse>> GetUserTransactionsWithHttpInfoAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetTransactionsResponse>> GetUserTransactionsWithHttpInfoAsync(string entityId, decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)

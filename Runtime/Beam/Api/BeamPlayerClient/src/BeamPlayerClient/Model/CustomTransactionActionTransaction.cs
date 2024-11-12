@@ -25,11 +25,11 @@ using OpenAPIDateConverter = BeamPlayerClient.Client.OpenAPIDateConverter;
 namespace BeamPlayerClient.Model
 {
     /// <summary>
-    /// CustomTransactionActionAllOfTransaction
+    /// CustomTransactionActionTransaction
     /// </summary>
-    [DataContract(Name = "CustomTransactionAction_allOf_transaction")]
+    [DataContract(Name = "CustomTransactionAction_transaction")]
     [UnityEngine.Scripting.Preserve]
-    public partial class CustomTransactionActionAllOfTransaction
+    public partial class CustomTransactionActionTransaction
     {
         /// <summary>
         /// Defines Status
@@ -76,13 +76,12 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public StatusEnum Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomTransactionActionAllOfTransaction" /> class.
+        /// Initializes a new instance of the <see cref="CustomTransactionActionTransaction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
-        protected CustomTransactionActionAllOfTransaction() { }
+        protected CustomTransactionActionTransaction() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomTransactionActionAllOfTransaction" /> class.
+        /// Initializes a new instance of the <see cref="CustomTransactionActionTransaction" /> class.
         /// </summary>
         /// <param name="status">status (required).</param>
         /// <param name="id">id (required).</param>
@@ -91,32 +90,32 @@ namespace BeamPlayerClient.Model
         /// <param name="actionId">actionId (required).</param>
         /// <param name="hash">hash (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CustomTransactionActionAllOfTransaction(StatusEnum status = default(StatusEnum), string id = default(string), string openfortId = default(string), bool sponsored = default(bool), string actionId = default(string), string hash = default(string))
+        public CustomTransactionActionTransaction(StatusEnum status = default(StatusEnum), string id = default(string), string openfortId = default(string), bool sponsored = default(bool), string actionId = default(string), string hash = default(string))
         {
             this.Status = status;
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for CustomTransactionActionAllOfTransaction and cannot be null");
+                throw new ArgumentNullException("id is a required property for CustomTransactionActionTransaction and cannot be null");
             }
             this.Id = id;
             // to ensure "openfortId" is required (not null)
             if (openfortId == null)
             {
-                throw new ArgumentNullException("openfortId is a required property for CustomTransactionActionAllOfTransaction and cannot be null");
+                throw new ArgumentNullException("openfortId is a required property for CustomTransactionActionTransaction and cannot be null");
             }
             this.OpenfortId = openfortId;
             this.Sponsored = sponsored;
             // to ensure "actionId" is required (not null)
             if (actionId == null)
             {
-                throw new ArgumentNullException("actionId is a required property for CustomTransactionActionAllOfTransaction and cannot be null");
+                throw new ArgumentNullException("actionId is a required property for CustomTransactionActionTransaction and cannot be null");
             }
             this.ActionId = actionId;
             // to ensure "hash" is required (not null)
             if (hash == null)
             {
-                throw new ArgumentNullException("hash is a required property for CustomTransactionActionAllOfTransaction and cannot be null");
+                throw new ArgumentNullException("hash is a required property for CustomTransactionActionTransaction and cannot be null");
             }
             this.Hash = hash;
         }
@@ -164,7 +163,7 @@ namespace BeamPlayerClient.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CustomTransactionActionAllOfTransaction {\n");
+            sb.Append("class CustomTransactionActionTransaction {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  OpenfortId: ").Append(OpenfortId).Append("\n");

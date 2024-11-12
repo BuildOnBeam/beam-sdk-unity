@@ -61,7 +61,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="RevokeSessionRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected RevokeSessionRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="RevokeSessionRequestInput" /> class.

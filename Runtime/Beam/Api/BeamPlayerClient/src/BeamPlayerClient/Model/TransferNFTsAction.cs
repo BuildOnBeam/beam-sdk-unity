@@ -133,21 +133,38 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="TransferNFTsAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected TransferNFTsAction() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferNFTsAction" /> class.
         /// </summary>
+        /// <param name="context">context (required).</param>
+        /// <param name="signature">signature (required).</param>
+        /// <param name="transaction">transaction (required).</param>
         /// <param name="id">id (required).</param>
         /// <param name="index">index (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="operationId">operationId (required).</param>
-        /// <param name="signature">signature (required).</param>
-        /// <param name="context">context (required).</param>
-        /// <param name="transaction">transaction (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public TransferNFTsAction(string id = default(string), int index = default(int), TypeEnum type = default(TypeEnum), string operationId = default(string), BaseSignatureRequest signature = default(BaseSignatureRequest), ContextTransferNFTs context = default(ContextTransferNFTs), Transaction transaction = default(Transaction))
+        public TransferNFTsAction(ContextTransferNFTs context = default(ContextTransferNFTs), SignatureRequestMessage signature = default(SignatureRequestMessage), Transaction transaction = default(Transaction), string id = default(string), int index = default(int), TypeEnum type = default(TypeEnum), string operationId = default(string))
         {
+            // to ensure "context" is required (not null)
+            if (context == null)
+            {
+                throw new ArgumentNullException("context is a required property for TransferNFTsAction and cannot be null");
+            }
+            this.Context = context;
+            // to ensure "signature" is required (not null)
+            if (signature == null)
+            {
+                throw new ArgumentNullException("signature is a required property for TransferNFTsAction and cannot be null");
+            }
+            this.Signature = signature;
+            // to ensure "transaction" is required (not null)
+            if (transaction == null)
+            {
+                throw new ArgumentNullException("transaction is a required property for TransferNFTsAction and cannot be null");
+            }
+            this.Transaction = transaction;
             // to ensure "id" is required (not null)
             if (id == null)
             {
@@ -162,25 +179,28 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("operationId is a required property for TransferNFTsAction and cannot be null");
             }
             this.OperationId = operationId;
-            // to ensure "signature" is required (not null)
-            if (signature == null)
-            {
-                throw new ArgumentNullException("signature is a required property for TransferNFTsAction and cannot be null");
-            }
-            this.Signature = signature;
-            // to ensure "context" is required (not null)
-            if (context == null)
-            {
-                throw new ArgumentNullException("context is a required property for TransferNFTsAction and cannot be null");
-            }
-            this.Context = context;
-            // to ensure "transaction" is required (not null)
-            if (transaction == null)
-            {
-                throw new ArgumentNullException("transaction is a required property for TransferNFTsAction and cannot be null");
-            }
-            this.Transaction = transaction;
         }
+
+        /// <summary>
+        /// Gets or Sets Context
+        /// </summary>
+        [DataMember(Name = "context", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public ContextTransferNFTs Context { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Signature
+        /// </summary>
+        [DataMember(Name = "signature", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public SignatureRequestMessage Signature { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Transaction
+        /// </summary>
+        [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public Transaction Transaction { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -204,27 +224,6 @@ namespace BeamPlayerClient.Model
         public string OperationId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Signature
-        /// </summary>
-        [DataMember(Name = "signature", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public BaseSignatureRequest Signature { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Context
-        /// </summary>
-        [DataMember(Name = "context", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public ContextTransferNFTs Context { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Transaction
-        /// </summary>
-        [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public Transaction Transaction { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -233,13 +232,13 @@ namespace BeamPlayerClient.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferNFTsAction {\n");
+            sb.Append("  Context: ").Append(Context).Append("\n");
+            sb.Append("  Signature: ").Append(Signature).Append("\n");
+            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  OperationId: ").Append(OperationId).Append("\n");
-            sb.Append("  Signature: ").Append(Signature).Append("\n");
-            sb.Append("  Context: ").Append(Context).Append("\n");
-            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

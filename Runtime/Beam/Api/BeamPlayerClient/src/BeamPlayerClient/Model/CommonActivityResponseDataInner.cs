@@ -91,7 +91,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CommonActivityResponseDataInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CommonActivityResponseDataInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonActivityResponseDataInner" /> class.

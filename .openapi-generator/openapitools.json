@@ -3,20 +3,25 @@
   "spaces": 2,
   "generator-cli": {
     "version": "7.9.0",
+    "openapi-normalizer": {
+      "properties": {
+        "REF_AS_PARENT_IN_ALLOF": true,
+        "REFACTOR_ALLOF_WITH_PROPERTIES_ONLY": true
+      }
+    },
     "generators": {
       "unity-player-client": {
         "generatorName": "csharp",
         "output": "../Runtime/Beam/Api/BeamPlayerClient",
         "library": "unityWebRequest",
         "templateDir": "./templates",
-        "inputSpec": "http://localhost:4001/api/player-json",
+        "inputSpec": "https://api.testnet.onbeam.com/api/player-json",
         "skipValidateSpec": true,
         "globalProperty": {
           "modelTests": false,
           "apiTests": false,
           "modelDocs": false,
-          "apiDocs": false,
-          "legacyDiscriminatorBehavior": false
+          "apiDocs": false
         },
         "additionalProperties": {
           "packageName": "BeamPlayerClient",

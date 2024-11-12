@@ -68,7 +68,7 @@ namespace Beam
                     apiUrl = "https://api.onbeam.com";
                     break;
                 default:
-                    apiUrl = "https://api.preview.onbeam.com";
+                    apiUrl = "https://api.testnet.onbeam.com";
                     break;
             }
 
@@ -252,7 +252,8 @@ namespace Beam
             try
             {
                 var res = await SessionsApi.CreateSessionRequestAsync(entityId,
-                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry, chainId: chainId), cancellationToken);
+                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
+                        chainId: chainId), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 beamSessionRequest = res;
@@ -471,43 +472,45 @@ namespace Beam
 
             var confirmationModel = new ConfirmOperationRequest(
                 ConfirmOperationRequest.StatusEnum.Pending,
-                transactions: new List<ConfirmOperationRequestTransactionsInner>());
+                actions: new List<ConfirmOperationRequestTransactionsInner>());
 
             Log($"Signing operation({operation.Id}) actions...");
-            foreach (var concreteAction in operation.Actions)
+            foreach (var action in operation.Actions)
             {
-                var action = (BaseActionResponse)concreteAction.ActualInstance;
                 try
                 {
-                    if (action.Type == BaseActionResponse.TypeEnum.SessionRevoke)
+                    var actionType = action.GetActionType();
+                    if (actionType == BaseActionResponse.TypeEnum.SessionRevoke)
                     {
                         throw new Exception(
                             $"Revoke Session Operation has to be performed via {nameof(RevokeSessionAsync)}() method only");
                     }
 
+                    var messageToSign = action.GetMessageToSign();
+
                     string signature;
-                    switch (action.Signature.Type)
+                    switch (action.GetSignatureType())
                     {
-                        case BaseSignatureRequest.TypeEnum.Message:
-                            signature = activeSessionKeyPair.SignMessage(Convert.ToString(action.Signature.Hash));
+                        case BaseActionSignatureResponse.TypeEnum.Message:
+                            signature = activeSessionKeyPair.SignMessage(Convert.ToString(messageToSign));
                             break;
-                        case BaseSignatureRequest.TypeEnum.TypedData:
-                            signature = activeSessionKeyPair.SignMarketplaceTransactionHash(action.Signature.Hash);
+                        case BaseActionSignatureResponse.TypeEnum.TypedData:
+                            signature = activeSessionKeyPair.SignMarketplaceTransactionHash(messageToSign);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                    signature = activeSessionKeyPair.SignMessage(Convert.ToString(action.Signature.Hash));
 
-                    confirmationModel.Transactions.Add(
-                        new ConfirmOperationRequestTransactionsInner(action.Id, signature));
+                    confirmationModel.Actions.Add(new ConfirmOperationRequestTransactionsInner(
+                        action.GetActionId(), signature));
                 }
                 catch (ApiException e)
                 {
+                    var actionId = action.GetActionId();
                     Log(
-                        $"Encountered an error when signing action({action.Id}): {e.Message} {e.ErrorContent}");
+                        $"Encountered an error when signing action({actionId}): {e.Message} {e.ErrorContent}");
                     return new BeamResult<CommonOperationResponse.StatusEnum>(e,
-                        $"Encountered an exception while approving action{action.Id} of type {action.Type.ToString()}");
+                        $"Encountered an exception while approving action{actionId} of type {action.GetActionType().ToString()}");
                 }
             }
 

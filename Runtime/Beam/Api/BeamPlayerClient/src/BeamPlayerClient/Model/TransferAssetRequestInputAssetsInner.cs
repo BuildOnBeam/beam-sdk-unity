@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="TransferAssetRequestInputAssetsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected TransferAssetRequestInputAssetsInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferAssetRequestInputAssetsInner" /> class.

@@ -60,7 +60,7 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Check200Response</returns>
-        Cysharp.Threading.Tasks.UniTask<Check200Response> CheckAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<Check200Response> CheckAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -71,7 +71,7 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Check200Response)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<Check200Response>> CheckWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<Check200Response>> CheckWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -270,7 +270,7 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Check200Response</returns>
-        public async Cysharp.Threading.Tasks.UniTask<Check200Response> CheckAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<Check200Response> CheckAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = CheckWithHttpInfoAsync(cancellationToken);
             BeamPlayerClient.Client.ApiResponse<Check200Response> localVarResponse = await task;
@@ -283,7 +283,7 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Check200Response)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<Check200Response>> CheckWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<Check200Response>> CheckWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();

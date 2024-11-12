@@ -79,7 +79,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetAssetListingsResponseDataInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetAssetListingsResponseDataInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAssetListingsResponseDataInner" /> class.

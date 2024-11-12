@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetUserNativeCurrencyResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetUserNativeCurrencyResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUserNativeCurrencyResponse" /> class.

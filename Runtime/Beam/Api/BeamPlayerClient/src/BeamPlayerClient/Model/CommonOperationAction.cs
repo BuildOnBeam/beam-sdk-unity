@@ -26,18 +26,18 @@ using System.Reflection;
 namespace BeamPlayerClient.Model
 {
     /// <summary>
-    /// CommonOperationResponseActionsInner
+    /// CommonOperationAction
     /// </summary>
-    [JsonConverter(typeof(CommonOperationResponseActionsInnerJsonConverter))]
-    [DataContract(Name = "CommonOperationResponse_actions_inner")]
-    public partial class CommonOperationResponseActionsInner : AbstractOpenAPISchema
+    [JsonConverter(typeof(CommonOperationActionJsonConverter))]
+    [DataContract(Name = "CommonOperationAction")]
+    public partial class CommonOperationAction : AbstractOpenAPISchema
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="TransferNFTsAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of TransferNFTsAction.</param>
-        public CommonOperationResponseActionsInner(TransferNFTsAction actualInstance)
+        public CommonOperationAction(TransferNFTsAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -45,11 +45,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="TransferTokenAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of TransferTokenAction.</param>
-        public CommonOperationResponseActionsInner(TransferTokenAction actualInstance)
+        public CommonOperationAction(TransferTokenAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -57,11 +57,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="MarketplaceCreateOfferAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MarketplaceCreateOfferAction.</param>
-        public CommonOperationResponseActionsInner(MarketplaceCreateOfferAction actualInstance)
+        public CommonOperationAction(MarketplaceCreateOfferAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -69,11 +69,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="MarketplaceCancelOfferAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MarketplaceCancelOfferAction.</param>
-        public CommonOperationResponseActionsInner(MarketplaceCancelOfferAction actualInstance)
+        public CommonOperationAction(MarketplaceCancelOfferAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -81,11 +81,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="MarketplaceAcceptOfferAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MarketplaceAcceptOfferAction.</param>
-        public CommonOperationResponseActionsInner(MarketplaceAcceptOfferAction actualInstance)
+        public CommonOperationAction(MarketplaceAcceptOfferAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -93,11 +93,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="MarketplaceListAssetAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MarketplaceListAssetAction.</param>
-        public CommonOperationResponseActionsInner(MarketplaceListAssetAction actualInstance)
+        public CommonOperationAction(MarketplaceListAssetAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -105,11 +105,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="MarketplaceBuyAssetAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MarketplaceBuyAssetAction.</param>
-        public CommonOperationResponseActionsInner(MarketplaceBuyAssetAction actualInstance)
+        public CommonOperationAction(MarketplaceBuyAssetAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -117,11 +117,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="MarketplaceCancelListingAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MarketplaceCancelListingAction.</param>
-        public CommonOperationResponseActionsInner(MarketplaceCancelListingAction actualInstance)
+        public CommonOperationAction(MarketplaceCancelListingAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -129,11 +129,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="SessionRevokeAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of SessionRevokeAction.</param>
-        public CommonOperationResponseActionsInner(SessionRevokeAction actualInstance)
+        public CommonOperationAction(SessionRevokeAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -141,11 +141,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="ExchangeConvertAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of ExchangeConvertAction.</param>
-        public CommonOperationResponseActionsInner(ExchangeConvertAction actualInstance)
+        public CommonOperationAction(ExchangeConvertAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -153,11 +153,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="ExchangeWrapAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of ExchangeWrapAction.</param>
-        public CommonOperationResponseActionsInner(ExchangeWrapAction actualInstance)
+        public CommonOperationAction(ExchangeWrapAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -165,11 +165,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="ExchangeUnwrapAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of ExchangeUnwrapAction.</param>
-        public CommonOperationResponseActionsInner(ExchangeUnwrapAction actualInstance)
+        public CommonOperationAction(ExchangeUnwrapAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -177,11 +177,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="CustomTransactionAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CustomTransactionAction.</param>
-        public CommonOperationResponseActionsInner(CustomTransactionAction actualInstance)
+        public CommonOperationAction(CustomTransactionAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -189,11 +189,11 @@ namespace BeamPlayerClient.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonOperationResponseActionsInner" /> class
+        /// Initializes a new instance of the <see cref="CommonOperationAction" /> class
         /// with the <see cref="SignAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of SignAction.</param>
-        public CommonOperationResponseActionsInner(SignAction actualInstance)
+        public CommonOperationAction(SignAction actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -214,59 +214,59 @@ namespace BeamPlayerClient.Model
             }
             set
             {
-                if (value.GetType() == typeof(CustomTransactionAction))
+                if (value.GetType() == typeof(CustomTransactionAction) || value is CustomTransactionAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(ExchangeConvertAction))
+                else if (value.GetType() == typeof(ExchangeConvertAction) || value is ExchangeConvertAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(ExchangeUnwrapAction))
+                else if (value.GetType() == typeof(ExchangeUnwrapAction) || value is ExchangeUnwrapAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(ExchangeWrapAction))
+                else if (value.GetType() == typeof(ExchangeWrapAction) || value is ExchangeWrapAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(MarketplaceAcceptOfferAction))
+                else if (value.GetType() == typeof(MarketplaceAcceptOfferAction) || value is MarketplaceAcceptOfferAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(MarketplaceBuyAssetAction))
+                else if (value.GetType() == typeof(MarketplaceBuyAssetAction) || value is MarketplaceBuyAssetAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(MarketplaceCancelListingAction))
+                else if (value.GetType() == typeof(MarketplaceCancelListingAction) || value is MarketplaceCancelListingAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(MarketplaceCancelOfferAction))
+                else if (value.GetType() == typeof(MarketplaceCancelOfferAction) || value is MarketplaceCancelOfferAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(MarketplaceCreateOfferAction))
+                else if (value.GetType() == typeof(MarketplaceCreateOfferAction) || value is MarketplaceCreateOfferAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(MarketplaceListAssetAction))
+                else if (value.GetType() == typeof(MarketplaceListAssetAction) || value is MarketplaceListAssetAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(SessionRevokeAction))
+                else if (value.GetType() == typeof(SessionRevokeAction) || value is SessionRevokeAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(SignAction))
+                else if (value.GetType() == typeof(SignAction) || value is SignAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(TransferNFTsAction))
+                else if (value.GetType() == typeof(TransferNFTsAction) || value is TransferNFTsAction)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(TransferTokenAction))
+                else if (value.GetType() == typeof(TransferTokenAction) || value is TransferTokenAction)
                 {
                     this._actualInstance = value;
                 }
@@ -424,7 +424,7 @@ namespace BeamPlayerClient.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CommonOperationResponseActionsInner {\n");
+            sb.Append("class CommonOperationAction {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -436,21 +436,21 @@ namespace BeamPlayerClient.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, CommonOperationResponseActionsInner.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, CommonOperationAction.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of CommonOperationResponseActionsInner
+        /// Converts the JSON string into an instance of CommonOperationAction
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of CommonOperationResponseActionsInner</returns>
-        public static CommonOperationResponseActionsInner FromJson(string jsonString)
+        /// <returns>An instance of CommonOperationAction</returns>
+        public static CommonOperationAction FromJson(string jsonString)
         {
-            CommonOperationResponseActionsInner newCommonOperationResponseActionsInner = null;
+            CommonOperationAction newCommonOperationAction = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newCommonOperationResponseActionsInner;
+                return newCommonOperationAction;
             }
 
             try
@@ -460,91 +460,91 @@ namespace BeamPlayerClient.Model
                 switch (discriminatorValue)
                 {
                     case "CustomTransaction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "ExchangeConvert":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "ExchangeUnwrap":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "ExchangeWrap":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceAcceptOffer":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceBuyAsset":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceCancelListing":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceCancelOffer":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceCreateOffer":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceListAsset":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "SessionRevoke":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "Sign":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "TransferNFTs":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "TransferToken":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "CustomTransactionAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "ExchangeConvertAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "ExchangeUnwrapAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "ExchangeWrapAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceAcceptOfferAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceBuyAssetAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceCancelListingAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceCancelOfferAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceCreateOfferAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "MarketplaceListAssetAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "SessionRevokeAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "SignAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "TransferNFTsAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     case "TransferTokenAction":
-                        newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
-                        return newCommonOperationResponseActionsInner;
+                        newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
+                        return newCommonOperationAction;
                     default:
-                        System.Diagnostics.Debug.WriteLine(string.Format("Failed to lookup discriminator value `{0}` for CommonOperationResponseActionsInner. Possible values: CustomTransaction ExchangeConvert ExchangeUnwrap ExchangeWrap MarketplaceAcceptOffer MarketplaceBuyAsset MarketplaceCancelListing MarketplaceCancelOffer MarketplaceCreateOffer MarketplaceListAsset SessionRevoke Sign TransferNFTs TransferToken CustomTransactionAction ExchangeConvertAction ExchangeUnwrapAction ExchangeWrapAction MarketplaceAcceptOfferAction MarketplaceBuyAssetAction MarketplaceCancelListingAction MarketplaceCancelOfferAction MarketplaceCreateOfferAction MarketplaceListAssetAction SessionRevokeAction SignAction TransferNFTsAction TransferTokenAction", discriminatorValue));
+                        System.Diagnostics.Debug.WriteLine(string.Format("Failed to lookup discriminator value `{0}` for CommonOperationAction. Possible values: CustomTransaction ExchangeConvert ExchangeUnwrap ExchangeWrap MarketplaceAcceptOffer MarketplaceBuyAsset MarketplaceCancelListing MarketplaceCancelOffer MarketplaceCreateOffer MarketplaceListAsset SessionRevoke Sign TransferNFTs TransferToken CustomTransactionAction ExchangeConvertAction ExchangeUnwrapAction ExchangeWrapAction MarketplaceAcceptOfferAction MarketplaceBuyAssetAction MarketplaceCancelListingAction MarketplaceCancelOfferAction MarketplaceCreateOfferAction MarketplaceListAssetAction SessionRevokeAction SignAction TransferNFTsAction TransferTokenAction", discriminatorValue));
                         break;
                 }
             }
@@ -561,11 +561,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(CustomTransactionAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<CustomTransactionAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("CustomTransactionAction");
                 match++;
@@ -581,11 +581,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(ExchangeConvertAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeConvertAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("ExchangeConvertAction");
                 match++;
@@ -601,11 +601,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(ExchangeUnwrapAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeUnwrapAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("ExchangeUnwrapAction");
                 match++;
@@ -621,11 +621,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(ExchangeWrapAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<ExchangeWrapAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("ExchangeWrapAction");
                 match++;
@@ -641,11 +641,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MarketplaceAcceptOfferAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceAcceptOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MarketplaceAcceptOfferAction");
                 match++;
@@ -661,11 +661,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MarketplaceBuyAssetAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceBuyAssetAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MarketplaceBuyAssetAction");
                 match++;
@@ -681,11 +681,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MarketplaceCancelListingAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelListingAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MarketplaceCancelListingAction");
                 match++;
@@ -701,11 +701,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MarketplaceCancelOfferAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCancelOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MarketplaceCancelOfferAction");
                 match++;
@@ -721,11 +721,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MarketplaceCreateOfferAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceCreateOfferAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MarketplaceCreateOfferAction");
                 match++;
@@ -741,11 +741,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MarketplaceListAssetAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<MarketplaceListAssetAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MarketplaceListAssetAction");
                 match++;
@@ -761,11 +761,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(SessionRevokeAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SessionRevokeAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("SessionRevokeAction");
                 match++;
@@ -781,11 +781,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(SignAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<SignAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("SignAction");
                 match++;
@@ -801,11 +801,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(TransferNFTsAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferNFTsAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("TransferNFTsAction");
                 match++;
@@ -821,11 +821,11 @@ namespace BeamPlayerClient.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(TransferTokenAction).GetProperty("AdditionalProperties") == null)
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.SerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationAction.SerializerSettings));
                 }
                 else
                 {
-                    newCommonOperationResponseActionsInner = new CommonOperationResponseActionsInner(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationResponseActionsInner.AdditionalPropertiesSerializerSettings));
+                    newCommonOperationAction = new CommonOperationAction(JsonConvert.DeserializeObject<TransferTokenAction>(jsonString, CommonOperationAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("TransferTokenAction");
                 match++;
@@ -846,15 +846,15 @@ namespace BeamPlayerClient.Model
             }
 
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newCommonOperationResponseActionsInner;
+            return newCommonOperationAction;
         }
 
     }
 
     /// <summary>
-    /// Custom JSON converter for CommonOperationResponseActionsInner
+    /// Custom JSON converter for CommonOperationAction
     /// </summary>
-    public class CommonOperationResponseActionsInnerJsonConverter : JsonConverter
+    public class CommonOperationActionJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -864,7 +864,7 @@ namespace BeamPlayerClient.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(CommonOperationResponseActionsInner).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(CommonOperationAction).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -877,11 +877,15 @@ namespace BeamPlayerClient.Model
         /// <returns>The object converted from the JSON string</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if(reader.TokenType != JsonToken.Null)
+            switch(reader.TokenType) 
             {
-                return CommonOperationResponseActionsInner.FromJson(JToken.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartObject:
+                    return CommonOperationAction.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CommonOperationAction.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
             }
-            return null;
         }
 
         /// <summary>

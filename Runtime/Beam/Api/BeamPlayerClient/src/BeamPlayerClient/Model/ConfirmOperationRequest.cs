@@ -79,7 +79,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="ConfirmOperationRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected ConfirmOperationRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmOperationRequest" /> class.

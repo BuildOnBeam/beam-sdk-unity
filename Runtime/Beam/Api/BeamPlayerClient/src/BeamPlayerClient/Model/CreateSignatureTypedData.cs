@@ -55,31 +55,25 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateSignatureTypedData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateSignatureTypedData() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSignatureTypedData" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="data">data (required).</param>
+        /// <param name="data">data.</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateSignatureTypedData(TypeEnum type = default(TypeEnum), CreateSignatureTypedDataData data = default(CreateSignatureTypedDataData))
+        public CreateSignatureTypedData(TypeEnum type = default(TypeEnum), Object data = default(Object))
         {
             this.Type = type;
-            // to ensure "data" is required (not null)
-            if (data == null)
-            {
-                throw new ArgumentNullException("data is a required property for CreateSignatureTypedData and cannot be null");
-            }
             this.Data = data;
         }
 
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
-        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "data", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public CreateSignatureTypedDataData Data { get; set; }
+        public Object Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -55,7 +55,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateOperationRequestInputActionsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected CreateOperationRequestInputActionsInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOperationRequestInputActionsInner" /> class.
