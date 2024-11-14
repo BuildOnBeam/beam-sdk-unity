@@ -27,6 +27,7 @@ namespace Beam
         public IUsersApi UsersApi => new UsersApi(GetConfiguration());
         public IOperationApi OperationApi => new OperationApi(GetConfiguration());
         public IConnectorApi ConnectorApi => new ConnectorApi(GetConfiguration());
+        public IRampApi RampApi => new RampApi(GetConfiguration());
 
         protected const int DefaultTimeoutInSeconds = 240;
 
