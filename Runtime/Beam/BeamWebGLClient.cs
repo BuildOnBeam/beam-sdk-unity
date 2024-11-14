@@ -140,7 +140,7 @@ namespace Beam
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async UniTask<BeamResult<CommonOperationResponse>> GetSessionRevokingOperationAsync(
+        public async UniTask<BeamResult<PlayerOperationResponse>> GetSessionRevokingOperationAsync(
             string entityId,
             string sessionAddress,
             int chainId = Constants.DefaultChainId,
@@ -148,7 +148,7 @@ namespace Beam
         {
             Log("Retrieving active session");
 
-            CommonOperationResponse operation;
+            PlayerOperationResponse operation;
 
             try
             {
@@ -158,10 +158,10 @@ namespace Beam
             catch (ApiException e)
             {
                 Log($"Failed RevokeSessionAsync: {e.Message} {e.ErrorContent}");
-                return new BeamResult<CommonOperationResponse>(BeamResultType.Error, e.Message);
+                return new BeamResult<PlayerOperationResponse>(BeamResultType.Error, e.Message);
             }
 
-            return new BeamResult<CommonOperationResponse>(operation);
+            return new BeamResult<PlayerOperationResponse>(operation);
         }
 
         /// <summary>
@@ -172,8 +172,8 @@ namespace Beam
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async Task<BeamResult<CommonOperationResponse.StatusEnum>> StartSessionRevokingAsync(
-            CommonOperationResponse operation,
+        public async Task<BeamResult<PlayerOperationResponse.StatusEnum>> StartSessionRevokingAsync(
+            PlayerOperationResponse operation,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
             CancellationToken cancellationToken = default)
@@ -308,7 +308,7 @@ namespace Beam
         /// <param name="operationId">Id of the Operation to sign. Returned by Beam API.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async UniTask<BeamResult<CommonOperationResponse>> GetOperationToSignAsync(
+        public async UniTask<BeamResult<PlayerOperationResponse>> GetOperationToSignAsync(
             string operationId,
             CancellationToken cancellationToken = default)
         {
@@ -316,14 +316,14 @@ namespace Beam
             try
             {
                 var res = await OperationApi.GetOperationAsync(operationId, cancellationToken);
-                return new BeamResult<CommonOperationResponse>(res);
+                return new BeamResult<PlayerOperationResponse>(res);
             }
             catch (ApiException e)
             {
                 if (e.ErrorCode == 404)
                 {
                     Log($"No operation({operationId}) was found, ending");
-                    return new BeamResult<CommonOperationResponse>
+                    return new BeamResult<PlayerOperationResponse>
                     {
                         Status = BeamResultType.Error,
                         Error = "Operation was not found"
@@ -331,7 +331,7 @@ namespace Beam
                 }
 
                 Log($"Encountered an error retrieving operation({operationId}): {e.Message} {e.ErrorContent}");
-                return new BeamResult<CommonOperationResponse>(e);
+                return new BeamResult<PlayerOperationResponse>(e);
             }
         }
 
@@ -339,15 +339,15 @@ namespace Beam
         /// Opens an external browser to sign a transaction, returns the result via callback arg.
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
-        /// <param name="commonOperationResponse">Operation from <see cref="GetOperationToSignAsync"/></param>
+        /// <param name="PlayerOperationResponse">Operation from <see cref="GetOperationToSignAsync"/></param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="signingBy">If set to Auto, will try to use a local Session and open Browser if there is no valid Session.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async UniTask<BeamResult<CommonOperationResponse.StatusEnum>> StartOperationSigningAsync(
+        public async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> StartOperationSigningAsync(
             string entityId,
-            CommonOperationResponse commonOperationResponse,
+            PlayerOperationResponse PlayerOperationResponse,
             int chainId = Constants.DefaultChainId,
             OperationSigningBy signingBy = OperationSigningBy.Auto,
             int secondsTimeout = DefaultTimeoutInSeconds,
@@ -363,7 +363,7 @@ namespace Beam
                 if (hasActiveSession)
                 {
                     Log($"Has an active session until: {activeSession.EndTime:o}, using it to sign the operation");
-                    return await SignOperationUsingSessionAsync(commonOperationResponse, activeSessionKeyPair,
+                    return await SignOperationUsingSessionAsync(PlayerOperationResponse, activeSessionKeyPair,
                         cancellationToken);
                 }
             }
@@ -371,13 +371,13 @@ namespace Beam
             if (signingBy is OperationSigningBy.Auto or OperationSigningBy.Browser)
             {
                 Log("No active session found, using browser to sign the operation");
-                return await SignOperationUsingBrowserAsync(commonOperationResponse, secondsTimeout, cancellationToken);
+                return await SignOperationUsingBrowserAsync(PlayerOperationResponse, secondsTimeout, cancellationToken);
             }
 
             Log($"No active session found, {nameof(signingBy)} set to {signingBy.ToString()}");
-            return new BeamResult<CommonOperationResponse.StatusEnum>
+            return new BeamResult<PlayerOperationResponse.StatusEnum>
             {
-                Result = CommonOperationResponse.StatusEnum.Error,
+                Result = PlayerOperationResponse.StatusEnum.Error,
                 Status = BeamResultType.Error,
                 Error = $"No active session found, {nameof(signingBy)} set to {signingBy.ToString()}"
             };
