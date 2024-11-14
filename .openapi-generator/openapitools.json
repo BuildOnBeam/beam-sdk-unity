@@ -10,7 +10,7 @@
       }
     },
     "generators": {
-      "unity-player-client": {
+      "unity-player-client": { 
         "generatorName": "csharp",
         "output": "../Runtime/Beam/Api/BeamPlayerClient",
         "library": "unityWebRequest",

@@ -189,7 +189,7 @@ namespace Beam
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async UniTask<BeamResult<CommonOperationResponse.StatusEnum>> RevokeSessionAsync(
+        public async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> RevokeSessionAsync(
             string entityId,
             string sessionAddress,
             int chainId = Constants.DefaultChainId,
@@ -198,7 +198,7 @@ namespace Beam
         {
             Log("Retrieving active session");
 
-            CommonOperationResponse operation;
+            PlayerOperationResponse operation;
 
             try
             {
@@ -208,7 +208,7 @@ namespace Beam
             catch (ApiException e)
             {
                 Log($"Failed RevokeSessionAsync: {e.Message} {e.ErrorContent}");
-                return new BeamResult<CommonOperationResponse.StatusEnum>(BeamResultType.Error, e.Message);
+                return new BeamResult<PlayerOperationResponse.StatusEnum>(BeamResultType.Error, e.Message);
             }
 
             var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, cancellationToken);
@@ -335,7 +335,7 @@ namespace Beam
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async UniTask<BeamResult<CommonOperationResponse.StatusEnum>> SignOperationAsync(
+        public async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> SignOperationAsync(
             string entityId,
             string operationId,
             int chainId = Constants.DefaultChainId,
@@ -343,7 +343,7 @@ namespace Beam
             int secondsTimeout = DefaultTimeoutInSeconds,
             CancellationToken cancellationToken = default)
         {
-            CommonOperationResponse operation;
+            PlayerOperationResponse operation;
             Log($"Retrieving operation({operationId})");
             try
             {
@@ -355,7 +355,7 @@ namespace Beam
                 if (e.ErrorCode == 404)
                 {
                     Log($"No operation({operationId}) was found, ending");
-                    return new BeamResult<CommonOperationResponse.StatusEnum>
+                    return new BeamResult<PlayerOperationResponse.StatusEnum>
                     {
                         Status = BeamResultType.Error,
                         Error = "Operation was not found"
@@ -363,7 +363,7 @@ namespace Beam
                 }
 
                 Log($"Encountered an error retrieving operation({operationId}): {e.Message} {e.ErrorContent}");
-                return new BeamResult<CommonOperationResponse.StatusEnum>(e);
+                return new BeamResult<PlayerOperationResponse.StatusEnum>(e);
             }
 
             if (signingBy is OperationSigningBy.Auto or OperationSigningBy.Session)
@@ -388,9 +388,9 @@ namespace Beam
             }
 
             Log($"No active session found, {nameof(signingBy)} set to {signingBy.ToString()}");
-            return new BeamResult<CommonOperationResponse.StatusEnum>
+            return new BeamResult<PlayerOperationResponse.StatusEnum>
             {
-                Result = CommonOperationResponse.StatusEnum.Error,
+                Result = PlayerOperationResponse.StatusEnum.Error,
                 Status = BeamResultType.Error,
                 Error = $"No active session found, {nameof(signingBy)} set to {signingBy.ToString()}"
             };
@@ -405,8 +405,8 @@ namespace Beam
             m_Storage.Delete(Constants.Storage.BeamSigningKey + entityId);
         }
 
-        protected async UniTask<BeamResult<CommonOperationResponse.StatusEnum>> SignOperationUsingBrowserAsync(
-            CommonOperationResponse operation,
+        protected async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> SignOperationUsingBrowserAsync(
+            PlayerOperationResponse operation,
             int secondsTimeout,
             CancellationToken cancellationToken = default)
         {
@@ -418,11 +418,11 @@ namespace Beam
 
             // start polling for results of the operation
             var now = DateTimeOffset.Now;
-            var pollingResult = await PollForResult<CommonOperationResponse>(
+            var pollingResult = await PollForResult<PlayerOperationResponse>(
                 actionToPerform: () => OperationApi.GetOperationAsync(operation.Id, cancellationToken),
                 shouldRetry: res => res == null ||
-                                    res.Status != CommonOperationResponse.StatusEnum.Pending ||
-                                    res.Status == CommonOperationResponse.StatusEnum.Pending &&
+                                    res.Status != PlayerOperationResponse.StatusEnum.Pending ||
+                                    res.Status == PlayerOperationResponse.StatusEnum.Pending &&
                                     res.UpdatedAt != null && res.UpdatedAt > now,
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
@@ -430,18 +430,18 @@ namespace Beam
 
             Log($"Got operation({operation.Id}) result: {pollingResult?.Status.ToString()}");
             var beamResult =
-                new BeamResult<CommonOperationResponse.StatusEnum>(pollingResult?.Status ??
-                                                                   CommonOperationResponse.StatusEnum.Error);
+                new BeamResult<PlayerOperationResponse.StatusEnum>(pollingResult?.Status ??
+                                                                   PlayerOperationResponse.StatusEnum.Error);
 
             switch (pollingResult?.Status)
             {
-                case CommonOperationResponse.StatusEnum.Pending:
-                case CommonOperationResponse.StatusEnum.Executed:
-                case CommonOperationResponse.StatusEnum.Rejected:
-                case CommonOperationResponse.StatusEnum.Signed:
+                case PlayerOperationResponse.StatusEnum.Pending:
+                case PlayerOperationResponse.StatusEnum.Executed:
+                case PlayerOperationResponse.StatusEnum.Rejected:
+                case PlayerOperationResponse.StatusEnum.Signed:
                     beamResult.Status = BeamResultType.Success;
                     break;
-                case CommonOperationResponse.StatusEnum.Error:
+                case PlayerOperationResponse.StatusEnum.Error:
                     beamResult.Status = BeamResultType.Error;
                     beamResult.Error = "Operation encountered an error";
                     break;
@@ -454,17 +454,17 @@ namespace Beam
             return beamResult;
         }
 
-        protected async UniTask<BeamResult<CommonOperationResponse.StatusEnum>> SignOperationUsingSessionAsync(
-            CommonOperationResponse operation,
+        protected async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> SignOperationUsingSessionAsync(
+            PlayerOperationResponse operation,
             KeyPair activeSessionKeyPair,
             CancellationToken cancellationToken = default)
         {
             if (operation?.Transactions?.Any() != true)
             {
                 Log($"Operation({operation?.Id}) has no transactions to sign, ending");
-                return new BeamResult<CommonOperationResponse.StatusEnum>
+                return new BeamResult<PlayerOperationResponse.StatusEnum>
                 {
-                    Result = CommonOperationResponse.StatusEnum.Error,
+                    Result = PlayerOperationResponse.StatusEnum.Error,
                     Status = BeamResultType.Error,
                     Error = "Operation has no transactions to sign"
                 };
@@ -479,38 +479,38 @@ namespace Beam
             {
                 try
                 {
-                    var actionType = action.GetActionType();
-                    if (actionType == BaseActionResponse.TypeEnum.SessionRevoke)
+                    if (action.Type == PlayerOperationAction.TypeEnum.SessionRevoke)
                     {
                         throw new Exception(
                             $"Revoke Session Operation has to be performed via {nameof(RevokeSessionAsync)}() method only");
                     }
 
-                    var messageToSign = action.GetMessageToSign();
+                    if (action.Signature == null)
+                    {
+                        throw new Exception("Signature object is null, operation is most likely not signable");
+                    }
 
                     string signature;
-                    switch (action.GetSignatureType())
+                    switch (action.Signature.Type)
                     {
-                        case BaseActionSignatureResponse.TypeEnum.Message:
-                            signature = activeSessionKeyPair.SignMessage(Convert.ToString(messageToSign));
+                        case PlayerOperationActionSignature.TypeEnum.Message:
+                            signature = activeSessionKeyPair.SignMessage(Convert.ToString(action.Signature.Data));
                             break;
-                        case BaseActionSignatureResponse.TypeEnum.TypedData:
-                            signature = activeSessionKeyPair.SignMarketplaceTransactionHash(messageToSign);
+                        case PlayerOperationActionSignature.TypeEnum.TypedData:
+                            signature = activeSessionKeyPair.SignMarketplaceTransactionHash(action.Signature.Hash);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
 
-                    confirmationModel.Actions.Add(new ConfirmOperationRequestTransactionsInner(
-                        action.GetActionId(), signature));
+                    confirmationModel.Actions.Add(new ConfirmOperationRequestTransactionsInner(action.Id, signature));
                 }
                 catch (ApiException e)
                 {
-                    var actionId = action.GetActionId();
                     Log(
-                        $"Encountered an error when signing action({actionId}): {e.Message} {e.ErrorContent}");
-                    return new BeamResult<CommonOperationResponse.StatusEnum>(e,
-                        $"Encountered an exception while approving action{actionId} of type {action.GetActionType().ToString()}");
+                        $"Encountered an error when signing action({action.Id}): {e.Message} {e.ErrorContent}");
+                    return new BeamResult<PlayerOperationResponse.StatusEnum>(e,
+                        $"Encountered an exception while approving action{action.Id} of type {action.Type.ToString()}");
                 }
             }
 
@@ -519,13 +519,13 @@ namespace Beam
             {
                 var res = await OperationApi.ProcessOperationAsync(operation.Id, confirmationModel,
                     cancellationToken);
-                var didFail = res.Status != CommonOperationResponse.StatusEnum.Executed &&
-                              res.Status != CommonOperationResponse.StatusEnum.Signed &&
-                              res.Status != CommonOperationResponse.StatusEnum.Pending;
+                var didFail = res.Status != PlayerOperationResponse.StatusEnum.Executed &&
+                              res.Status != PlayerOperationResponse.StatusEnum.Signed &&
+                              res.Status != PlayerOperationResponse.StatusEnum.Pending;
 
                 Log(
                     $"Confirmed operation({operation.Id}), status: {res.Status.ToString()}");
-                return new BeamResult<CommonOperationResponse.StatusEnum>
+                return new BeamResult<PlayerOperationResponse.StatusEnum>
                 {
                     Status = didFail ? BeamResultType.Error : BeamResultType.Success,
                     Result = res.Status
@@ -535,7 +535,7 @@ namespace Beam
             {
                 Log(
                     $"Confirming operation({operation.Id}) encountered an error: {e.ErrorContent}");
-                return new BeamResult<CommonOperationResponse.StatusEnum>
+                return new BeamResult<PlayerOperationResponse.StatusEnum>
                 {
                     Status = BeamResultType.Error,
                     Error = e.Message ??

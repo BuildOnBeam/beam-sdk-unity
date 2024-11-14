@@ -32,8 +32,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse CreateUserTransaction(string entityId, CreateTransactionRequestInput createTransactionRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse CreateUserTransaction(string entityId, CreateTransactionRequestInput createTransactionRequestInput);
 
         /// <summary>
         /// Creating a new transaction on behalf of a user
@@ -44,8 +44,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> CreateUserTransactionWithHttpInfo(string entityId, CreateTransactionRequestInput createTransactionRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> CreateUserTransactionWithHttpInfo(string entityId, CreateTransactionRequestInput createTransactionRequestInput);
         /// <summary>
         /// Getting a transaction
         /// </summary>
@@ -125,8 +125,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Creating a new transaction on behalf of a user
@@ -138,8 +138,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Getting a transaction
         /// </summary>
@@ -365,10 +365,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse CreateUserTransaction(string entityId, CreateTransactionRequestInput createTransactionRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse CreateUserTransaction(string entityId, CreateTransactionRequestInput createTransactionRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = CreateUserTransactionWithHttpInfo(entityId, createTransactionRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = CreateUserTransactionWithHttpInfo(entityId, createTransactionRequestInput);
             return localVarResponse.Data;
         }
 
@@ -378,8 +378,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> CreateUserTransactionWithHttpInfo(string entityId, CreateTransactionRequestInput createTransactionRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> CreateUserTransactionWithHttpInfo(string entityId, CreateTransactionRequestInput createTransactionRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -416,7 +416,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/transactions/users/{entityId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/transactions/users/{entityId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -434,11 +434,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> CreateUserTransactionAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = CreateUserTransactionWithHttpInfoAsync(entityId, createTransactionRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -449,8 +449,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createTransactionRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> CreateUserTransactionWithHttpInfoAsync(string entityId, CreateTransactionRequestInput createTransactionRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -490,7 +490,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/transactions/users/{entityId}", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/transactions/users/{entityId}", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 

@@ -204,8 +204,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse TransferAsset(string entityId, TransferAssetRequestInput transferAssetRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse TransferAsset(string entityId, TransferAssetRequestInput transferAssetRequestInput);
 
         /// <summary>
         /// Transfer an asset (NFT assets, ERC721 / ERC1155)
@@ -216,16 +216,16 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> TransferAssetWithHttpInfo(string entityId, TransferAssetRequestInput transferAssetRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> TransferAssetWithHttpInfo(string entityId, TransferAssetRequestInput transferAssetRequestInput);
         /// <summary>
         /// Transfer the native token
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse TransferNativeToken(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse TransferNativeToken(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput);
 
         /// <summary>
         /// Transfer the native token
@@ -236,16 +236,16 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> TransferNativeTokenWithHttpInfo(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> TransferNativeTokenWithHttpInfo(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput);
         /// <summary>
         /// Transfer a token (token assets, ERC20)
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse TransferToken(string entityId, TransferTokenRequestInput transferTokenRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse TransferToken(string entityId, TransferTokenRequestInput transferTokenRequestInput);
 
         /// <summary>
         /// Transfer a token (token assets, ERC20)
@@ -256,8 +256,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> TransferTokenWithHttpInfo(string entityId, TransferTokenRequestInput transferTokenRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> TransferTokenWithHttpInfo(string entityId, TransferTokenRequestInput transferTokenRequestInput);
         #endregion Synchronous Operations
     }
 
@@ -489,8 +489,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> TransferAssetAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> TransferAssetAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Transfer an asset (NFT assets, ERC721 / ERC1155)
@@ -502,8 +502,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> TransferAssetWithHttpInfoAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> TransferAssetWithHttpInfoAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Transfer the native token
         /// </summary>
@@ -514,8 +514,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> TransferNativeTokenAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> TransferNativeTokenAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Transfer the native token
@@ -527,8 +527,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> TransferNativeTokenWithHttpInfoAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> TransferNativeTokenWithHttpInfoAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Transfer a token (token assets, ERC20)
         /// </summary>
@@ -539,8 +539,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> TransferTokenAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> TransferTokenAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Transfer a token (token assets, ERC20)
@@ -552,8 +552,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> TransferTokenWithHttpInfoAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> TransferTokenWithHttpInfoAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1900,10 +1900,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse TransferAsset(string entityId, TransferAssetRequestInput transferAssetRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse TransferAsset(string entityId, TransferAssetRequestInput transferAssetRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = TransferAssetWithHttpInfo(entityId, transferAssetRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = TransferAssetWithHttpInfo(entityId, transferAssetRequestInput);
             return localVarResponse.Data;
         }
 
@@ -1913,8 +1913,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> TransferAssetWithHttpInfo(string entityId, TransferAssetRequestInput transferAssetRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> TransferAssetWithHttpInfo(string entityId, TransferAssetRequestInput transferAssetRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -1951,7 +1951,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/assets/users/{entityId}/transfer-asset", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/assets/users/{entityId}/transfer-asset", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1969,11 +1969,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> TransferAssetAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> TransferAssetAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = TransferAssetWithHttpInfoAsync(entityId, transferAssetRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -1984,8 +1984,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferAssetRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> TransferAssetWithHttpInfoAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> TransferAssetWithHttpInfoAsync(string entityId, TransferAssetRequestInput transferAssetRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -2025,7 +2025,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/assets/users/{entityId}/transfer-asset", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/assets/users/{entityId}/transfer-asset", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -2044,10 +2044,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse TransferNativeToken(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse TransferNativeToken(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = TransferNativeTokenWithHttpInfo(entityId, transferNativeTokenRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = TransferNativeTokenWithHttpInfo(entityId, transferNativeTokenRequestInput);
             return localVarResponse.Data;
         }
 
@@ -2057,8 +2057,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> TransferNativeTokenWithHttpInfo(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> TransferNativeTokenWithHttpInfo(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -2095,7 +2095,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/assets/users/{entityId}/transfer-native", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/assets/users/{entityId}/transfer-native", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2113,11 +2113,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> TransferNativeTokenAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> TransferNativeTokenAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = TransferNativeTokenWithHttpInfoAsync(entityId, transferNativeTokenRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -2128,8 +2128,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferNativeTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> TransferNativeTokenWithHttpInfoAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> TransferNativeTokenWithHttpInfoAsync(string entityId, TransferNativeTokenRequestInput transferNativeTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -2169,7 +2169,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/assets/users/{entityId}/transfer-native", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/assets/users/{entityId}/transfer-native", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -2188,10 +2188,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse TransferToken(string entityId, TransferTokenRequestInput transferTokenRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse TransferToken(string entityId, TransferTokenRequestInput transferTokenRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = TransferTokenWithHttpInfo(entityId, transferTokenRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = TransferTokenWithHttpInfo(entityId, transferTokenRequestInput);
             return localVarResponse.Data;
         }
 
@@ -2201,8 +2201,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> TransferTokenWithHttpInfo(string entityId, TransferTokenRequestInput transferTokenRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> TransferTokenWithHttpInfo(string entityId, TransferTokenRequestInput transferTokenRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -2239,7 +2239,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/assets/users/{entityId}/transfer-token", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/assets/users/{entityId}/transfer-token", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2257,11 +2257,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> TransferTokenAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> TransferTokenAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = TransferTokenWithHttpInfoAsync(entityId, transferTokenRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -2272,8 +2272,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="transferTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> TransferTokenWithHttpInfoAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> TransferTokenWithHttpInfoAsync(string entityId, TransferTokenRequestInput transferTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -2313,7 +2313,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/assets/users/{entityId}/transfer-token", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/assets/users/{entityId}/transfer-token", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 

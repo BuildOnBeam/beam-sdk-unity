@@ -32,8 +32,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse ConvertInput(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse ConvertInput(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
 
         /// <summary>
         /// Swap an exact amount of &#x60;tokenIn&#x60; for a minimum amount of &#x60;tokenOut&#x60;
@@ -44,16 +44,16 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> ConvertInputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> ConvertInputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
         /// <summary>
         /// Swap a maximum amount of &#x60;tokenIn&#x60; for an exact amount of &#x60;tokenOut&#x60;
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse ConvertToOutput(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse ConvertToOutput(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
 
         /// <summary>
         /// Swap a maximum amount of &#x60;tokenIn&#x60; for an exact amount of &#x60;tokenOut&#x60;
@@ -64,8 +64,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> ConvertToOutputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> ConvertToOutputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput);
         /// <summary>
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
         /// </summary>
@@ -120,8 +120,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse UnwrapNative(string entityId, UnwrappingTokenInput unwrappingTokenInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse UnwrapNative(string entityId, UnwrappingTokenInput unwrappingTokenInput);
 
         /// <summary>
         /// Unwrap an amount of wrapped to native token
@@ -132,16 +132,16 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> UnwrapNativeWithHttpInfo(string entityId, UnwrappingTokenInput unwrappingTokenInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> UnwrapNativeWithHttpInfo(string entityId, UnwrappingTokenInput unwrappingTokenInput);
         /// <summary>
         /// Wrap an amount of native token to wrapped native token
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse WrapNative(string entityId, WrappingTokenInput wrappingTokenInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse WrapNative(string entityId, WrappingTokenInput wrappingTokenInput);
 
         /// <summary>
         /// Wrap an amount of native token to wrapped native token
@@ -152,8 +152,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> WrapNativeWithHttpInfo(string entityId, WrappingTokenInput wrappingTokenInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> WrapNativeWithHttpInfo(string entityId, WrappingTokenInput wrappingTokenInput);
         #endregion Synchronous Operations
     }
 
@@ -173,8 +173,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Swap an exact amount of &#x60;tokenIn&#x60; for a minimum amount of &#x60;tokenOut&#x60;
@@ -186,8 +186,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Swap a maximum amount of &#x60;tokenIn&#x60; for an exact amount of &#x60;tokenOut&#x60;
         /// </summary>
@@ -198,8 +198,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Swap a maximum amount of &#x60;tokenIn&#x60; for an exact amount of &#x60;tokenOut&#x60;
@@ -211,8 +211,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Returns the maximum necessary input amount for a token trade, given a desired output amount
         /// </summary>
@@ -281,8 +281,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Unwrap an amount of wrapped to native token
@@ -294,8 +294,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Wrap an amount of native token to wrapped native token
         /// </summary>
@@ -306,8 +306,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Wrap an amount of native token to wrapped native token
@@ -319,8 +319,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -471,10 +471,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse ConvertInput(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse ConvertInput(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = ConvertInputWithHttpInfo(entityId, convertTokenRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = ConvertInputWithHttpInfo(entityId, convertTokenRequestInput);
             return localVarResponse.Data;
         }
 
@@ -484,8 +484,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> ConvertInputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> ConvertInputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -522,7 +522,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/convert/input", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/convert/input", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -540,11 +540,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ConvertInputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = ConvertInputWithHttpInfoAsync(entityId, convertTokenRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -555,8 +555,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> ConvertInputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -596,7 +596,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/convert/input", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/convert/input", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -615,10 +615,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse ConvertToOutput(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse ConvertToOutput(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = ConvertToOutputWithHttpInfo(entityId, convertTokenRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = ConvertToOutputWithHttpInfo(entityId, convertTokenRequestInput);
             return localVarResponse.Data;
         }
 
@@ -628,8 +628,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> ConvertToOutputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> ConvertToOutputWithHttpInfo(string entityId, ConvertTokenRequestInput convertTokenRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -666,7 +666,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/convert/output", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/convert/output", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -684,11 +684,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ConvertToOutputAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = ConvertToOutputWithHttpInfoAsync(entityId, convertTokenRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -699,8 +699,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="convertTokenRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> ConvertToOutputWithHttpInfoAsync(string entityId, ConvertTokenRequestInput convertTokenRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -740,7 +740,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/convert/output", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/convert/output", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -1095,10 +1095,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse UnwrapNative(string entityId, UnwrappingTokenInput unwrappingTokenInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse UnwrapNative(string entityId, UnwrappingTokenInput unwrappingTokenInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = UnwrapNativeWithHttpInfo(entityId, unwrappingTokenInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = UnwrapNativeWithHttpInfo(entityId, unwrappingTokenInput);
             return localVarResponse.Data;
         }
 
@@ -1108,8 +1108,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> UnwrapNativeWithHttpInfo(string entityId, UnwrappingTokenInput unwrappingTokenInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> UnwrapNativeWithHttpInfo(string entityId, UnwrappingTokenInput unwrappingTokenInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -1146,7 +1146,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/native/unwrap", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/native/unwrap", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1164,11 +1164,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> UnwrapNativeAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = UnwrapNativeWithHttpInfoAsync(entityId, unwrappingTokenInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -1179,8 +1179,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="unwrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> UnwrapNativeWithHttpInfoAsync(string entityId, UnwrappingTokenInput unwrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -1220,7 +1220,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/native/unwrap", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/native/unwrap", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -1239,10 +1239,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse WrapNative(string entityId, WrappingTokenInput wrappingTokenInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse WrapNative(string entityId, WrappingTokenInput wrappingTokenInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = WrapNativeWithHttpInfo(entityId, wrappingTokenInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = WrapNativeWithHttpInfo(entityId, wrappingTokenInput);
             return localVarResponse.Data;
         }
 
@@ -1252,8 +1252,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> WrapNativeWithHttpInfo(string entityId, WrappingTokenInput wrappingTokenInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> WrapNativeWithHttpInfo(string entityId, WrappingTokenInput wrappingTokenInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -1290,7 +1290,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/native/wrap", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/native/wrap", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1308,11 +1308,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> WrapNativeAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = WrapNativeWithHttpInfoAsync(entityId, wrappingTokenInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -1323,8 +1323,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="wrappingTokenInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> WrapNativeWithHttpInfoAsync(string entityId, WrappingTokenInput wrappingTokenInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -1364,7 +1364,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/exchange/users/{entityId}/native/wrap", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/exchange/users/{entityId}/native/wrap", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
