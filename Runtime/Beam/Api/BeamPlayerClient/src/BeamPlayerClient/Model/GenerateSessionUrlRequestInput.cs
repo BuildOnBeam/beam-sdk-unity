@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GenerateSessionUrlRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GenerateSessionUrlRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerateSessionUrlRequestInput" /> class.

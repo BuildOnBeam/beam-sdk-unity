@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetOwnersResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetOwnersResponse() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetOwnersResponse" /> class.

@@ -8,6 +8,7 @@ src/BeamPlayerClient/Api/ExchangeApi.cs
 src/BeamPlayerClient/Api/HealthApi.cs
 src/BeamPlayerClient/Api/MarketplaceApi.cs
 src/BeamPlayerClient/Api/OperationApi.cs
+src/BeamPlayerClient/Api/RampApi.cs
 src/BeamPlayerClient/Api/SessionsApi.cs
 src/BeamPlayerClient/Api/StatsApi.cs
 src/BeamPlayerClient/Api/TransactionsApi.cs
@@ -45,8 +46,6 @@ src/BeamPlayerClient/Model/CommonActivityResponseDataInnerOrder.cs
 src/BeamPlayerClient/Model/CommonActivityResponseDataInnerTransaction.cs
 src/BeamPlayerClient/Model/CommonAssetActivityRequestInput.cs
 src/BeamPlayerClient/Model/CommonContractActivityRequestInput.cs
-src/BeamPlayerClient/Model/CommonOperationResponse.cs
-src/BeamPlayerClient/Model/CommonOperationResponseTransactionsInner.cs
 src/BeamPlayerClient/Model/CommonStatsRequestInput.cs
 src/BeamPlayerClient/Model/CommonStatsResponse.cs
 src/BeamPlayerClient/Model/CommonStatsResponseCount.cs
@@ -57,8 +56,8 @@ src/BeamPlayerClient/Model/ConvertTokenRequestInput.cs
 src/BeamPlayerClient/Model/CreateAssetOfferRequestInput.cs
 src/BeamPlayerClient/Model/CreateConnectionRequestInput.cs
 src/BeamPlayerClient/Model/CreateConnectionRequestResponse.cs
-src/BeamPlayerClient/Model/CreateOperationRequestInput.cs
-src/BeamPlayerClient/Model/CreateOperationRequestInputTransactionsInner.cs
+src/BeamPlayerClient/Model/CreateOnrampRequestInput.cs
+src/BeamPlayerClient/Model/CreateOnrampRequestResponse.cs
 src/BeamPlayerClient/Model/CreateTransactionRequestInput.cs
 src/BeamPlayerClient/Model/CreateTransactionRequestInputInteractionsInner.cs
 src/BeamPlayerClient/Model/GenerateSessionRequestResponse.cs
@@ -114,6 +113,11 @@ src/BeamPlayerClient/Model/GetUserCurrenciesResponseDataInner.cs
 src/BeamPlayerClient/Model/GetUserNativeCurrencyResponse.cs
 src/BeamPlayerClient/Model/GetUserNativeCurrencyResponseNativeTokenBalance.cs
 src/BeamPlayerClient/Model/GetUserResponse.cs
+src/BeamPlayerClient/Model/PlayerOperationAction.cs
+src/BeamPlayerClient/Model/PlayerOperationActionSignature.cs
+src/BeamPlayerClient/Model/PlayerOperationActionTransaction.cs
+src/BeamPlayerClient/Model/PlayerOperationResponse.cs
+src/BeamPlayerClient/Model/PlayerOperationResponseTransactionsInner.cs
 src/BeamPlayerClient/Model/RefreshContractRequestBody.cs
 src/BeamPlayerClient/Model/RefreshTokenRequestBody.cs
 src/BeamPlayerClient/Model/RevokeSessionRequestInput.cs

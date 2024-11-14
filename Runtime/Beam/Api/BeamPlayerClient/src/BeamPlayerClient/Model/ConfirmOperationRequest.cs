@@ -38,16 +38,16 @@ namespace BeamPlayerClient.Model
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum Signed for value: Signed
-            /// </summary>
-            [EnumMember(Value = "Signed")]
-            Signed = 1,
-
-            /// <summary>
             /// Enum Pending for value: Pending
             /// </summary>
             [EnumMember(Value = "Pending")]
-            Pending = 2,
+            Pending = 1,
+
+            /// <summary>
+            /// Enum Signed for value: Signed
+            /// </summary>
+            [EnumMember(Value = "Signed")]
+            Signed = 2,
 
             /// <summary>
             /// Enum Rejected for value: Rejected
@@ -79,18 +79,19 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="ConfirmOperationRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected ConfirmOperationRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmOperationRequest" /> class.
         /// </summary>
         /// <param name="status">status (required).</param>
         /// <param name="transactions">transactions.</param>
+        /// <param name="actions">actions.</param>
         [UnityEngine.Scripting.Preserve]
-        public ConfirmOperationRequest(StatusEnum status = default(StatusEnum), List<ConfirmOperationRequestTransactionsInner> transactions = default(List<ConfirmOperationRequestTransactionsInner>))
+        public ConfirmOperationRequest(StatusEnum status = default(StatusEnum), List<ConfirmOperationRequestTransactionsInner> transactions = default(List<ConfirmOperationRequestTransactionsInner>), List<ConfirmOperationRequestTransactionsInner> actions = default(List<ConfirmOperationRequestTransactionsInner>))
         {
             this.Status = status;
             this.Transactions = transactions;
+            this.Actions = actions;
         }
 
         /// <summary>
@@ -99,6 +100,13 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "transactions", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public List<ConfirmOperationRequestTransactionsInner> Transactions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Actions
+        /// </summary>
+        [DataMember(Name = "actions", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public List<ConfirmOperationRequestTransactionsInner> Actions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -111,6 +119,7 @@ namespace BeamPlayerClient.Model
             sb.Append("class ConfirmOperationRequest {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
+            sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

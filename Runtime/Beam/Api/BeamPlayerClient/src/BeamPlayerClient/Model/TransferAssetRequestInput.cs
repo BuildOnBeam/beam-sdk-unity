@@ -61,7 +61,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="TransferAssetRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected TransferAssetRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferAssetRequestInput" /> class.

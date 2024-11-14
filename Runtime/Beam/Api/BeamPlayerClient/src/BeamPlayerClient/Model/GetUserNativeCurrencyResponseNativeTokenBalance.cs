@@ -35,7 +35,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="GetUserNativeCurrencyResponseNativeTokenBalance" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected GetUserNativeCurrencyResponseNativeTokenBalance() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUserNativeCurrencyResponseNativeTokenBalance" /> class.

@@ -27,30 +27,12 @@ namespace BeamPlayerClient.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results.
-        /// </summary>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse CreateOperation(CreateOperationRequestInput createOperationRequestInput);
-
-        /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> CreateOperationWithHttpInfo(CreateOperationRequestInput createOperationRequestInput);
-        /// <summary>
         /// Delete an operation
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse DeleteOperation(string opId);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse DeleteOperation(string opId);
 
         /// <summary>
         /// Delete an operation
@@ -60,15 +42,15 @@ namespace BeamPlayerClient.Api
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> DeleteOperationWithHttpInfo(string opId);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> DeleteOperationWithHttpInfo(string opId);
         /// <summary>
         /// Executes operation for given id
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse ExecuteSignedOperation(string opId);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse ExecuteSignedOperation(string opId);
 
         /// <summary>
         /// Executes operation for given id
@@ -78,15 +60,15 @@ namespace BeamPlayerClient.Api
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> ExecuteSignedOperationWithHttpInfo(string opId);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> ExecuteSignedOperationWithHttpInfo(string opId);
         /// <summary>
         /// Returns operation data for given id. Used by Game SDKs to get transaction results.
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse GetOperation(string opId);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse GetOperation(string opId);
 
         /// <summary>
         /// Returns operation data for given id. Used by Game SDKs to get transaction results.
@@ -96,16 +78,16 @@ namespace BeamPlayerClient.Api
         /// </remarks>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> GetOperationWithHttpInfo(string opId);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> GetOperationWithHttpInfo(string opId);
         /// <summary>
         /// Updates operation result for given id
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
-        /// <returns>CommonOperationResponse</returns>
-        CommonOperationResponse ProcessOperation(string opId, ConfirmOperationRequest confirmOperationRequest);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse ProcessOperation(string opId, ConfirmOperationRequest confirmOperationRequest);
 
         /// <summary>
         /// Updates operation result for given id
@@ -116,8 +98,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        ApiResponse<CommonOperationResponse> ProcessOperationWithHttpInfo(string opId, ConfirmOperationRequest confirmOperationRequest);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> ProcessOperationWithHttpInfo(string opId, ConfirmOperationRequest confirmOperationRequest);
         #endregion Synchronous Operations
     }
 
@@ -128,29 +110,6 @@ namespace BeamPlayerClient.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateOperationAsync(CreateOperationRequestInput createOperationRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> CreateOperationWithHttpInfoAsync(CreateOperationRequestInput createOperationRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
         /// Delete an operation
         /// </summary>
         /// <remarks>
@@ -159,8 +118,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> DeleteOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> DeleteOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Delete an operation
@@ -171,8 +130,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> DeleteOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> DeleteOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Executes operation for given id
         /// </summary>
@@ -182,8 +141,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ExecuteSignedOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ExecuteSignedOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Executes operation for given id
@@ -194,8 +153,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ExecuteSignedOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> ExecuteSignedOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Returns operation data for given id. Used by Game SDKs to get transaction results.
         /// </summary>
@@ -205,8 +164,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> GetOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> GetOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns operation data for given id. Used by Game SDKs to get transaction results.
@@ -217,8 +176,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> GetOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> GetOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Updates operation result for given id
         /// </summary>
@@ -229,8 +188,8 @@ namespace BeamPlayerClient.Api
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ProcessOperationAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ProcessOperationAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Updates operation result for given id
@@ -242,8 +201,8 @@ namespace BeamPlayerClient.Api
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CommonOperationResponse>> ProcessOperationWithHttpInfoAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> ProcessOperationWithHttpInfoAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -389,144 +348,14 @@ namespace BeamPlayerClient.Api
         }
 
         /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results. 
-        /// </summary>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse CreateOperation(CreateOperationRequestInput createOperationRequestInput)
-        {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = CreateOperationWithHttpInfo(createOperationRequestInput);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results. 
-        /// </summary>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> CreateOperationWithHttpInfo(CreateOperationRequestInput createOperationRequestInput)
-        {
-            // verify the required parameter 'createOperationRequestInput' is set
-            if (createOperationRequestInput == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'createOperationRequestInput' when calling OperationApi->CreateOperation");
-
-            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.Data = createOperationRequestInput;
-
-            // authentication (beam-api-key) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/operation", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("CreateOperation", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results. 
-        /// </summary>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> CreateOperationAsync(CreateOperationRequestInput createOperationRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            var task = CreateOperationWithHttpInfoAsync(createOperationRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Initializes an operation. Used by Game SDKs to get transaction results. 
-        /// </summary>
-        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createOperationRequestInput"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> CreateOperationWithHttpInfoAsync(CreateOperationRequestInput createOperationRequestInput, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'createOperationRequestInput' is set
-            if (createOperationRequestInput == null)
-                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'createOperationRequestInput' when calling OperationApi->CreateOperation");
-
-
-            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.Data = createOperationRequestInput;
-
-            // authentication (beam-api-key) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
-            }
-
-            // make the HTTP request
-
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/operation", localVarRequestOptions, this.Configuration, cancellationToken);
-
-            var localVarResponse = await task;
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("CreateOperation", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
         /// Delete an operation 
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse DeleteOperation(string opId)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse DeleteOperation(string opId)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = DeleteOperationWithHttpInfo(opId);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = DeleteOperationWithHttpInfo(opId);
             return localVarResponse.Data;
         }
 
@@ -535,8 +364,8 @@ namespace BeamPlayerClient.Api
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> DeleteOperationWithHttpInfo(string opId)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> DeleteOperationWithHttpInfo(string opId)
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -567,7 +396,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<CommonOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<PlayerOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -584,11 +413,11 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> DeleteOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> DeleteOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = DeleteOperationWithHttpInfoAsync(opId, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -598,8 +427,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> DeleteOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> DeleteOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -633,7 +462,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.DeleteAsync<CommonOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.DeleteAsync<PlayerOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -651,10 +480,10 @@ namespace BeamPlayerClient.Api
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse ExecuteSignedOperation(string opId)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse ExecuteSignedOperation(string opId)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = ExecuteSignedOperationWithHttpInfo(opId);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = ExecuteSignedOperationWithHttpInfo(opId);
             return localVarResponse.Data;
         }
 
@@ -663,8 +492,8 @@ namespace BeamPlayerClient.Api
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> ExecuteSignedOperationWithHttpInfo(string opId)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> ExecuteSignedOperationWithHttpInfo(string opId)
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -695,7 +524,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CommonOperationResponse>("/v1/player/operation/{opId}/execute", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/operation/{opId}/execute", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -712,11 +541,11 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ExecuteSignedOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ExecuteSignedOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = ExecuteSignedOperationWithHttpInfoAsync(opId, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -726,8 +555,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ExecuteSignedOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> ExecuteSignedOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -761,7 +590,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CommonOperationResponse>("/v1/player/operation/{opId}/execute", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/operation/{opId}/execute", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -779,10 +608,10 @@ namespace BeamPlayerClient.Api
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse GetOperation(string opId)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse GetOperation(string opId)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = GetOperationWithHttpInfo(opId);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = GetOperationWithHttpInfo(opId);
             return localVarResponse.Data;
         }
 
@@ -791,8 +620,8 @@ namespace BeamPlayerClient.Api
         /// </summary>
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> GetOperationWithHttpInfo(string opId)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> GetOperationWithHttpInfo(string opId)
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -823,7 +652,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CommonOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<PlayerOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -840,11 +669,11 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> GetOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> GetOperationAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetOperationWithHttpInfoAsync(opId, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -854,8 +683,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> GetOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> GetOperationWithHttpInfoAsync(string opId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -889,7 +718,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.GetAsync<CommonOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.GetAsync<PlayerOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 
@@ -908,10 +737,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
-        /// <returns>CommonOperationResponse</returns>
-        public CommonOperationResponse ProcessOperation(string opId, ConfirmOperationRequest confirmOperationRequest)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse ProcessOperation(string opId, ConfirmOperationRequest confirmOperationRequest)
         {
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = ProcessOperationWithHttpInfo(opId, confirmOperationRequest);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = ProcessOperationWithHttpInfo(opId, confirmOperationRequest);
             return localVarResponse.Data;
         }
 
@@ -921,8 +750,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
-        /// <returns>ApiResponse of CommonOperationResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> ProcessOperationWithHttpInfo(string opId, ConfirmOperationRequest confirmOperationRequest)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> ProcessOperationWithHttpInfo(string opId, ConfirmOperationRequest confirmOperationRequest)
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -959,7 +788,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<CommonOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<PlayerOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -977,11 +806,11 @@ namespace BeamPlayerClient.Api
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CommonOperationResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CommonOperationResponse> ProcessOperationAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> ProcessOperationAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = ProcessOperationWithHttpInfoAsync(opId, confirmOperationRequest, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CommonOperationResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -992,8 +821,8 @@ namespace BeamPlayerClient.Api
         /// <param name="opId"></param>
         /// <param name="confirmOperationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CommonOperationResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CommonOperationResponse>> ProcessOperationWithHttpInfoAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> ProcessOperationWithHttpInfoAsync(string opId, ConfirmOperationRequest confirmOperationRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'opId' is set
             if (opId == null)
@@ -1033,7 +862,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PatchAsync<CommonOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PatchAsync<PlayerOperationResponse>("/v1/player/operation/{opId}", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 

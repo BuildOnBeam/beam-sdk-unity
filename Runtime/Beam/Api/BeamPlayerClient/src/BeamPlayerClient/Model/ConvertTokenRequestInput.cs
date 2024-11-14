@@ -61,7 +61,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="ConvertTokenRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected ConvertTokenRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertTokenRequestInput" /> class.

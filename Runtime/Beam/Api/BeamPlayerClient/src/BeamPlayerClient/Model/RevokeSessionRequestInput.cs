@@ -61,17 +61,18 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="RevokeSessionRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected RevokeSessionRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="RevokeSessionRequestInput" /> class.
         /// </summary>
         /// <param name="address">address (required).</param>
-        /// <param name="operationId">operationId.</param>
-        /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
+        /// <param name="sponsor">sponsor (default to true).</param>
+        /// <param name="policyId">policyId.</param>
         /// <param name="chainId">chainId (default to 13337).</param>
+        /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
+        /// <param name="operationId">operationId.</param>
         [UnityEngine.Scripting.Preserve]
-        public RevokeSessionRequestInput(string address = default(string), string operationId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, long chainId = 13337)
+        public RevokeSessionRequestInput(string address = default(string), bool sponsor = true, string policyId = default(string), long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, string operationId = default(string))
         {
             // to ensure "address" is required (not null)
             if (address == null)
@@ -79,9 +80,11 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("address is a required property for RevokeSessionRequestInput and cannot be null");
             }
             this.Address = address;
-            this.OperationId = operationId;
-            this.OperationProcessing = operationProcessing;
+            this.Sponsor = sponsor;
+            this.PolicyId = policyId;
             this.ChainId = chainId;
+            this.OperationProcessing = operationProcessing;
+            this.OperationId = operationId;
         }
 
         /// <summary>
@@ -92,11 +95,18 @@ namespace BeamPlayerClient.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets OperationId
+        /// Gets or Sets Sponsor
         /// </summary>
-        [DataMember(Name = "operationId", EmitDefaultValue = true)]
+        [DataMember(Name = "sponsor", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public string OperationId { get; set; }
+        public bool Sponsor { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PolicyId
+        /// </summary>
+        [DataMember(Name = "policyId", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string PolicyId { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
@@ -104,6 +114,13 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
         [UnityEngine.Scripting.Preserve]
         public long ChainId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OperationId
+        /// </summary>
+        [DataMember(Name = "operationId", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string OperationId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,9 +132,11 @@ namespace BeamPlayerClient.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class RevokeSessionRequestInput {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
-            sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
+            sb.Append("  Sponsor: ").Append(Sponsor).Append("\n");
+            sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
+            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

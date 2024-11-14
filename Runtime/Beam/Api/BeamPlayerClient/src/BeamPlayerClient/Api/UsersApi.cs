@@ -122,7 +122,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAllUsersResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetAllUsersResponse> GetAllUsersAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetAllUsersResponse> GetAllUsersAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns a list of users
@@ -135,7 +135,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAllUsersResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetAllUsersResponse>> GetAllUsersWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetAllUsersResponse>> GetAllUsersWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Returns a particular user
         /// </summary>
@@ -146,7 +146,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetUserResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetUserResponse> GetUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetUserResponse> GetUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Returns a particular user
@@ -158,7 +158,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetUserResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetUserResponse>> GetUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetUserResponse>> GetUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Unlinks an entity ID from a user
         /// </summary>
@@ -169,7 +169,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetUserResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetUserResponse> UnlinkUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetUserResponse> UnlinkUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Unlinks an entity ID from a user
@@ -181,7 +181,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetUserResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetUserResponse>> UnlinkUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetUserResponse>> UnlinkUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Updates entityId for the user
         /// </summary>
@@ -193,7 +193,7 @@ namespace BeamPlayerClient.Api
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetUserResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<GetUserResponse> UpdateUserAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<GetUserResponse> UpdateUserAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Updates entityId for the user
@@ -206,7 +206,7 @@ namespace BeamPlayerClient.Api
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetUserResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetUserResponse>> UpdateUserWithHttpInfoAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetUserResponse>> UpdateUserWithHttpInfoAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -424,7 +424,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAllUsersResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetAllUsersResponse> GetAllUsersAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetAllUsersResponse> GetAllUsersAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetAllUsersWithHttpInfoAsync(limit, offset, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetAllUsersResponse> localVarResponse = await task;
@@ -439,7 +439,7 @@ namespace BeamPlayerClient.Api
         /// <param name="offset"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAllUsersResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetAllUsersResponse>> GetAllUsersWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetAllUsersResponse>> GetAllUsersWithHttpInfoAsync(decimal? limit, decimal? offset, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
@@ -556,7 +556,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetUserResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetUserResponse> GetUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetUserResponse> GetUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetUserWithHttpInfoAsync(entityId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetUserResponse> localVarResponse = await task;
@@ -570,7 +570,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetUserResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetUserResponse>> GetUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetUserResponse>> GetUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -684,7 +684,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetUserResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetUserResponse> UnlinkUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetUserResponse> UnlinkUserAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = UnlinkUserWithHttpInfoAsync(entityId, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetUserResponse> localVarResponse = await task;
@@ -698,7 +698,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetUserResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetUserResponse>> UnlinkUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetUserResponse>> UnlinkUserWithHttpInfoAsync(string entityId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -821,7 +821,7 @@ namespace BeamPlayerClient.Api
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetUserResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<GetUserResponse> UpdateUserAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<GetUserResponse> UpdateUserAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = UpdateUserWithHttpInfoAsync(entityId, updateUserRequest, cancellationToken);
             BeamPlayerClient.Client.ApiResponse<GetUserResponse> localVarResponse = await task;
@@ -836,7 +836,7 @@ namespace BeamPlayerClient.Api
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetUserResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetUserResponse>> UpdateUserWithHttpInfoAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetUserResponse>> UpdateUserWithHttpInfoAsync(string entityId, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)

@@ -159,7 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -188,7 +188,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -217,7 +217,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -494,7 +494,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -538,7 +538,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -573,7 +573,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -639,7 +639,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -727,7 +727,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -763,7 +763,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -986,7 +986,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1112,7 +1112,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1134,7 +1134,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1163,33 +1163,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
       summary: Updates operation result for given id
-      tags:
-      - Operation
-  /v1/player/operation:
-    post:
-      operationId: createOperation
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateOperationRequestInput'
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
-          description: ""
-      security:
-      - beam-api-key: []
-      summary: Initializes an operation. Used by Game SDKs to get transaction results.
       tags:
       - Operation
   /v1/player/operation/{opId}/execute:
@@ -1208,7 +1186,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1219,20 +1197,6 @@ paths:
     get:
       operationId: getQuoteForInput
       parameters:
-      - explode: true
-        in: query
-        name: tokenIn
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenOut
-        required: true
-        schema:
-          type: string
-        style: form
       - explode: true
         in: query
         name: amountOut
@@ -1247,6 +1211,20 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - explode: true
+        in: query
+        name: tokenOut
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenIn
+        required: true
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -1267,20 +1245,6 @@ paths:
       parameters:
       - explode: true
         in: query
-        name: tokenIn
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenOut
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: amountIn
         required: true
         schema:
@@ -1293,6 +1257,20 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - explode: true
+        in: query
+        name: tokenOut
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenIn
+        required: true
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -1329,7 +1307,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1358,7 +1336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1387,7 +1365,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1416,7 +1394,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1474,7 +1452,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonOperationResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1777,6 +1755,36 @@ paths:
       summary: Get asset activity
       tags:
       - Activity
+  /v1/player/ramp/on/{entityId}:
+    post:
+      operationId: createOnrampRequest
+      parameters:
+      - explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOnrampRequestInput'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateOnrampRequestResponse'
+          description: ""
+      security:
+      - beam-api-key: []
+      - beam-api-key: []
+      summary: ""
+      tags:
+      - Ramp
 components:
   schemas:
     GetAssetsForUserBodyInput:
@@ -1980,12 +1988,13 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
       - assets
       type: object
-    CommonOperationResponse:
+    PlayerOperationResponse:
       example:
         gameId: gameId
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -1995,31 +2004,76 @@ components:
         transactions:
         - data: ""
           signature: signature
+          actionId: actionId
           externalId: externalId
           operationId: operationId
+          sponsored: true
           id: id
+          openfortId: openfortId
           type: OpenfortTransaction
-          transactionHash: transactionHash
           hash: hash
+          transactionHash: transactionHash
           status: Pending
         - data: ""
           signature: signature
+          actionId: actionId
           externalId: externalId
           operationId: operationId
+          sponsored: true
           id: id
+          openfortId: openfortId
           type: OpenfortTransaction
-          transactionHash: transactionHash
           hash: hash
+          transactionHash: transactionHash
           status: Pending
         userId: userId
+        actions:
+        - signature:
+            data: ""
+            signature: signature
+            actionId: actionId
+            id: id
+            type: Message
+            hash: hash
+          context: ""
+          index: 6
+          operationId: operationId
+          id: id
+          type: Sign
+          transaction:
+            actionId: actionId
+            sponsored: true
+            id: id
+            openfortId: openfortId
+            hash: hash
+            status: Pending
+        - signature:
+            data: ""
+            signature: signature
+            actionId: actionId
+            id: id
+            type: Message
+            hash: hash
+          context: ""
+          index: 6
+          operationId: operationId
+          id: id
+          type: Sign
+          transaction:
+            actionId: actionId
+            sponsored: true
+            id: id
+            openfortId: openfortId
+            hash: hash
+            status: Pending
         url: https://openapi-generator.tech
-        status: Signed
+        status: Pending
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         status:
           enum:
-          - Signed
           - Pending
+          - Signed
           - Rejected
           - Executed
           - Error
@@ -2046,14 +2100,19 @@ components:
         chainId:
           format: int64
           type: integer
+        actions:
+          items:
+            $ref: '#/components/schemas/PlayerOperationAction'
+          type: array
+        transactions:
+          items:
+            $ref: '#/components/schemas/PlayerOperationResponse_transactions_inner'
+          type: array
         url:
           format: uri
           type: string
-        transactions:
-          items:
-            $ref: '#/components/schemas/CommonOperationResponse_transactions_inner'
-          type: array
       required:
+      - actions
       - chainId
       - createdAt
       - gameId
@@ -2107,6 +2166,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2152,6 +2212,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2661,10 +2722,8 @@ components:
           default: BEAM
           enum:
           - BEAM
-          - IMX
           - SOPH
           - WBEAM
-          - WIMX
           - WSOPH
           - RAT
           - USDC
@@ -2687,6 +2746,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2729,6 +2789,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2759,6 +2820,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       type: object
@@ -2795,7 +2857,6 @@ components:
           default: WBEAM
           enum:
           - WBEAM
-          - WIMX
           - WSOPH
           - RAT
           - USDC
@@ -2811,6 +2872,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2853,6 +2915,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -2884,6 +2947,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
         chainId:
@@ -3224,6 +3288,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3345,42 +3410,6 @@ components:
       required:
       - newEntityId
       type: object
-    CreateOperationRequestInput:
-      example:
-        chainId: 0
-        operationId: operationId
-        entityId: entityId
-        transactions:
-        - data: ""
-          type: OpenfortTransaction
-        - data: ""
-          type: OpenfortTransaction
-        operationProcessing: Execute
-      properties:
-        entityId:
-          type: string
-        transactions:
-          items:
-            $ref: '#/components/schemas/CreateOperationRequestInput_transactions_inner'
-          nullable: true
-          type: array
-        chainId:
-          default: 13337
-          format: int64
-          type: integer
-        operationProcessing:
-          default: Execute
-          enum:
-          - SignOnly
-          - Execute
-          type: string
-        operationId:
-          nullable: true
-          type: string
-      required:
-      - entityId
-      - transactions
-      type: object
     ConfirmOperationRequest:
       example:
         transactions:
@@ -3388,17 +3417,27 @@ components:
           id: id
         - signature: signature
           id: id
-        status: Signed
+        actions:
+        - signature: signature
+          id: id
+        - signature: signature
+          id: id
+        status: Pending
       properties:
         status:
           enum:
-          - Signed
           - Pending
+          - Signed
           - Rejected
           - Executed
           - Error
           type: string
         transactions:
+          items:
+            $ref: '#/components/schemas/ConfirmOperationRequest_transactions_inner'
+          nullable: true
+          type: array
+        actions:
           items:
             $ref: '#/components/schemas/ConfirmOperationRequest_transactions_inner'
           nullable: true
@@ -3475,6 +3514,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3516,6 +3556,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3554,6 +3595,7 @@ components:
           - Execute
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
       required:
@@ -3628,27 +3670,36 @@ components:
       type: object
     RevokeSessionRequestInput:
       example:
+        sponsor: true
         address: address
+        policyId: policyId
         chainId: 0
         operationId: operationId
         operationProcessing: Execute
       properties:
         address:
           type: string
-        operationId:
+        sponsor:
+          default: true
+          type: boolean
+        policyId:
           format: cuid
           nullable: true
           type: string
+        chainId:
+          default: 13337
+          format: int64
+          type: integer
         operationProcessing:
           default: Execute
           enum:
           - SignOnly
           - Execute
           type: string
-        chainId:
-          default: 13337
-          format: int64
-          type: integer
+        operationId:
+          format: cuid
+          nullable: true
+          type: string
       required:
       - address
       type: object
@@ -3998,6 +4049,44 @@ components:
           nullable: true
           type: string
       type: object
+    CreateOnrampRequestInput:
+      example:
+        chainId: 0
+        fiatAmount: fiatAmount
+        tokenAmount: "100"
+        paymentCurrency: USD
+        token: BEAM
+      properties:
+        token:
+          default: BEAM
+          enum:
+          - BEAM
+          type: string
+        tokenAmount:
+          default: "100"
+          type: string
+        fiatAmount:
+          type: string
+        paymentCurrency:
+          default: USD
+          enum:
+          - USD
+          - EUR
+          type: string
+        chainId:
+          default: 13337
+          format: int64
+          type: integer
+      type: object
+    CreateOnrampRequestResponse:
+      example:
+        url: url
+      properties:
+        url:
+          type: string
+      required:
+      - url
+      type: object
     check_200_response_info_value:
       additionalProperties: true
       properties:
@@ -4043,6 +4132,21 @@ components:
           type: object
       type: object
     check_503_response:
+      example:
+        details:
+          database:
+            status: up
+          redis:
+            status: down
+            message: Could not connect
+        error:
+          redis:
+            status: down
+            message: Could not connect
+        status: error
+        info:
+          database:
+            status: up
       properties:
         status:
           example: error
@@ -4255,24 +4359,51 @@ components:
       - assetAddress
       - assetId
       type: object
-    CommonOperationResponse_transactions_inner:
+    PlayerOperationAction_signature:
       example:
         data: ""
         signature: signature
-        externalId: externalId
-        operationId: operationId
+        actionId: actionId
         id: id
-        type: OpenfortTransaction
-        transactionHash: transactionHash
+        type: Message
         hash: hash
-        status: Pending
+      nullable: true
       properties:
         type:
           enum:
-          - OpenfortTransaction
-          - OpenfortReservoirOrder
-          - OpenfortRevokeSession
+          - Message
+          - TypedData
           type: string
+        id:
+          format: cuid
+          type: string
+        data:
+          nullable: true
+        signature:
+          nullable: true
+          type: string
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          nullable: true
+          type: string
+      required:
+      - actionId
+      - id
+      - signature
+      - type
+      type: object
+    PlayerOperationAction_transaction:
+      example:
+        actionId: actionId
+        sponsored: true
+        id: id
+        openfortId: openfortId
+        hash: hash
+        status: Pending
+      nullable: true
+      properties:
         status:
           enum:
           - Pending
@@ -4284,6 +4415,128 @@ components:
         id:
           format: cuid
           type: string
+        openfortId:
+          nullable: true
+          type: string
+        sponsored:
+          type: boolean
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          nullable: true
+          type: string
+      required:
+      - actionId
+      - hash
+      - id
+      - openfortId
+      - sponsored
+      - status
+      type: object
+    PlayerOperationAction:
+      example:
+        signature:
+          data: ""
+          signature: signature
+          actionId: actionId
+          id: id
+          type: Message
+          hash: hash
+        context: ""
+        index: 6
+        operationId: operationId
+        id: id
+        type: Sign
+        transaction:
+          actionId: actionId
+          sponsored: true
+          id: id
+          openfortId: openfortId
+          hash: hash
+          status: Pending
+      properties:
+        type:
+          enum:
+          - Sign
+          - SessionRevoke
+          - MarketplaceCreateOffer
+          - MarketplaceCancelOffer
+          - MarketplaceAcceptOffer
+          - MarketplaceBuyAsset
+          - MarketplaceListAsset
+          - MarketplaceCancelListing
+          - ExchangeConvert
+          - ExchangeWrap
+          - ExchangeUnwrap
+          - TransferNFTs
+          - TransferToken
+          - CustomTransaction
+          type: string
+        id:
+          format: cuid
+          type: string
+        index:
+          type: integer
+        operationId:
+          nullable: true
+          type: string
+        context:
+          nullable: true
+        signature:
+          $ref: '#/components/schemas/PlayerOperationAction_signature'
+        transaction:
+          $ref: '#/components/schemas/PlayerOperationAction_transaction'
+      required:
+      - id
+      - index
+      - operationId
+      - type
+      title: PlayerOperationAction
+      type: object
+    PlayerOperationResponse_transactions_inner:
+      example:
+        data: ""
+        signature: signature
+        actionId: actionId
+        externalId: externalId
+        operationId: operationId
+        sponsored: true
+        id: id
+        openfortId: openfortId
+        type: OpenfortTransaction
+        hash: hash
+        transactionHash: transactionHash
+        status: Pending
+      properties:
+        status:
+          enum:
+          - Pending
+          - Signed
+          - Rejected
+          - Executed
+          - Error
+          type: string
+        id:
+          format: cuid
+          type: string
+        openfortId:
+          nullable: true
+          type: string
+        sponsored:
+          type: boolean
+        actionId:
+          nullable: true
+          type: string
+        hash:
+          type: string
+        type:
+          enum:
+          - OpenfortTransaction
+          - OpenfortReservoirOrder
+          - OpenfortRevokeSession
+          nullable: true
+          type: string
         externalId:
           nullable: true
           type: string
@@ -4294,18 +4547,20 @@ components:
           nullable: true
           type: string
         operationId:
+          format: cuid
           nullable: true
           type: string
         data:
           nullable: true
-        hash:
-          type: string
       required:
+      - actionId
       - externalId
       - hash
       - id
+      - openfortId
       - operationId
       - signature
+      - sponsored
       - status
       - transactionHash
       - type
@@ -4485,10 +4740,8 @@ components:
         symbol:
           enum:
           - BEAM
-          - IMX
           - SOPH
           - WBEAM
-          - WIMX
           - WSOPH
           - RAT
           - USDC
@@ -4645,10 +4898,8 @@ components:
         symbol:
           enum:
           - BEAM
-          - IMX
           - SOPH
           - WBEAM
-          - WIMX
           - WSOPH
           - RAT
           - USDC
@@ -5045,21 +5296,6 @@ components:
       - entities
       - id
       - wallets
-      type: object
-    CreateOperationRequestInput_transactions_inner:
-      example:
-        data: ""
-        type: OpenfortTransaction
-      properties:
-        data: {}
-        type:
-          enum:
-          - OpenfortTransaction
-          - OpenfortReservoirOrder
-          - OpenfortRevokeSession
-          type: string
-      required:
-      - type
       type: object
     ConfirmOperationRequest_transactions_inner:
       example:

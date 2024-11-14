@@ -61,7 +61,6 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="AcceptAssetOfferRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        [UnityEngine.Scripting.Preserve]
         protected AcceptAssetOfferRequestInput() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptAssetOfferRequestInput" /> class.
