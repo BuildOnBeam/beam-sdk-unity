@@ -73,9 +73,8 @@ namespace BeamPlayerClient.Model
         /// <param name="policyId">policyId.</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
-        /// <param name="operationId">operationId.</param>
         [UnityEngine.Scripting.Preserve]
-        public TransferNativeTokenRequestInput(string receiverEntityId = default(string), string receiverWalletAddress = default(string), string amountToTransfer = default(string), bool optimistic = false, bool sponsor = true, string policyId = default(string), long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, string operationId = default(string))
+        public TransferNativeTokenRequestInput(string receiverEntityId = default(string), string receiverWalletAddress = default(string), string amountToTransfer = default(string), bool optimistic = false, bool sponsor = true, string policyId = default(string), long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute)
         {
             // to ensure "amountToTransfer" is required (not null)
             if (amountToTransfer == null)
@@ -90,7 +89,6 @@ namespace BeamPlayerClient.Model
             this.PolicyId = policyId;
             this.ChainId = chainId;
             this.OperationProcessing = operationProcessing;
-            this.OperationId = operationId;
         }
 
         /// <summary>
@@ -143,13 +141,6 @@ namespace BeamPlayerClient.Model
         public long ChainId { get; set; }
 
         /// <summary>
-        /// Gets or Sets OperationId
-        /// </summary>
-        [DataMember(Name = "operationId", EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string OperationId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -166,7 +157,6 @@ namespace BeamPlayerClient.Model
             sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
-            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

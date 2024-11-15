@@ -54,6 +54,7 @@ namespace BeamPlayerClient.Api
         /// <param name="accountAddress"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>GetActiveSessionResponse</returns>
+        [Obsolete]
         GetActiveSessionResponse GetActiveSession(string entityId, string accountAddress, long? chainId);
 
         /// <summary>
@@ -67,7 +68,30 @@ namespace BeamPlayerClient.Api
         /// <param name="accountAddress"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of GetActiveSessionResponse</returns>
+        [Obsolete]
         ApiResponse<GetActiveSessionResponse> GetActiveSessionWithHttpInfo(string entityId, string accountAddress, long? chainId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <returns>GetActiveSessionResponseV2</returns>
+        GetActiveSessionResponseV2 GetActiveSessionV2(string entityId, string accountAddress, long? chainId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <returns>ApiResponse of GetActiveSessionResponseV2</returns>
+        ApiResponse<GetActiveSessionResponseV2> GetActiveSessionV2WithHttpInfo(string entityId, string accountAddress, long? chainId);
         /// <summary>
         /// 
         /// </summary>
@@ -172,6 +196,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetActiveSessionResponse</returns>
+        [Obsolete]
         Cysharp.Threading.Tasks.UniTask<GetActiveSessionResponse> GetActiveSessionAsync(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
@@ -186,7 +211,35 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetActiveSessionResponse)</returns>
+        [Obsolete]
         Cysharp.Threading.Tasks.UniTask<ApiResponse<GetActiveSessionResponse>> GetActiveSessionWithHttpInfoAsync(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetActiveSessionResponseV2</returns>
+        Cysharp.Threading.Tasks.UniTask<GetActiveSessionResponseV2> GetActiveSessionV2Async(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetActiveSessionResponseV2)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetActiveSessionResponseV2>> GetActiveSessionV2WithHttpInfoAsync(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -556,6 +609,7 @@ namespace BeamPlayerClient.Api
         /// <param name="accountAddress"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>GetActiveSessionResponse</returns>
+        [Obsolete]
         public GetActiveSessionResponse GetActiveSession(string entityId, string accountAddress, long? chainId)
         {
             BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponse> localVarResponse = GetActiveSessionWithHttpInfo(entityId, accountAddress, chainId);
@@ -570,6 +624,7 @@ namespace BeamPlayerClient.Api
         /// <param name="accountAddress"></param>
         /// <param name="chainId"> (optional)</param>
         /// <returns>ApiResponse of GetActiveSessionResponse</returns>
+        [Obsolete]
         public BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponse> GetActiveSessionWithHttpInfo(string entityId, string accountAddress, long? chainId)
         {
             // verify the required parameter 'entityId' is set
@@ -630,6 +685,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetActiveSessionResponse</returns>
+        [Obsolete]
         public async Cysharp.Threading.Tasks.UniTask<GetActiveSessionResponse> GetActiveSessionAsync(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = GetActiveSessionWithHttpInfoAsync(entityId, accountAddress, chainId, cancellationToken);
@@ -646,6 +702,7 @@ namespace BeamPlayerClient.Api
         /// <param name="chainId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetActiveSessionResponse)</returns>
+        [Obsolete]
         public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponse>> GetActiveSessionWithHttpInfoAsync(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
@@ -696,6 +753,160 @@ namespace BeamPlayerClient.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetActiveSession", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <returns>GetActiveSessionResponseV2</returns>
+        public GetActiveSessionResponseV2 GetActiveSessionV2(string entityId, string accountAddress, long? chainId)
+        {
+            BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponseV2> localVarResponse = GetActiveSessionV2WithHttpInfo(entityId, accountAddress, chainId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <returns>ApiResponse of GetActiveSessionResponseV2</returns>
+        public BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponseV2> GetActiveSessionV2WithHttpInfo(string entityId, string accountAddress, long? chainId)
+        {
+            // verify the required parameter 'entityId' is set
+            if (entityId == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'entityId' when calling SessionsApi->GetActiveSessionV2");
+
+            // verify the required parameter 'accountAddress' is set
+            if (accountAddress == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'accountAddress' when calling SessionsApi->GetActiveSessionV2");
+
+            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("entityId", BeamPlayerClient.Client.ClientUtils.ParameterToString(entityId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("accountAddress", BeamPlayerClient.Client.ClientUtils.ParameterToString(accountAddress)); // path parameter
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
+            }
+
+            // authentication (beam-api-key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetActiveSessionResponseV2>("/v2/player/sessions/users/{entityId}/{accountAddress}/active", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetActiveSessionV2", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetActiveSessionResponseV2</returns>
+        public async Cysharp.Threading.Tasks.UniTask<GetActiveSessionResponseV2> GetActiveSessionV2Async(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            var task = GetActiveSessionV2WithHttpInfoAsync(entityId, accountAddress, chainId, cancellationToken);
+            BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponseV2> localVarResponse = await task;
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="accountAddress"></param>
+        /// <param name="chainId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetActiveSessionResponseV2)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetActiveSessionResponseV2>> GetActiveSessionV2WithHttpInfoAsync(string entityId, string accountAddress, long? chainId, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'entityId' is set
+            if (entityId == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'entityId' when calling SessionsApi->GetActiveSessionV2");
+
+            // verify the required parameter 'accountAddress' is set
+            if (accountAddress == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'accountAddress' when calling SessionsApi->GetActiveSessionV2");
+
+
+            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("entityId", BeamPlayerClient.Client.ClientUtils.ParameterToString(entityId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("accountAddress", BeamPlayerClient.Client.ClientUtils.ParameterToString(accountAddress)); // path parameter
+            if (chainId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(BeamPlayerClient.Client.ClientUtils.ParameterToMultiMap("", "chainId", chainId));
+            }
+
+            // authentication (beam-api-key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetActiveSessionResponseV2>("/v2/player/sessions/users/{entityId}/{accountAddress}/active", localVarRequestOptions, this.Configuration, cancellationToken);
+
+            var localVarResponse = await task;
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetActiveSessionV2", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

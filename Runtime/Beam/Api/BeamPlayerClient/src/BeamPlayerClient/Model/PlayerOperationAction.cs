@@ -37,7 +37,7 @@ namespace BeamPlayerClient.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
-            /// <summary>x
+            /// <summary>
             /// Enum Sign for value: Sign
             /// </summary>
             [EnumMember(Value = "Sign")]

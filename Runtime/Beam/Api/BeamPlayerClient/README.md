@@ -141,6 +141,7 @@ Class | Method | HTTP request | Description
 *RampApi* | [**CreateOnrampRequest**](RampApi.md#createonramprequest) | **POST** /v1/player/ramp/on/{entityId} | 
 *SessionsApi* | [**CreateSessionRequest**](SessionsApi.md#createsessionrequest) | **POST** /v1/player/sessions/users/{entityId}/request | 
 *SessionsApi* | [**GetActiveSession**](SessionsApi.md#getactivesession) | **GET** /v1/player/sessions/users/{entityId}/{accountAddress}/active | 
+*SessionsApi* | [**GetActiveSessionV2**](SessionsApi.md#getactivesessionv2) | **GET** /v2/player/sessions/users/{entityId}/{accountAddress}/active | 
 *SessionsApi* | [**GetAllActiveSessions**](SessionsApi.md#getallactivesessions) | **GET** /v1/player/sessions/users/{entityId}/active | 
 *SessionsApi* | [**GetSessionRequest**](SessionsApi.md#getsessionrequest) | **GET** /v1/player/sessions/request/{requestId} | 
 *SessionsApi* | [**RevokeSession**](SessionsApi.md#revokesession) | **POST** /v1/player/sessions/users/{entityId}/revoke | 
@@ -191,6 +192,8 @@ Class | Method | HTTP request | Description
  - [Model.GenerateSessionRequestResponse](GenerateSessionRequestResponse.md)
  - [Model.GenerateSessionUrlRequestInput](GenerateSessionUrlRequestInput.md)
  - [Model.GetActiveSessionResponse](GetActiveSessionResponse.md)
+ - [Model.GetActiveSessionResponseV2](GetActiveSessionResponseV2.md)
+ - [Model.GetActiveSessionResponseV2Session](GetActiveSessionResponseV2Session.md)
  - [Model.GetActiveSessionsResponse](GetActiveSessionsResponse.md)
  - [Model.GetActiveSessionsResponseSessionsInner](GetActiveSessionsResponseSessionsInner.md)
  - [Model.GetAllUsersResponse](GetAllUsersResponse.md)

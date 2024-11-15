@@ -224,6 +224,7 @@ namespace BeamPlayerClient.Model
         /// Gets or Sets Transactions
         /// </summary>
         [DataMember(Name = "transactions", IsRequired = true, EmitDefaultValue = true)]
+        [Obsolete]
         [UnityEngine.Scripting.Preserve]
         public List<PlayerOperationResponseTransactionsInner> Transactions { get; set; }
 

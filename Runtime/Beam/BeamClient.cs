@@ -601,15 +601,22 @@ namespace Beam
             // we need to always get it from remote to make sure User didn't revoke it
             try
             {
-                var res = await SessionsApi.GetActiveSessionAsync(entityId, keyPair.Account.Address,
+                var res = await SessionsApi.GetActiveSessionV2Async(entityId, keyPair.Account.Address,
                     chainId, cancellationToken);
-                beamSession = new BeamSession
+                if (res.Session != null)
                 {
-                    Id = res.Id,
-                    StartTime = res.StartTime,
-                    EndTime = res.EndTime,
-                    SessionAddress = res.SessionAddress
-                };
+                    beamSession = new BeamSession
+                    {
+                        Id = res.Session.Id,
+                        StartTime = res.Session.StartTime,
+                        EndTime = res.Session.EndTime,
+                        SessionAddress = res.Session.SessionAddress
+                    };
+                }
+                else
+                {
+                    Log($"No active session found for {entityId}");
+                }
             }
             catch (ApiException e)
             {
