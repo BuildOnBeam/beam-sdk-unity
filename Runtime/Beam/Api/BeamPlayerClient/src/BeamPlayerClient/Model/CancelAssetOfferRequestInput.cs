@@ -64,16 +64,14 @@ namespace BeamPlayerClient.Model
         /// <param name="sponsor">sponsor (default to true).</param>
         /// <param name="policyId">policyId.</param>
         /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
-        /// <param name="operationId">operationId.</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         [UnityEngine.Scripting.Preserve]
-        public CancelAssetOfferRequestInput(bool optimistic = false, bool sponsor = true, string policyId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, string operationId = default(string), long chainId = 13337)
+        public CancelAssetOfferRequestInput(bool optimistic = false, bool sponsor = true, string policyId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, long chainId = 13337)
         {
             this.Optimistic = optimistic;
             this.Sponsor = sponsor;
             this.PolicyId = policyId;
             this.OperationProcessing = operationProcessing;
-            this.OperationId = operationId;
             this.ChainId = chainId;
         }
 
@@ -99,13 +97,6 @@ namespace BeamPlayerClient.Model
         public string PolicyId { get; set; }
 
         /// <summary>
-        /// Gets or Sets OperationId
-        /// </summary>
-        [DataMember(Name = "operationId", EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string OperationId { get; set; }
-
-        /// <summary>
         /// Gets or Sets ChainId
         /// </summary>
         [DataMember(Name = "chainId", EmitDefaultValue = false)]
@@ -125,7 +116,6 @@ namespace BeamPlayerClient.Model
             sb.Append("  Sponsor: ").Append(Sponsor).Append("\n");
             sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
             sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
-            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

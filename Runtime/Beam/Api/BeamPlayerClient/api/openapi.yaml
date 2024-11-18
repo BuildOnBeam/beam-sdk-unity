@@ -1199,6 +1199,20 @@ paths:
       parameters:
       - explode: true
         in: query
+        name: tokenIn
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenOut
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
         name: amountOut
         required: true
         schema:
@@ -1211,20 +1225,6 @@ paths:
         schema:
           format: int64
           type: integer
-        style: form
-      - explode: true
-        in: query
-        name: tokenOut
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenIn
-        required: true
-        schema:
-          type: string
         style: form
       responses:
         "200":
@@ -1245,6 +1245,20 @@ paths:
       parameters:
       - explode: true
         in: query
+        name: tokenIn
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenOut
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
         name: amountIn
         required: true
         schema:
@@ -1257,20 +1271,6 @@ paths:
         schema:
           format: int64
           type: integer
-        style: form
-      - explode: true
-        in: query
-        name: tokenOut
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenIn
-        required: true
-        schema:
-          type: string
         style: form
       responses:
         "200":
@@ -1515,6 +1515,7 @@ paths:
       - Sessions
   /v1/player/sessions/users/{entityId}/{accountAddress}/active:
     get:
+      deprecated: true
       operationId: getActiveSession
       parameters:
       - explode: false
@@ -1545,6 +1546,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetActiveSessionResponse'
+          description: ""
+      security:
+      - beam-api-key: []
+      summary: ""
+      tags:
+      - Sessions
+      x-sunset: 2025-03-01
+  /v2/player/sessions/users/{entityId}/{accountAddress}/active:
+    get:
+      operationId: getActiveSessionV2
+      parameters:
+      - explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: accountAddress
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: chainId
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActiveSessionResponseV2'
           description: ""
       security:
       - beam-api-key: []
@@ -1958,7 +1998,6 @@ components:
           receiverEntityId: receiverEntityId
         policyId: policyId
         chainId: 6
-        operationId: operationId
         operationProcessing: Execute
       properties:
         assets:
@@ -1986,10 +2025,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
       required:
       - assets
@@ -2105,6 +2140,7 @@ components:
             $ref: '#/components/schemas/PlayerOperationAction'
           type: array
         transactions:
+          deprecated: true
           items:
             $ref: '#/components/schemas/PlayerOperationResponse_transactions_inner'
           type: array
@@ -2134,7 +2170,6 @@ components:
         chainId: 0
         assetAddress: assetAddress
         receiverEntityId: receiverEntityId
-        operationId: operationId
         operationProcessing: Execute
       properties:
         receiverEntityId:
@@ -2165,10 +2200,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       required:
       - amountToTransfer
       - assetAddress
@@ -2182,7 +2213,6 @@ components:
         policyId: policyId
         chainId: 0
         receiverEntityId: receiverEntityId
-        operationId: operationId
         operationProcessing: Execute
       properties:
         receiverEntityId:
@@ -2210,10 +2240,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
       required:
       - amountToTransfer
@@ -2678,17 +2704,16 @@ components:
       example:
         sponsor: true
         quantity: 0.8008281904610115
-        assetAddress: assetAddress
-        sellType: FixedPrice
-        operationProcessing: Execute
         policyId: policyId
         chainId: 6
+        assetAddress: assetAddress
         assetId: assetId
         price: price
-        operationId: operationId
         startTime: 2000-01-23T04:56:07.000+00:00
         currency: BEAM
         endTime: 2000-01-23T04:56:07.000+00:00
+        sellType: FixedPrice
+        operationProcessing: Execute
       properties:
         assetAddress:
           type: string
@@ -2745,10 +2770,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       required:
       - assetAddress
       - assetId
@@ -2763,7 +2784,6 @@ components:
         quantity: 0.8008281904610115
         policyId: policyId
         chainId: 6
-        operationId: operationId
         operationProcessing: Execute
       properties:
         quantity:
@@ -2788,10 +2808,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       required:
       - quantity
       type: object
@@ -2800,7 +2816,6 @@ components:
         optimistic: false
         sponsor: true
         policyId: policyId
-        operationId: operationId
         operationProcessing: Execute
       properties:
         optimistic:
@@ -2819,10 +2834,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       type: object
     CreateAssetOfferRequestInput:
       example:
@@ -2831,7 +2842,6 @@ components:
         assetAddress: assetAddress
         assetId: assetId
         price: price
-        operationId: operationId
         startTime: 2000-01-23T04:56:07.000+00:00
         currency: WBEAM
         endTime: 2000-01-23T04:56:07.000+00:00
@@ -2871,10 +2881,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       required:
       - assetAddress
       - assetId
@@ -2888,7 +2894,6 @@ components:
         quantity: 1.0800828190461012
         policyId: policyId
         chainId: 6
-        operationId: operationId
         operationProcessing: Execute
       properties:
         quantity:
@@ -2914,10 +2919,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       required:
       - quantity
       type: object
@@ -2927,7 +2928,6 @@ components:
         sponsor: true
         policyId: policyId
         chainId: 0
-        operationId: operationId
         operationProcessing: Execute
       properties:
         optimistic:
@@ -2945,10 +2945,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
         chainId:
           default: 13337
@@ -3227,7 +3223,6 @@ components:
         sponsor: true
         policyId: policyId
         chainId: 0
-        operationId: operationId
         operationProcessing: Execute
         interactions:
         - functionArgs:
@@ -3286,10 +3281,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
       required:
       - interactions
@@ -3475,7 +3466,6 @@ components:
         policyId: policyId
         chainId: 0
         receiverEntityId: receiverEntityId
-        operationId: operationId
         amountIn: amountIn
         amountOut: amountOut
         tokenIn: tokenIn
@@ -3513,10 +3503,6 @@ components:
           - SignOnly
           - Execute
           type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
       required:
       - amountIn
       - amountOut
@@ -3530,7 +3516,6 @@ components:
         amount: amount
         policyId: policyId
         chainId: 0
-        operationId: operationId
         operationProcessing: Execute
       properties:
         amount:
@@ -3554,10 +3539,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
       required:
       - amount
@@ -3569,7 +3550,6 @@ components:
         amount: amount
         policyId: policyId
         chainId: 0
-        operationId: operationId
         operationProcessing: Execute
       properties:
         amount:
@@ -3593,10 +3573,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
       required:
       - amount
@@ -3674,7 +3650,6 @@ components:
         address: address
         policyId: policyId
         chainId: 0
-        operationId: operationId
         operationProcessing: Execute
       properties:
         address:
@@ -3695,10 +3670,6 @@ components:
           enum:
           - SignOnly
           - Execute
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
           type: string
       required:
       - address
@@ -3793,6 +3764,18 @@ components:
       - isActive
       - sessionAddress
       - startTime
+      type: object
+    GetActiveSessionResponseV2:
+      example:
+        session:
+          sessionAddress: sessionAddress
+          startTime: 2000-01-23T04:56:07.000+00:00
+          id: id
+          endTime: 2000-01-23T04:56:07.000+00:00
+          isActive: true
+      properties:
+        session:
+          $ref: '#/components/schemas/GetActiveSessionResponseV2_session'
       type: object
     CreateConnectionRequestInput:
       example:
@@ -5317,6 +5300,34 @@ components:
         id: id
         endTime: 2000-01-23T04:56:07.000+00:00
         isActive: true
+      properties:
+        id:
+          type: string
+        isActive:
+          type: boolean
+        startTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+        sessionAddress:
+          type: string
+      required:
+      - endTime
+      - id
+      - isActive
+      - sessionAddress
+      - startTime
+      type: object
+    GetActiveSessionResponseV2_session:
+      example:
+        sessionAddress: sessionAddress
+        startTime: 2000-01-23T04:56:07.000+00:00
+        id: id
+        endTime: 2000-01-23T04:56:07.000+00:00
+        isActive: true
+      nullable: true
       properties:
         id:
           type: string

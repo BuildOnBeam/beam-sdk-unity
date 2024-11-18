@@ -63,6 +63,8 @@ src/BeamPlayerClient/Model/CreateTransactionRequestInputInteractionsInner.cs
 src/BeamPlayerClient/Model/GenerateSessionRequestResponse.cs
 src/BeamPlayerClient/Model/GenerateSessionUrlRequestInput.cs
 src/BeamPlayerClient/Model/GetActiveSessionResponse.cs
+src/BeamPlayerClient/Model/GetActiveSessionResponseV2.cs
+src/BeamPlayerClient/Model/GetActiveSessionResponseV2Session.cs
 src/BeamPlayerClient/Model/GetActiveSessionsResponse.cs
 src/BeamPlayerClient/Model/GetActiveSessionsResponseSessionsInner.cs
 src/BeamPlayerClient/Model/GetAllUsersResponse.cs

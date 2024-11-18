@@ -64,15 +64,13 @@ namespace BeamPlayerClient.Model
         /// <param name="sponsor">sponsor (default to true).</param>
         /// <param name="policyId">policyId.</param>
         /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
-        /// <param name="operationId">operationId.</param>
         [UnityEngine.Scripting.Preserve]
-        public CancelAssetListingRequestInput(bool optimistic = false, bool sponsor = true, string policyId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, string operationId = default(string))
+        public CancelAssetListingRequestInput(bool optimistic = false, bool sponsor = true, string policyId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute)
         {
             this.Optimistic = optimistic;
             this.Sponsor = sponsor;
             this.PolicyId = policyId;
             this.OperationProcessing = operationProcessing;
-            this.OperationId = operationId;
         }
 
         /// <summary>
@@ -97,13 +95,6 @@ namespace BeamPlayerClient.Model
         public string PolicyId { get; set; }
 
         /// <summary>
-        /// Gets or Sets OperationId
-        /// </summary>
-        [DataMember(Name = "operationId", EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public string OperationId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -116,7 +107,6 @@ namespace BeamPlayerClient.Model
             sb.Append("  Sponsor: ").Append(Sponsor).Append("\n");
             sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
             sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
-            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
