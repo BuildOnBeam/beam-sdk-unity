@@ -121,12 +121,14 @@ namespace Beam
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<GetConnectionRequestResponse.StatusEnum>> ConnectUserToGameAsync(
             string entityId,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
+            CreateConnectionRequestInput.AuthProviderEnum authProvider = CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving connection request");
@@ -134,7 +136,7 @@ namespace Beam
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, chainId), cancellationToken);
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId), cancellationToken);
             }
             catch (ApiException e)
             {
@@ -188,6 +190,7 @@ namespace Beam
         /// <param name="sessionAddress">address of a Session to revoke</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> RevokeSessionAsync(
@@ -195,6 +198,7 @@ namespace Beam
             string sessionAddress,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
+            RevokeSessionRequestInput.AuthProviderEnum authProvider = RevokeSessionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving active session");
@@ -204,7 +208,7 @@ namespace Beam
             try
             {
                 operation = await SessionsApi.RevokeSessionAsync(entityId,
-                    new RevokeSessionRequestInput(sessionAddress, chainId: chainId), cancellationToken);
+                    new RevokeSessionRequestInput(sessionAddress, chainId: chainId, authProvider: authProvider), cancellationToken);
             }
             catch (ApiException e)
             {
@@ -223,12 +227,14 @@ namespace Beam
         /// <param name="suggestedExpiry">Suggested expiration date for Session. It will be presented in the identity.onbea.com as pre-selected.</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<BeamSession>> CreateSessionAsync(string entityId,
             DateTime? suggestedExpiry = null,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
+            GenerateSessionUrlRequestInput.AuthProviderEnum authProvider = GenerateSessionUrlRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving active session");
@@ -254,7 +260,7 @@ namespace Beam
             {
                 var res = await SessionsApi.CreateSessionRequestAsync(entityId,
                     new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
-                        chainId: chainId), cancellationToken);
+                        chainId: chainId, authProvider: authProvider), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 beamSessionRequest = res;

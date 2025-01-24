@@ -91,10 +91,12 @@ namespace BeamPlayerClient.Model
         /// <param name="supply">supply (required).</param>
         /// <param name="rarity">rarity.</param>
         /// <param name="rarityScore">rarityScore.</param>
+        /// <param name="updatedAt">updatedAt.</param>
+        /// <param name="mintedAt">mintedAt.</param>
         /// <param name="attributes">attributes.</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         [UnityEngine.Scripting.Preserve]
-        public GetAssetsForContractResponseDataInner(string name = default(string), string imageUrl = default(string), string assetType = default(string), string assetAddress = default(string), string assetId = default(string), decimal supply = default(decimal), RarityEnum? rarity = default(RarityEnum?), decimal? rarityScore = default(decimal?), List<GetAssetsForUserResponseDataInnerAttributesInner> attributes = default(List<GetAssetsForUserResponseDataInnerAttributesInner>), long chainId = 13337)
+        public GetAssetsForContractResponseDataInner(string name = default(string), string imageUrl = default(string), string assetType = default(string), string assetAddress = default(string), string assetId = default(string), decimal supply = default(decimal), RarityEnum? rarity = default(RarityEnum?), decimal? rarityScore = default(decimal?), DateTime? updatedAt = default(DateTime?), DateTime? mintedAt = default(DateTime?), List<GetAssetsForUserResponseDataInnerAttributesInner> attributes = default(List<GetAssetsForUserResponseDataInnerAttributesInner>), long chainId = 13337)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -129,6 +131,8 @@ namespace BeamPlayerClient.Model
             this.Supply = supply;
             this.Rarity = rarity;
             this.RarityScore = rarityScore;
+            this.UpdatedAt = updatedAt;
+            this.MintedAt = mintedAt;
             this.Attributes = attributes;
             this.ChainId = chainId;
         }
@@ -183,6 +187,20 @@ namespace BeamPlayerClient.Model
         public decimal? RarityScore { get; set; }
 
         /// <summary>
+        /// Gets or Sets UpdatedAt
+        /// </summary>
+        [DataMember(Name = "updatedAt", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MintedAt
+        /// </summary>
+        [DataMember(Name = "mintedAt", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public DateTime? MintedAt { get; set; }
+
+        /// <summary>
         /// Gets or Sets Attributes
         /// </summary>
         [DataMember(Name = "attributes", EmitDefaultValue = true)]
@@ -213,6 +231,8 @@ namespace BeamPlayerClient.Model
             sb.Append("  Supply: ").Append(Supply).Append("\n");
             sb.Append("  Rarity: ").Append(Rarity).Append("\n");
             sb.Append("  RarityScore: ").Append(RarityScore).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  MintedAt: ").Append(MintedAt).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("}\n");

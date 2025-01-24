@@ -2692,6 +2692,7 @@ namespace BeamPlayerClient.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2755,6 +2756,7 @@ namespace BeamPlayerClient.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 
@@ -2818,6 +2820,7 @@ namespace BeamPlayerClient.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
             var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -2881,6 +2884,7 @@ namespace BeamPlayerClient.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/json"
             };
 
 

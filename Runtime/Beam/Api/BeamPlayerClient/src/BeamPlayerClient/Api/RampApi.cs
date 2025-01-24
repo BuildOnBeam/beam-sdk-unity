@@ -32,8 +32,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
-        /// <returns>CreateOnrampRequestResponse</returns>
-        CreateOnrampRequestResponse CreateOnrampRequest(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
+        /// <returns>PlayerOperationResponse</returns>
+        PlayerOperationResponse CreateOnrampRequest(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
 
         /// <summary>
         /// 
@@ -44,8 +44,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
-        /// <returns>ApiResponse of CreateOnrampRequestResponse</returns>
-        ApiResponse<CreateOnrampRequestResponse> CreateOnrampRequestWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        ApiResponse<PlayerOperationResponse> CreateOnrampRequestWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
         #endregion Synchronous Operations
     }
 
@@ -65,8 +65,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateOnrampRequestResponse</returns>
-        Cysharp.Threading.Tasks.UniTask<CreateOnrampRequestResponse> CreateOnrampRequestAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of PlayerOperationResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> CreateOnrampRequestAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -78,8 +78,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateOnrampRequestResponse)</returns>
-        Cysharp.Threading.Tasks.UniTask<ApiResponse<CreateOnrampRequestResponse>> CreateOnrampRequestWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> CreateOnrampRequestWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -230,10 +230,10 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
-        /// <returns>CreateOnrampRequestResponse</returns>
-        public CreateOnrampRequestResponse CreateOnrampRequest(string entityId, CreateOnrampRequestInput createOnrampRequestInput)
+        /// <returns>PlayerOperationResponse</returns>
+        public PlayerOperationResponse CreateOnrampRequest(string entityId, CreateOnrampRequestInput createOnrampRequestInput)
         {
-            BeamPlayerClient.Client.ApiResponse<CreateOnrampRequestResponse> localVarResponse = CreateOnrampRequestWithHttpInfo(entityId, createOnrampRequestInput);
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = CreateOnrampRequestWithHttpInfo(entityId, createOnrampRequestInput);
             return localVarResponse.Data;
         }
 
@@ -243,8 +243,8 @@ namespace BeamPlayerClient.Api
         /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
-        /// <returns>ApiResponse of CreateOnrampRequestResponse</returns>
-        public BeamPlayerClient.Client.ApiResponse<CreateOnrampRequestResponse> CreateOnrampRequestWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput)
+        /// <returns>ApiResponse of PlayerOperationResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> CreateOnrampRequestWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -281,7 +281,7 @@ namespace BeamPlayerClient.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CreateOnrampRequestResponse>("/v1/player/ramp/on/{entityId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PlayerOperationResponse>("/v1/player/ramp/on/{entityId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -299,11 +299,11 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateOnrampRequestResponse</returns>
-        public async Cysharp.Threading.Tasks.UniTask<CreateOnrampRequestResponse> CreateOnrampRequestAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of PlayerOperationResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<PlayerOperationResponse> CreateOnrampRequestAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = CreateOnrampRequestWithHttpInfoAsync(entityId, createOnrampRequestInput, cancellationToken);
-            BeamPlayerClient.Client.ApiResponse<CreateOnrampRequestResponse> localVarResponse = await task;
+            BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse> localVarResponse = await task;
             return localVarResponse.Data;
         }
 
@@ -314,8 +314,8 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="createOnrampRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateOnrampRequestResponse)</returns>
-        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<CreateOnrampRequestResponse>> CreateOnrampRequestWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<PlayerOperationResponse>> CreateOnrampRequestWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
@@ -355,7 +355,7 @@ namespace BeamPlayerClient.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<CreateOnrampRequestResponse>("/v1/player/ramp/on/{entityId}", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<PlayerOperationResponse>("/v1/player/ramp/on/{entityId}", localVarRequestOptions, this.Configuration, cancellationToken);
 
             var localVarResponse = await task;
 

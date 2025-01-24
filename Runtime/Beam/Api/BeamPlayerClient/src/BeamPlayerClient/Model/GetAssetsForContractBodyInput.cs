@@ -85,7 +85,13 @@ namespace BeamPlayerClient.Model
             /// Enum UpdatedAt for value: updatedAt
             /// </summary>
             [EnumMember(Value = "updatedAt")]
-            UpdatedAt = 4
+            UpdatedAt = 4,
+
+            /// <summary>
+            /// Enum MintedAt for value: mintedAt
+            /// </summary>
+            [EnumMember(Value = "mintedAt")]
+            MintedAt = 5
         }
 
 

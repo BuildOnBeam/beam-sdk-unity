@@ -17,7 +17,7 @@ namespace Beam
     public class BeamWebGLClient : BeamClient
     {
         #region Config
-        
+
         /// <summary>
         /// Sets Publishable Beam API key on the client. WARNING: Do not use keys other than Publishable, they're meant to be private, server-side only!
         /// </summary>
@@ -75,17 +75,20 @@ namespace Beam
         }
 
         #endregion
-        
+
         /// <summary>
         /// Retrieves Connection Request data. Use with <see cref="StartConnectingUserToGameAsync"/>
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<CreateConnectionRequestResponse>> GetUserConnectionRequestAsync(
             string entityId,
             int chainId = Constants.DefaultChainId,
+            CreateConnectionRequestInput.AuthProviderEnum authProvider =
+                CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving connection request");
@@ -93,7 +96,8 @@ namespace Beam
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, chainId), cancellationToken);
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId),
+                    cancellationToken);
 
                 return new BeamResult<CreateConnectionRequestResponse>(connRequest);
             }
@@ -121,7 +125,8 @@ namespace Beam
             m_UrlToOpen(createConnectionRequestResponse.Url);
 
             var pollingResult = await PollForResult(
-                actionToPerform: () => ConnectorApi.GetConnectionRequestAsync(createConnectionRequestResponse.Id, cancellationToken),
+                actionToPerform: () =>
+                    ConnectorApi.GetConnectionRequestAsync(createConnectionRequestResponse.Id, cancellationToken),
                 shouldRetry: res => res.Status == GetConnectionRequestResponse.StatusEnum.Pending,
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
@@ -131,19 +136,21 @@ namespace Beam
 
             return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Status);
         }
-        
+
         /// <summary>
         /// Retrieves RevokeSession Operation data. Use with <see cref="StartSessionRevokingAsync"/>
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="sessionAddress">address of a Session to revoke</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<PlayerOperationResponse>> GetSessionRevokingOperationAsync(
             string entityId,
             string sessionAddress,
             int chainId = Constants.DefaultChainId,
+            RevokeSessionRequestInput.AuthProviderEnum authProvider = RevokeSessionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving active session");
@@ -153,7 +160,8 @@ namespace Beam
             try
             {
                 operation = await SessionsApi.RevokeSessionAsync(entityId,
-                    new RevokeSessionRequestInput(sessionAddress, chainId: chainId), cancellationToken);
+                    new RevokeSessionRequestInput(sessionAddress, authProvider: authProvider, chainId: chainId),
+                    cancellationToken);
             }
             catch (ApiException e)
             {
@@ -181,12 +189,13 @@ namespace Beam
             var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, cancellationToken);
             return result;
         }
-        
+
         /// <summary>
         /// Retrieves payload to start Session Creation signing. Use with <see cref="StartSessionSigningAsync"/>
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="suggestedExpiry">Suggested expiration date for Session. It will be presented in the identity.onbea.com as pre-selected.</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         /// </summary>
@@ -194,6 +203,8 @@ namespace Beam
             string entityId,
             DateTime? suggestedExpiry = null,
             int chainId = Constants.DefaultChainId,
+            GenerateSessionUrlRequestInput.AuthProviderEnum authProvider =
+                GenerateSessionUrlRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving active session");
@@ -202,7 +213,8 @@ namespace Beam
             if (activeSession != null)
             {
                 Log("Already has an active session, ending early");
-                return new BeamResult<GenerateSessionRequestResponse>(BeamResultType.Error, "Already has an active session");
+                return new BeamResult<GenerateSessionRequestResponse>(BeamResultType.Error,
+                    "Already has an active session");
             }
 
             Log("No active session found, refreshing local KeyPair");
@@ -215,7 +227,8 @@ namespace Beam
             try
             {
                 var res = await SessionsApi.CreateSessionRequestAsync(entityId,
-                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry, chainId: chainId), cancellationToken);
+                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
+                        authProvider: authProvider, chainId: chainId), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 return new BeamResult<GenerateSessionRequestResponse>(res);
@@ -252,7 +265,8 @@ namespace Beam
             var error = false;
 
             var pollingResult = await PollForResult(
-                actionToPerform: () => SessionsApi.GetSessionRequestAsync(generateSessionRequestResponse.Id, cancellationToken),
+                actionToPerform: () =>
+                    SessionsApi.GetSessionRequestAsync(generateSessionRequestResponse.Id, cancellationToken),
                 shouldRetry: res => res.Status == GetSessionRequestResponse.StatusEnum.Pending,
                 secondsTimeout: 600,
                 secondsBetweenPolls: 1,
