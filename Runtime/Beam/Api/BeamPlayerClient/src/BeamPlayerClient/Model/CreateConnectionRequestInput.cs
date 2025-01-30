@@ -32,6 +32,46 @@ namespace BeamPlayerClient.Model
     public partial class CreateConnectionRequestInput
     {
         /// <summary>
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
+        /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AuthProviderEnum
+        {
+            /// <summary>
+            /// Enum Any for value: Any
+            /// </summary>
+            [EnumMember(Value = "Any")]
+            Any = 1,
+
+            /// <summary>
+            /// Enum Google for value: Google
+            /// </summary>
+            [EnumMember(Value = "Google")]
+            Google = 2,
+
+            /// <summary>
+            /// Enum Discord for value: Discord
+            /// </summary>
+            [EnumMember(Value = "Discord")]
+            Discord = 3,
+
+            /// <summary>
+            /// Enum Apple for value: Apple
+            /// </summary>
+            [EnumMember(Value = "Apple")]
+            Apple = 4
+        }
+
+
+        /// <summary>
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
+        /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [DataMember(Name = "authProvider", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public AuthProviderEnum? AuthProvider { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateConnectionRequestInput" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -40,9 +80,10 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateConnectionRequestInput" /> class.
         /// </summary>
         /// <param name="entityId">entityId (required).</param>
+        /// <param name="authProvider">Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI. (default to AuthProviderEnum.Any).</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateConnectionRequestInput(string entityId = default(string), long chainId = 13337)
+        public CreateConnectionRequestInput(string entityId = default(string), AuthProviderEnum? authProvider = AuthProviderEnum.Any, long chainId = 13337)
         {
             // to ensure "entityId" is required (not null)
             if (entityId == null)
@@ -50,6 +91,7 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("entityId is a required property for CreateConnectionRequestInput and cannot be null");
             }
             this.EntityId = entityId;
+            this.AuthProvider = authProvider;
             this.ChainId = chainId;
         }
 
@@ -77,6 +119,7 @@ namespace BeamPlayerClient.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateConnectionRequestInput {\n");
             sb.Append("  EntityId: ").Append(EntityId).Append("\n");
+            sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

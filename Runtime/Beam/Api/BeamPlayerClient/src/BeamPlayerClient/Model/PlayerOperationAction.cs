@@ -38,88 +38,94 @@ namespace BeamPlayerClient.Model
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum FiatOnRamp for value: FiatOnRamp
+            /// </summary>
+            [EnumMember(Value = "FiatOnRamp")]
+            FiatOnRamp = 1,
+
+            /// <summary>
             /// Enum Sign for value: Sign
             /// </summary>
             [EnumMember(Value = "Sign")]
-            Sign = 1,
+            Sign = 2,
 
             /// <summary>
             /// Enum SessionRevoke for value: SessionRevoke
             /// </summary>
             [EnumMember(Value = "SessionRevoke")]
-            SessionRevoke = 2,
+            SessionRevoke = 3,
 
             /// <summary>
             /// Enum MarketplaceCreateOffer for value: MarketplaceCreateOffer
             /// </summary>
             [EnumMember(Value = "MarketplaceCreateOffer")]
-            MarketplaceCreateOffer = 3,
+            MarketplaceCreateOffer = 4,
 
             /// <summary>
             /// Enum MarketplaceCancelOffer for value: MarketplaceCancelOffer
             /// </summary>
             [EnumMember(Value = "MarketplaceCancelOffer")]
-            MarketplaceCancelOffer = 4,
+            MarketplaceCancelOffer = 5,
 
             /// <summary>
             /// Enum MarketplaceAcceptOffer for value: MarketplaceAcceptOffer
             /// </summary>
             [EnumMember(Value = "MarketplaceAcceptOffer")]
-            MarketplaceAcceptOffer = 5,
+            MarketplaceAcceptOffer = 6,
 
             /// <summary>
             /// Enum MarketplaceBuyAsset for value: MarketplaceBuyAsset
             /// </summary>
             [EnumMember(Value = "MarketplaceBuyAsset")]
-            MarketplaceBuyAsset = 6,
+            MarketplaceBuyAsset = 7,
 
             /// <summary>
             /// Enum MarketplaceListAsset for value: MarketplaceListAsset
             /// </summary>
             [EnumMember(Value = "MarketplaceListAsset")]
-            MarketplaceListAsset = 7,
+            MarketplaceListAsset = 8,
 
             /// <summary>
             /// Enum MarketplaceCancelListing for value: MarketplaceCancelListing
             /// </summary>
             [EnumMember(Value = "MarketplaceCancelListing")]
-            MarketplaceCancelListing = 8,
+            MarketplaceCancelListing = 9,
 
             /// <summary>
             /// Enum ExchangeConvert for value: ExchangeConvert
             /// </summary>
             [EnumMember(Value = "ExchangeConvert")]
-            ExchangeConvert = 9,
+            ExchangeConvert = 10,
 
             /// <summary>
             /// Enum ExchangeWrap for value: ExchangeWrap
             /// </summary>
             [EnumMember(Value = "ExchangeWrap")]
-            ExchangeWrap = 10,
+            ExchangeWrap = 11,
 
             /// <summary>
             /// Enum ExchangeUnwrap for value: ExchangeUnwrap
             /// </summary>
             [EnumMember(Value = "ExchangeUnwrap")]
-            ExchangeUnwrap = 11,
+            ExchangeUnwrap = 12,
 
             /// <summary>
             /// Enum TransferNFTs for value: TransferNFTs
             /// </summary>
             [EnumMember(Value = "TransferNFTs")]
-            TransferNFTs = 12,
+            TransferNFTs = 13,
 
             /// <summary>
             /// Enum TransferToken for value: TransferToken
             /// </summary>
             [EnumMember(Value = "TransferToken")]
-            TransferToken = 13,
+            TransferToken = 14,
 
             /// <summary>
             /// Enum CustomTransaction for value: CustomTransaction
             /// </summary>
             [EnumMember(Value = "CustomTransaction")]
-            CustomTransaction = 14
+            CustomTransaction = 15
         }
 
 

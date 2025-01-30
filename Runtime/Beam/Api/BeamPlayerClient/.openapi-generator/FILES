@@ -32,6 +32,7 @@ src/BeamPlayerClient/Client/UnexpectedResponseException.cs
 src/BeamPlayerClient/Client/WebRequestPathBuilder.cs
 src/BeamPlayerClient/Model/AbstractOpenAPISchema.cs
 src/BeamPlayerClient/Model/AcceptAssetOfferRequestInput.cs
+src/BeamPlayerClient/Model/BeamErrorResponse.cs
 src/BeamPlayerClient/Model/BuyAssetRequestInput.cs
 src/BeamPlayerClient/Model/CancelAssetListingRequestInput.cs
 src/BeamPlayerClient/Model/CancelAssetOfferRequestInput.cs
@@ -57,7 +58,6 @@ src/BeamPlayerClient/Model/CreateAssetOfferRequestInput.cs
 src/BeamPlayerClient/Model/CreateConnectionRequestInput.cs
 src/BeamPlayerClient/Model/CreateConnectionRequestResponse.cs
 src/BeamPlayerClient/Model/CreateOnrampRequestInput.cs
-src/BeamPlayerClient/Model/CreateOnrampRequestResponse.cs
 src/BeamPlayerClient/Model/CreateTransactionRequestInput.cs
 src/BeamPlayerClient/Model/CreateTransactionRequestInputInteractionsInner.cs
 src/BeamPlayerClient/Model/GenerateSessionRequestResponse.cs

@@ -102,6 +102,44 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public ProcessingEnum Processing { get; set; }
         /// <summary>
+        /// Defines AuthProvider
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AuthProviderEnum
+        {
+            /// <summary>
+            /// Enum Any for value: Any
+            /// </summary>
+            [EnumMember(Value = "Any")]
+            Any = 1,
+
+            /// <summary>
+            /// Enum Google for value: Google
+            /// </summary>
+            [EnumMember(Value = "Google")]
+            Google = 2,
+
+            /// <summary>
+            /// Enum Discord for value: Discord
+            /// </summary>
+            [EnumMember(Value = "Discord")]
+            Discord = 3,
+
+            /// <summary>
+            /// Enum Apple for value: Apple
+            /// </summary>
+            [EnumMember(Value = "Apple")]
+            Apple = 4
+        }
+
+
+        /// <summary>
+        /// Gets or Sets AuthProvider
+        /// </summary>
+        [DataMember(Name = "authProvider", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public AuthProviderEnum AuthProvider { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="PlayerOperationResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -111,6 +149,7 @@ namespace BeamPlayerClient.Model
         /// </summary>
         /// <param name="status">status (required).</param>
         /// <param name="processing">processing (required).</param>
+        /// <param name="authProvider">authProvider (required).</param>
         /// <param name="id">id (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
@@ -121,10 +160,11 @@ namespace BeamPlayerClient.Model
         /// <param name="transactions">transactions (required).</param>
         /// <param name="url">url (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public PlayerOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), List<PlayerOperationAction> actions = default(List<PlayerOperationAction>), List<PlayerOperationResponseTransactionsInner> transactions = default(List<PlayerOperationResponseTransactionsInner>), string url = default(string))
+        public PlayerOperationResponse(StatusEnum status = default(StatusEnum), ProcessingEnum processing = default(ProcessingEnum), AuthProviderEnum authProvider = default(AuthProviderEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string gameId = default(string), string userId = default(string), long chainId = default(long), List<PlayerOperationAction> actions = default(List<PlayerOperationAction>), List<PlayerOperationResponseTransactionsInner> transactions = default(List<PlayerOperationResponseTransactionsInner>), string url = default(string))
         {
             this.Status = status;
             this.Processing = processing;
+            this.AuthProvider = authProvider;
             // to ensure "id" is required (not null)
             if (id == null)
             {
@@ -246,6 +286,7 @@ namespace BeamPlayerClient.Model
             sb.Append("class PlayerOperationResponse {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Processing: ").Append(Processing).Append("\n");
+            sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");

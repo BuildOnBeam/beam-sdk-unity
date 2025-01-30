@@ -44,6 +44,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/check_503_response'
           description: The Health Check is not successful
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       tags:
       - Health
   /v1/player/assets/users/{entityId}:
@@ -69,6 +81,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAssetsForUserResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -101,6 +125,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetUserCurrenciesResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get all the currencies owned by an account (ERC20)
@@ -132,6 +168,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetUserNativeCurrencyResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get the native token balance
@@ -160,6 +208,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -190,6 +250,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: "Transfer a token (token assets, ERC20)"
@@ -219,6 +291,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Transfer the native token
@@ -247,6 +331,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAssetsForContractResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -303,6 +399,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAssetResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get a single NFT (e.g. ERC721 / ERC1155)
@@ -333,6 +441,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAttributesResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -379,6 +499,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetOwnersResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: ""
@@ -415,6 +547,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetOwnerAssetsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: ""
@@ -436,6 +580,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetAssetListingsResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -466,6 +622,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAssetListingsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: "Get all the assets listed by a profile (NFT assets, e.g. ERC721 /\
@@ -495,6 +663,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -540,6 +720,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Cancel asset listing
@@ -574,6 +766,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -613,6 +817,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAssetListingsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get all offers that a user created
@@ -640,6 +856,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -693,6 +921,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAssetListingsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get all asset offers that a user created for a specific asset
@@ -729,6 +969,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Accept an offer for an asset
@@ -764,6 +1016,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -810,6 +1074,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAssetListingsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get all offers for an asset
@@ -834,6 +1110,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetChainCurrenciesResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get available currencies for given chain
@@ -852,6 +1140,18 @@ paths:
       responses:
         "201":
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Schedule a token refresh in the indexer
@@ -869,6 +1169,18 @@ paths:
         required: true
       responses:
         "201":
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -900,6 +1212,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetTransactionsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get a paginated list of transactions from your game
@@ -922,6 +1246,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetTransactionResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -960,6 +1296,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetTransactionsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get a paginated list of transactions created on behalf of a user
@@ -987,6 +1335,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1018,6 +1378,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAllUsersResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Returns a list of users
@@ -1041,6 +1413,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetUserResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Unlinks an entity ID from a user
@@ -1062,6 +1446,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUserResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1091,6 +1487,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetUserResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Updates entityId for the user
@@ -1114,6 +1522,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Delete an operation
@@ -1135,6 +1555,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1165,6 +1597,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Updates operation result for given id
@@ -1187,6 +1631,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1232,6 +1688,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetQuoteResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1279,6 +1747,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetQuoteResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: "Returns the minimum expected output amount for a token trade, given\
@@ -1309,6 +1789,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Swap an exact amount of `tokenIn` for a minimum amount of `tokenOut`
@@ -1337,6 +1829,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1367,6 +1871,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Wrap an amount of native token to wrapped native token
@@ -1395,6 +1911,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1425,6 +1953,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenerateSessionRequestResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: ""
@@ -1454,6 +1994,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerOperationResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: ""
@@ -1476,6 +2028,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetSessionRequestResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1507,6 +2071,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetActiveSessionsResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1547,6 +2123,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetActiveSessionResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: ""
@@ -1586,6 +2174,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetActiveSessionResponseV2'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: ""
@@ -1607,6 +2207,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateConnectionRequestResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1630,6 +2242,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetConnectionRequestResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1659,6 +2283,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommonStatsResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1696,6 +2332,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommonStatsResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get asset stats
@@ -1725,6 +2373,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommonActivityResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get user activity
@@ -1753,6 +2413,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommonActivityResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1790,6 +2462,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommonActivityResponse'
           description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
       security:
       - beam-api-key: []
       summary: Get asset activity
@@ -1817,7 +2501,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateOnrampRequestResponse'
+                $ref: '#/components/schemas/PlayerOperationResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
           description: ""
       security:
       - beam-api-key: []
@@ -1827,6 +2523,44 @@ paths:
       - Ramp
 components:
   schemas:
+    BeamErrorResponse:
+      example:
+        traceId: traceId
+        path: path
+        error: error
+        type: type
+        message: message
+        validation:
+        - ""
+        - ""
+        timestamp: 2000-01-23T04:56:07.000+00:00
+        status: 415
+      properties:
+        path:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        status:
+          maximum: 599
+          minimum: 400
+          type: integer
+        error:
+          type: string
+        validation:
+          items: {}
+          type: array
+        type:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+      required:
+      - path
+      - status
+      - timestamp
+      type: object
     GetAssetsForUserBodyInput:
       example:
         sortDirection: asc
@@ -1872,13 +2606,16 @@ components:
     GetAssetsForUserResponse:
       example:
         data:
-        - ownedQuantity: 2.3021358869347655
-          chainId: 5
+        - mintedAt: 2000-01-23T04:56:07.000+00:00
           assetAddress: assetAddress
+          rarityScore: 6.027456183070403
+          supply: 0.8008281904610115
+          assetType: assetType
+          ownedQuantity: 2.3021358869347655
+          chainId: 5
           assetId: assetId
           imageUrl: imageUrl
           name: name
-          rarityScore: 6.027456183070403
           attributes:
           - displayType: displayType
             maxValue: 1.4658129805029452
@@ -1890,16 +2627,18 @@ components:
             type: type
             value: value
             rarity: 5.962133916683182
+          rarity: Common
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - mintedAt: 2000-01-23T04:56:07.000+00:00
+          assetAddress: assetAddress
+          rarityScore: 6.027456183070403
           supply: 0.8008281904610115
           assetType: assetType
-          rarity: Common
-        - ownedQuantity: 2.3021358869347655
+          ownedQuantity: 2.3021358869347655
           chainId: 5
-          assetAddress: assetAddress
           assetId: assetId
           imageUrl: imageUrl
           name: name
-          rarityScore: 6.027456183070403
           attributes:
           - displayType: displayType
             maxValue: 1.4658129805029452
@@ -1911,9 +2650,8 @@ components:
             type: type
             value: value
             rarity: 5.962133916683182
-          supply: 0.8008281904610115
-          assetType: assetType
           rarity: Common
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         continuation: continuation
       properties:
         data:
@@ -1970,6 +2708,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         assets:
         - receiverWalletAddress: receiverWalletAddress
           amountToTransfer: 1.0800828190461012
@@ -2022,9 +2761,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - assets
@@ -2032,6 +2786,7 @@ components:
     PlayerOperationResponse:
       example:
         gameId: gameId
+        authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         chainId: 0
         processing: SignOnly
@@ -2074,7 +2829,7 @@ components:
           index: 6
           operationId: operationId
           id: id
-          type: Sign
+          type: FiatOnRamp
           transaction:
             actionId: actionId
             sponsored: true
@@ -2093,7 +2848,7 @@ components:
           index: 6
           operationId: operationId
           id: id
-          type: Sign
+          type: FiatOnRamp
           transaction:
             actionId: actionId
             sponsored: true
@@ -2117,6 +2872,13 @@ components:
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
           type: string
         id:
           format: cuid
@@ -2149,6 +2911,7 @@ components:
           type: string
       required:
       - actions
+      - authProvider
       - chainId
       - createdAt
       - gameId
@@ -2165,6 +2928,7 @@ components:
         receiverWalletAddress: receiverWalletAddress
         optimistic: false
         sponsor: true
+        authProvider: Any
         amountToTransfer: amountToTransfer
         policyId: policyId
         chainId: 0
@@ -2196,9 +2960,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - amountToTransfer
@@ -2209,6 +2988,7 @@ components:
         receiverWalletAddress: receiverWalletAddress
         optimistic: false
         sponsor: true
+        authProvider: Any
         amountToTransfer: amountToTransfer
         policyId: policyId
         chainId: 0
@@ -2237,9 +3017,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - amountToTransfer
@@ -2303,6 +3098,7 @@ components:
           - tokenId
           - rarity
           - updatedAt
+          - mintedAt
           type: string
         limit:
           default: 20
@@ -2313,7 +3109,8 @@ components:
     GetAssetsForContractResponse:
       example:
         data:
-        - chainId: 1
+        - mintedAt: 2000-01-23T04:56:07.000+00:00
+          chainId: 1
           assetAddress: assetAddress
           assetId: assetId
           imageUrl: imageUrl
@@ -2333,7 +3130,9 @@ components:
           supply: 0.8008281904610115
           assetType: assetType
           rarity: Common
-        - chainId: 1
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - mintedAt: 2000-01-23T04:56:07.000+00:00
+          chainId: 1
           assetAddress: assetAddress
           assetId: assetId
           imageUrl: imageUrl
@@ -2353,6 +3152,7 @@ components:
           supply: 0.8008281904610115
           assetType: assetType
           rarity: Common
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         continuation: continuation
       properties:
         data:
@@ -2530,13 +3330,16 @@ components:
     GetOwnerAssetsResponse:
       example:
         data:
-        - ownedQuantity: 2.3021358869347655
-          chainId: 5
+        - mintedAt: 2000-01-23T04:56:07.000+00:00
           assetAddress: assetAddress
+          rarityScore: 6.027456183070403
+          supply: 0.8008281904610115
+          assetType: assetType
+          ownedQuantity: 2.3021358869347655
+          chainId: 5
           assetId: assetId
           imageUrl: imageUrl
           name: name
-          rarityScore: 6.027456183070403
           attributes:
           - displayType: displayType
             maxValue: 1.4658129805029452
@@ -2548,16 +3351,18 @@ components:
             type: type
             value: value
             rarity: 5.962133916683182
+          rarity: Common
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - mintedAt: 2000-01-23T04:56:07.000+00:00
+          assetAddress: assetAddress
+          rarityScore: 6.027456183070403
           supply: 0.8008281904610115
           assetType: assetType
-          rarity: Common
-        - ownedQuantity: 2.3021358869347655
+          ownedQuantity: 2.3021358869347655
           chainId: 5
-          assetAddress: assetAddress
           assetId: assetId
           imageUrl: imageUrl
           name: name
-          rarityScore: 6.027456183070403
           attributes:
           - displayType: displayType
             maxValue: 1.4658129805029452
@@ -2569,9 +3374,8 @@ components:
             type: type
             value: value
             rarity: 5.962133916683182
-          supply: 0.8008281904610115
-          assetType: assetType
           rarity: Common
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         continuation: continuation
       properties:
         data:
@@ -2704,16 +3508,17 @@ components:
       example:
         sponsor: true
         quantity: 0.8008281904610115
+        assetAddress: assetAddress
+        sellType: FixedPrice
+        operationProcessing: Execute
+        authProvider: Any
         policyId: policyId
         chainId: 6
-        assetAddress: assetAddress
         assetId: assetId
         price: price
         startTime: 2000-01-23T04:56:07.000+00:00
         currency: BEAM
         endTime: 2000-01-23T04:56:07.000+00:00
-        sellType: FixedPrice
-        operationProcessing: Execute
       properties:
         assetAddress:
           type: string
@@ -2766,9 +3571,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - assetAddress
@@ -2781,6 +3601,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         quantity: 0.8008281904610115
         policyId: policyId
         chainId: 6
@@ -2804,9 +3625,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - quantity
@@ -2815,6 +3651,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         policyId: policyId
         operationProcessing: Execute
       properties:
@@ -2830,13 +3667,29 @@ components:
           type: string
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
           type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
+          type: string
       type: object
     CreateAssetOfferRequestInput:
       example:
+        authProvider: Any
         quantity: 1.0800828190461012
         chainId: 6
         assetAddress: assetAddress
@@ -2877,9 +3730,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - assetAddress
@@ -2891,6 +3759,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         quantity: 1.0800828190461012
         policyId: policyId
         chainId: 6
@@ -2915,9 +3784,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - quantity
@@ -2926,6 +3810,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         policyId: policyId
         chainId: 0
         operationProcessing: Execute
@@ -2942,9 +3827,24 @@ components:
           type: string
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
         chainId:
           default: 13337
@@ -3221,6 +4121,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         policyId: policyId
         chainId: 0
         operationProcessing: Execute
@@ -3278,9 +4179,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - interactions
@@ -3463,6 +4379,7 @@ components:
         receiverWalletAddress: receiverWalletAddress
         optimistic: false
         sponsor: true
+        authProvider: Any
         policyId: policyId
         chainId: 0
         receiverEntityId: receiverEntityId
@@ -3499,9 +4416,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - amountIn
@@ -3513,6 +4445,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         amount: amount
         policyId: policyId
         chainId: 0
@@ -3536,9 +4469,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - amount
@@ -3547,6 +4495,7 @@ components:
       example:
         optimistic: false
         sponsor: true
+        authProvider: Any
         amount: amount
         policyId: policyId
         chainId: 0
@@ -3570,15 +4519,31 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - amount
       type: object
     GenerateSessionUrlRequestInput:
       example:
+        authProvider: Any
         address: address
         chainId: 0
         suggestedExpiry: 2000-01-23T04:56:07.000+00:00
@@ -3587,6 +4552,18 @@ components:
           type: string
         suggestedExpiry:
           format: date-time
+          nullable: true
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
           nullable: true
           type: string
         chainId:
@@ -3647,6 +4624,7 @@ components:
     RevokeSessionRequestInput:
       example:
         sponsor: true
+        authProvider: Any
         address: address
         policyId: policyId
         chainId: 0
@@ -3667,9 +4645,24 @@ components:
           type: integer
         operationProcessing:
           default: Execute
+          description: "Operation processing type. If Execute is used, Operation will\
+            \ be executed automatically right after User signs it. If you prefer to\
+            \ have more control, use SignOnly then Process it using ProcessOperation."
           enum:
           - SignOnly
           - Execute
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
       required:
       - address
@@ -3779,12 +4772,25 @@ components:
       type: object
     CreateConnectionRequestInput:
       example:
+        authProvider: Any
         chainId: 0
         entityId: entityId
       properties:
         entityId:
           maxLength: 250
           minLength: 3
+          type: string
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
         chainId:
           default: 13337
@@ -4034,9 +5040,11 @@ components:
       type: object
     CreateOnrampRequestInput:
       example:
+        authProvider: Any
         chainId: 0
         fiatAmount: fiatAmount
-        tokenAmount: "100"
+        tokenAmount: tokenAmount
+        canChangeAmount: false
         paymentCurrency: USD
         token: BEAM
       properties:
@@ -4046,29 +5054,31 @@ components:
           - BEAM
           type: string
         tokenAmount:
-          default: "100"
           type: string
         fiatAmount:
           type: string
         paymentCurrency:
           default: USD
-          enum:
-          - USD
-          - EUR
           type: string
+        canChangeAmount:
+          default: false
+          type: boolean
         chainId:
           default: 13337
           format: int64
           type: integer
-      type: object
-    CreateOnrampRequestResponse:
-      example:
-        url: url
-      properties:
-        url:
+        authProvider:
+          default: Any
+          description: "Auth Provider for the user to use. If it's Any, user will\
+            \ be able to choose his preferred login method. Useful when you want to\
+            \ present social login choice in your UI."
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          nullable: true
           type: string
-      required:
-      - url
       type: object
     check_200_response_info_value:
       additionalProperties: true
@@ -4188,13 +5198,16 @@ components:
       type: object
     GetAssetsForUserResponse_data_inner:
       example:
+        mintedAt: 2000-01-23T04:56:07.000+00:00
+        assetAddress: assetAddress
+        rarityScore: 6.027456183070403
+        supply: 0.8008281904610115
+        assetType: assetType
         ownedQuantity: 2.3021358869347655
         chainId: 5
-        assetAddress: assetAddress
         assetId: assetId
         imageUrl: imageUrl
         name: name
-        rarityScore: 6.027456183070403
         attributes:
         - displayType: displayType
           maxValue: 1.4658129805029452
@@ -4206,9 +5219,8 @@ components:
           type: type
           value: value
           rarity: 5.962133916683182
-        supply: 0.8008281904610115
-        assetType: assetType
         rarity: Common
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         name:
           type: string
@@ -4234,6 +5246,14 @@ components:
         rarityScore:
           nullable: true
           type: number
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        mintedAt:
+          format: date-time
+          nullable: true
+          type: string
         attributes:
           items:
             $ref: '#/components/schemas/GetAssetsForUserResponse_data_inner_attributes_inner'
@@ -4430,7 +5450,7 @@ components:
         index: 6
         operationId: operationId
         id: id
-        type: Sign
+        type: FiatOnRamp
         transaction:
           actionId: actionId
           sponsored: true
@@ -4441,6 +5461,7 @@ components:
       properties:
         type:
           enum:
+          - FiatOnRamp
           - Sign
           - SessionRevoke
           - MarketplaceCreateOffer
@@ -4512,6 +5533,7 @@ components:
           nullable: true
           type: string
         hash:
+          nullable: true
           type: string
         type:
           enum:
@@ -4538,7 +5560,6 @@ components:
       required:
       - actionId
       - externalId
-      - hash
       - id
       - openfortId
       - operationId
@@ -4563,6 +5584,7 @@ components:
       type: object
     GetAssetsForContractResponse_data_inner:
       example:
+        mintedAt: 2000-01-23T04:56:07.000+00:00
         chainId: 1
         assetAddress: assetAddress
         assetId: assetId
@@ -4583,6 +5605,7 @@ components:
         supply: 0.8008281904610115
         assetType: assetType
         rarity: Common
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         name:
           type: string
@@ -4608,6 +5631,14 @@ components:
         rarityScore:
           nullable: true
           type: number
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        mintedAt:
+          format: date-time
+          nullable: true
+          type: string
         attributes:
           items:
             $ref: '#/components/schemas/GetAssetsForUserResponse_data_inner_attributes_inner'

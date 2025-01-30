@@ -161,6 +161,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Model.AcceptAssetOfferRequestInput](AcceptAssetOfferRequestInput.md)
+ - [Model.BeamErrorResponse](BeamErrorResponse.md)
  - [Model.BuyAssetRequestInput](BuyAssetRequestInput.md)
  - [Model.CancelAssetListingRequestInput](CancelAssetListingRequestInput.md)
  - [Model.CancelAssetOfferRequestInput](CancelAssetOfferRequestInput.md)
@@ -186,7 +187,6 @@ Class | Method | HTTP request | Description
  - [Model.CreateConnectionRequestInput](CreateConnectionRequestInput.md)
  - [Model.CreateConnectionRequestResponse](CreateConnectionRequestResponse.md)
  - [Model.CreateOnrampRequestInput](CreateOnrampRequestInput.md)
- - [Model.CreateOnrampRequestResponse](CreateOnrampRequestResponse.md)
  - [Model.CreateTransactionRequestInput](CreateTransactionRequestInput.md)
  - [Model.CreateTransactionRequestInputInteractionsInner](CreateTransactionRequestInputInteractionsInner.md)
  - [Model.GenerateSessionRequestResponse](GenerateSessionRequestResponse.md)

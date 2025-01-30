@@ -52,48 +52,66 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public TokenEnum? Token { get; set; }
         /// <summary>
-        /// Defines PaymentCurrency
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
         /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum PaymentCurrencyEnum
+        public enum AuthProviderEnum
         {
             /// <summary>
-            /// Enum USD for value: USD
+            /// Enum Any for value: Any
             /// </summary>
-            [EnumMember(Value = "USD")]
-            USD = 1,
+            [EnumMember(Value = "Any")]
+            Any = 1,
 
             /// <summary>
-            /// Enum EUR for value: EUR
+            /// Enum Google for value: Google
             /// </summary>
-            [EnumMember(Value = "EUR")]
-            EUR = 2
+            [EnumMember(Value = "Google")]
+            Google = 2,
+
+            /// <summary>
+            /// Enum Discord for value: Discord
+            /// </summary>
+            [EnumMember(Value = "Discord")]
+            Discord = 3,
+
+            /// <summary>
+            /// Enum Apple for value: Apple
+            /// </summary>
+            [EnumMember(Value = "Apple")]
+            Apple = 4
         }
 
 
         /// <summary>
-        /// Gets or Sets PaymentCurrency
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
         /// </summary>
-        [DataMember(Name = "paymentCurrency", EmitDefaultValue = false)]
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [DataMember(Name = "authProvider", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public PaymentCurrencyEnum? PaymentCurrency { get; set; }
+        public AuthProviderEnum? AuthProvider { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOnrampRequestInput" /> class.
         /// </summary>
         /// <param name="token">token (default to TokenEnum.BEAM).</param>
-        /// <param name="tokenAmount">tokenAmount (default to &quot;100&quot;).</param>
+        /// <param name="tokenAmount">tokenAmount.</param>
         /// <param name="fiatAmount">fiatAmount.</param>
-        /// <param name="paymentCurrency">paymentCurrency (default to PaymentCurrencyEnum.USD).</param>
+        /// <param name="paymentCurrency">paymentCurrency (default to &quot;USD&quot;).</param>
+        /// <param name="canChangeAmount">canChangeAmount (default to false).</param>
         /// <param name="chainId">chainId (default to 13337).</param>
+        /// <param name="authProvider">Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI. (default to AuthProviderEnum.Any).</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateOnrampRequestInput(TokenEnum? token = TokenEnum.BEAM, string tokenAmount = @"100", string fiatAmount = default(string), PaymentCurrencyEnum? paymentCurrency = PaymentCurrencyEnum.USD, long chainId = 13337)
+        public CreateOnrampRequestInput(TokenEnum? token = TokenEnum.BEAM, string tokenAmount = default(string), string fiatAmount = default(string), string paymentCurrency = @"USD", bool canChangeAmount = false, long chainId = 13337, AuthProviderEnum? authProvider = AuthProviderEnum.Any)
         {
             this.Token = token;
-            // use default value if no "tokenAmount" provided
-            this.TokenAmount = tokenAmount ?? @"100";
+            this.TokenAmount = tokenAmount;
             this.FiatAmount = fiatAmount;
-            this.PaymentCurrency = paymentCurrency;
+            // use default value if no "paymentCurrency" provided
+            this.PaymentCurrency = paymentCurrency ?? @"USD";
+            this.CanChangeAmount = canChangeAmount;
             this.ChainId = chainId;
+            this.AuthProvider = authProvider;
         }
 
         /// <summary>
@@ -109,6 +127,20 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "fiatAmount", EmitDefaultValue = false)]
         [UnityEngine.Scripting.Preserve]
         public string FiatAmount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PaymentCurrency
+        /// </summary>
+        [DataMember(Name = "paymentCurrency", EmitDefaultValue = false)]
+        [UnityEngine.Scripting.Preserve]
+        public string PaymentCurrency { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CanChangeAmount
+        /// </summary>
+        [DataMember(Name = "canChangeAmount", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public bool CanChangeAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
@@ -130,7 +162,9 @@ namespace BeamPlayerClient.Model
             sb.Append("  TokenAmount: ").Append(TokenAmount).Append("\n");
             sb.Append("  FiatAmount: ").Append(FiatAmount).Append("\n");
             sb.Append("  PaymentCurrency: ").Append(PaymentCurrency).Append("\n");
+            sb.Append("  CanChangeAmount: ").Append(CanChangeAmount).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
+            sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

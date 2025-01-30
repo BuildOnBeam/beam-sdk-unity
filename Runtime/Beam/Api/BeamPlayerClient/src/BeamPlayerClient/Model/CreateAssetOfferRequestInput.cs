@@ -70,8 +70,9 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public CurrencyEnum? Currency { get; set; }
         /// <summary>
-        /// Defines OperationProcessing
+        /// Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.
         /// </summary>
+        /// <value>Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OperationProcessingEnum
         {
@@ -90,11 +91,52 @@ namespace BeamPlayerClient.Model
 
 
         /// <summary>
-        /// Gets or Sets OperationProcessing
+        /// Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.
         /// </summary>
+        /// <value>Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.</value>
         [DataMember(Name = "operationProcessing", EmitDefaultValue = false)]
         [UnityEngine.Scripting.Preserve]
         public OperationProcessingEnum? OperationProcessing { get; set; }
+        /// <summary>
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
+        /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AuthProviderEnum
+        {
+            /// <summary>
+            /// Enum Any for value: Any
+            /// </summary>
+            [EnumMember(Value = "Any")]
+            Any = 1,
+
+            /// <summary>
+            /// Enum Google for value: Google
+            /// </summary>
+            [EnumMember(Value = "Google")]
+            Google = 2,
+
+            /// <summary>
+            /// Enum Discord for value: Discord
+            /// </summary>
+            [EnumMember(Value = "Discord")]
+            Discord = 3,
+
+            /// <summary>
+            /// Enum Apple for value: Apple
+            /// </summary>
+            [EnumMember(Value = "Apple")]
+            Apple = 4
+        }
+
+
+        /// <summary>
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
+        /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [DataMember(Name = "authProvider", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public AuthProviderEnum? AuthProvider { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAssetOfferRequestInput" /> class.
         /// </summary>
@@ -111,9 +153,10 @@ namespace BeamPlayerClient.Model
         /// <param name="endTime">endTime.</param>
         /// <param name="currency">currency (default to CurrencyEnum.WBEAM).</param>
         /// <param name="chainId">chainId (default to 13337).</param>
-        /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
+        /// <param name="operationProcessing">Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation. (default to OperationProcessingEnum.Execute).</param>
+        /// <param name="authProvider">Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI. (default to AuthProviderEnum.Any).</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateAssetOfferRequestInput(string assetAddress = default(string), string assetId = default(string), decimal quantity = default(decimal), string price = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), CurrencyEnum? currency = CurrencyEnum.WBEAM, long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute)
+        public CreateAssetOfferRequestInput(string assetAddress = default(string), string assetId = default(string), decimal quantity = default(decimal), string price = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), CurrencyEnum? currency = CurrencyEnum.WBEAM, long chainId = 13337, OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, AuthProviderEnum? authProvider = AuthProviderEnum.Any)
         {
             // to ensure "assetAddress" is required (not null)
             if (assetAddress == null)
@@ -139,6 +182,7 @@ namespace BeamPlayerClient.Model
             this.Currency = currency;
             this.ChainId = chainId;
             this.OperationProcessing = operationProcessing;
+            this.AuthProvider = authProvider;
         }
 
         /// <summary>
@@ -208,6 +252,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
+            sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

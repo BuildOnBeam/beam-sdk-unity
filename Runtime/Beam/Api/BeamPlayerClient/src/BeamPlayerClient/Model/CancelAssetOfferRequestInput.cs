@@ -32,8 +32,9 @@ namespace BeamPlayerClient.Model
     public partial class CancelAssetOfferRequestInput
     {
         /// <summary>
-        /// Defines OperationProcessing
+        /// Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.
         /// </summary>
+        /// <value>Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OperationProcessingEnum
         {
@@ -52,26 +53,69 @@ namespace BeamPlayerClient.Model
 
 
         /// <summary>
-        /// Gets or Sets OperationProcessing
+        /// Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.
         /// </summary>
+        /// <value>Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation.</value>
         [DataMember(Name = "operationProcessing", EmitDefaultValue = false)]
         [UnityEngine.Scripting.Preserve]
         public OperationProcessingEnum? OperationProcessing { get; set; }
+        /// <summary>
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
+        /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AuthProviderEnum
+        {
+            /// <summary>
+            /// Enum Any for value: Any
+            /// </summary>
+            [EnumMember(Value = "Any")]
+            Any = 1,
+
+            /// <summary>
+            /// Enum Google for value: Google
+            /// </summary>
+            [EnumMember(Value = "Google")]
+            Google = 2,
+
+            /// <summary>
+            /// Enum Discord for value: Discord
+            /// </summary>
+            [EnumMember(Value = "Discord")]
+            Discord = 3,
+
+            /// <summary>
+            /// Enum Apple for value: Apple
+            /// </summary>
+            [EnumMember(Value = "Apple")]
+            Apple = 4
+        }
+
+
+        /// <summary>
+        /// Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.
+        /// </summary>
+        /// <value>Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI.</value>
+        [DataMember(Name = "authProvider", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public AuthProviderEnum? AuthProvider { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CancelAssetOfferRequestInput" /> class.
         /// </summary>
         /// <param name="optimistic">optimistic (default to false).</param>
         /// <param name="sponsor">sponsor (default to true).</param>
         /// <param name="policyId">policyId.</param>
-        /// <param name="operationProcessing">operationProcessing (default to OperationProcessingEnum.Execute).</param>
+        /// <param name="operationProcessing">Operation processing type. If Execute is used, Operation will be executed automatically right after User signs it. If you prefer to have more control, use SignOnly then Process it using ProcessOperation. (default to OperationProcessingEnum.Execute).</param>
+        /// <param name="authProvider">Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI. (default to AuthProviderEnum.Any).</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         [UnityEngine.Scripting.Preserve]
-        public CancelAssetOfferRequestInput(bool optimistic = false, bool sponsor = true, string policyId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, long chainId = 13337)
+        public CancelAssetOfferRequestInput(bool optimistic = false, bool sponsor = true, string policyId = default(string), OperationProcessingEnum? operationProcessing = OperationProcessingEnum.Execute, AuthProviderEnum? authProvider = AuthProviderEnum.Any, long chainId = 13337)
         {
             this.Optimistic = optimistic;
             this.Sponsor = sponsor;
             this.PolicyId = policyId;
             this.OperationProcessing = operationProcessing;
+            this.AuthProvider = authProvider;
             this.ChainId = chainId;
         }
 
@@ -116,6 +160,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  Sponsor: ").Append(Sponsor).Append("\n");
             sb.Append("  PolicyId: ").Append(PolicyId).Append("\n");
             sb.Append("  OperationProcessing: ").Append(OperationProcessing).Append("\n");
+            sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

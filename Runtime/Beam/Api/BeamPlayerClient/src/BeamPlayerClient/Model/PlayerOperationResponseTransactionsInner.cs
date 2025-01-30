@@ -120,7 +120,7 @@ namespace BeamPlayerClient.Model
         /// <param name="openfortId">openfortId (required).</param>
         /// <param name="sponsored">sponsored (required).</param>
         /// <param name="actionId">actionId (required).</param>
-        /// <param name="hash">hash (required).</param>
+        /// <param name="hash">hash.</param>
         /// <param name="type">type (required).</param>
         /// <param name="externalId">externalId (required).</param>
         /// <param name="signature">signature (required).</param>
@@ -150,12 +150,6 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("actionId is a required property for PlayerOperationResponseTransactionsInner and cannot be null");
             }
             this.ActionId = actionId;
-            // to ensure "hash" is required (not null)
-            if (hash == null)
-            {
-                throw new ArgumentNullException("hash is a required property for PlayerOperationResponseTransactionsInner and cannot be null");
-            }
-            this.Hash = hash;
             this.Type = type;
             // to ensure "externalId" is required (not null)
             if (externalId == null)
@@ -181,6 +175,7 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("operationId is a required property for PlayerOperationResponseTransactionsInner and cannot be null");
             }
             this.OperationId = operationId;
+            this.Hash = hash;
             this.Data = data;
         }
 
@@ -215,7 +210,7 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Gets or Sets Hash
         /// </summary>
-        [DataMember(Name = "hash", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "hash", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public string Hash { get; set; }
 
