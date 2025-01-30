@@ -108,5 +108,8 @@ You can find an example implementation using this demo in [beam-sdk-unity-exampl
 
 ### Notes
 
+#### Selecting AuthProvider
+All main BeamClient methods accept an optional argument called `authProvider`. By passing a provider value other than `Any`, you force the User to sign into Beam Identity using that provider. This allows you to skip the initial screen with Social Provider login selection, at the cost of taking the choice away from the User. This can be useful if you want to present Social Providers to choose from within your UI. Please keep in mind that Social Providers we support might change in the future and might then require changes in your UI.
+
 #### WebGL
 WebGL builds are optimized and have Code Stripping enabled by default. We made sure that our models are not stripped using [Preserve] attributes but if you notice a functionality that seemingly breaks with stripping, please let us know, so we can adjust accordingly.
