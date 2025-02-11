@@ -36,6 +36,7 @@ namespace Beam
         protected bool m_DebugLog;
         protected Action<string> m_UrlToOpen = url => Application.OpenURL(url);
         protected IStorage m_Storage = new PlayerPrefsStorage();
+        protected bool m_IsInFocus = false;
 
         #region Config
 
@@ -129,7 +130,8 @@ namespace Beam
             string entityId,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
-            CreateConnectionRequestInput.AuthProviderEnum authProvider = CreateConnectionRequestInput.AuthProviderEnum.Any,
+            CreateConnectionRequestInput.AuthProviderEnum authProvider =
+                CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving connection request");
@@ -137,7 +139,8 @@ namespace Beam
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId), cancellationToken);
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId),
+                    cancellationToken);
             }
             catch (ApiException e)
             {
@@ -209,7 +212,8 @@ namespace Beam
             try
             {
                 operation = await SessionsApi.RevokeSessionAsync(entityId,
-                    new RevokeSessionRequestInput(sessionAddress, chainId: chainId, authProvider: authProvider), cancellationToken);
+                    new RevokeSessionRequestInput(sessionAddress, chainId: chainId, authProvider: authProvider),
+                    cancellationToken);
             }
             catch (ApiException e)
             {
@@ -235,7 +239,8 @@ namespace Beam
             DateTime? suggestedExpiry = null,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
-            GenerateSessionUrlRequestInput.AuthProviderEnum authProvider = GenerateSessionUrlRequestInput.AuthProviderEnum.Any,
+            GenerateSessionUrlRequestInput.AuthProviderEnum authProvider =
+                GenerateSessionUrlRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving active session");
@@ -552,10 +557,15 @@ namespace Beam
             }
         }
 
+        public void OnApplicationPause(bool pauseStatus)
+        {
+            m_IsInFocus = !pauseStatus;
+        }
+
         /// <summary>
         /// Will retry or return null if received 404.
         /// </summary>
-        protected static async UniTask<T> PollForResult<T>(
+        protected async UniTask<T> PollForResult<T>(
             Func<UniTask<T>> actionToPerform,
             Func<T, bool> shouldRetry,
             int secondsTimeout = DefaultTimeoutInSeconds,
@@ -563,31 +573,35 @@ namespace Beam
             CancellationToken cancellationToken = default)
             where T : class
         {
-            await UniTask.Delay(2000, cancellationToken: cancellationToken);
+            await UniTask.Delay(1000, cancellationToken: cancellationToken);
 
             var endTime = DateTime.Now.AddSeconds(secondsTimeout);
 
             while ((endTime - DateTime.Now).TotalSeconds > 0)
             {
-                T result;
-                try
+                // if we're not in focus, there's no point in polling
+                if (m_IsInFocus)
                 {
-                    result = await actionToPerform.Invoke();
-                }
-                catch (ApiException e)
-                {
-                    if (e.ErrorCode == 404)
+                    T result;
+                    try
                     {
-                        return null;
+                        result = await actionToPerform.Invoke();
+                    }
+                    catch (ApiException e)
+                    {
+                        if (e.ErrorCode == 404)
+                        {
+                            return null;
+                        }
+
+                        throw;
                     }
 
-                    throw;
-                }
-
-                var retry = shouldRetry.Invoke(result);
-                if (!retry)
-                {
-                    return result;
+                    var retry = shouldRetry.Invoke(result);
+                    if (!retry)
+                    {
+                        return result;
+                    }
                 }
 
                 await UniTask.Delay(secondsBetweenPolls * 1000, cancellationToken: cancellationToken);
