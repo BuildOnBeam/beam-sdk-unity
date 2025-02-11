@@ -108,7 +108,7 @@ You can find an example implementation using this demo in [beam-sdk-unity-exampl
 
 ### Notes
 
-### Overriding URL Opener
+#### Overriding URL Opener
 By default, we use Unity's Application.OpenURL() to interact with identity.onbeam.com.
 This causes a default browser app to be opened on all platforms which might not be optimal for you as it redirects the user away from your game.
 If you prefer to use your WebView plugin of your choice, you can override the way we open URLs:
