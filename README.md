@@ -108,6 +108,18 @@ You can find an example implementation using this demo in [beam-sdk-unity-exampl
 
 ### Notes
 
+### Overriding URL Opener
+By default, we use Unity's Application.OpenURL() to interact with identity.onbeam.com.
+This causes a default browser app to be opened on all platforms which might not be optimal for you as it redirects the user away from your game.
+If you prefer to use your WebView plugin of your choice, you can override the way we open URLs:
+```csharp
+m_BeamClient.SetUrlOpener((url) =>
+{
+    // your custom implementation
+});
+```
+It's important to keep url structure and all search params as-is, as they are used by Beam Identity.
+
 #### Selecting AuthProvider
 All main BeamClient methods accept an optional argument called `authProvider`. By passing a provider value other than `Any`, you force the User to sign into Beam Identity using that provider. This allows you to skip the initial screen with Social Provider login selection, at the cost of taking the choice away from the User. This can be useful if you want to present Social Providers to choose from within your UI. Please keep in mind that Social Providers we support might change in the future and might then require changes in your UI.
 
