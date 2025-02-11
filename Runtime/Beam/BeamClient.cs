@@ -116,7 +116,8 @@ namespace Beam
 
         /// <summary>
         /// Will connect given EntityId for your game to a User.
-        /// This will also happen on first possible action signed by user in the browser.
+        /// This will also happen on first possible action signed by user in the browser but can be used on it's own to
+        /// simplify the first interaction.
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
@@ -221,7 +222,7 @@ namespace Beam
         }
 
         /// <summary>
-        /// Opens an external browser to sign a Session, returns the result via callback arg.
+        /// Opens an external browser to sign a Session.
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="suggestedExpiry">Suggested expiration date for Session. It will be presented in the identity.onbea.com as pre-selected.</param>
@@ -333,7 +334,7 @@ namespace Beam
         }
 
         /// <summary>
-        /// Opens an external browser to sign a transaction, returns the result via callback arg.
+        /// Opens an external browser or uses an existing Session to sign a transaction.
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="operationId">Id of the Operation to sign. Returned by Beam API.</param>
