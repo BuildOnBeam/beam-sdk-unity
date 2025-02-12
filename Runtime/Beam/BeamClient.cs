@@ -433,10 +433,14 @@ namespace Beam
             var now = DateTimeOffset.Now;
             var pollingResult = await PollForResult<PlayerOperationResponse>(
                 actionToPerform: () => OperationApi.GetOperationAsync(operation.Id, cancellationToken),
-                shouldRetry: res => res == null ||
-                                    res.Status != PlayerOperationResponse.StatusEnum.Pending ||
-                                    res.Status == PlayerOperationResponse.StatusEnum.Pending &&
-                                    res.UpdatedAt != null && res.UpdatedAt > now,
+                shouldRetry: res => 
+                                    // no response
+                                    res == null ||
+                                    // operation is pending
+                                    res.Status == PlayerOperationResponse.StatusEnum.Pending ||
+                                    // operation had an error or was rejected and we're retrying it
+                                    (res.Status != PlayerOperationResponse.StatusEnum.Pending &&
+                                    res.UpdatedAt != null && res.UpdatedAt < now),
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
