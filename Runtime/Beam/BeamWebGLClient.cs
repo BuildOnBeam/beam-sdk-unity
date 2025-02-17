@@ -186,7 +186,7 @@ namespace Beam
             int secondsTimeout = DefaultTimeoutInSeconds,
             CancellationToken cancellationToken = default)
         {
-            var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, cancellationToken);
+            var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, authProvider: null, cancellationToken);
             return result;
         }
 
@@ -353,7 +353,8 @@ namespace Beam
         /// Opens an external browser to sign a transaction, returns the result via callback arg.
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
-        /// <param name="PlayerOperationResponse">Operation from <see cref="GetOperationToSignAsync"/></param>
+        /// <param name="playerOperationResponse">Operation from <see cref="GetOperationToSignAsync"/></param>
+        /// <param name="authProvider"></param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="signingBy">If set to Auto, will try to use a local Session and open Browser if there is no valid Session.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
@@ -361,9 +362,10 @@ namespace Beam
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> StartOperationSigningAsync(
             string entityId,
-            PlayerOperationResponse PlayerOperationResponse,
+            PlayerOperationResponse playerOperationResponse,
             int chainId = Constants.DefaultChainId,
             OperationSigningBy signingBy = OperationSigningBy.Auto,
+            PlayerOperationResponse.AuthProviderEnum? authProvider = null,
             int secondsTimeout = DefaultTimeoutInSeconds,
             CancellationToken cancellationToken = default)
         {
@@ -377,7 +379,7 @@ namespace Beam
                 if (hasActiveSession)
                 {
                     Log($"Has an active session until: {activeSession.EndTime:o}, using it to sign the operation");
-                    return await SignOperationUsingSessionAsync(PlayerOperationResponse, activeSessionKeyPair,
+                    return await SignOperationUsingSessionAsync(playerOperationResponse, activeSessionKeyPair,
                         cancellationToken);
                 }
             }
@@ -385,7 +387,7 @@ namespace Beam
             if (signingBy is OperationSigningBy.Auto or OperationSigningBy.Browser)
             {
                 Log("No active session found, using browser to sign the operation");
-                return await SignOperationUsingBrowserAsync(PlayerOperationResponse, secondsTimeout, cancellationToken);
+                return await SignOperationUsingBrowserAsync(playerOperationResponse, secondsTimeout, authProvider, cancellationToken);
             }
 
             Log($"No active session found, {nameof(signingBy)} set to {signingBy.ToString()}");

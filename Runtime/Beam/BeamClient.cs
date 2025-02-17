@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Web;
 using Beam.Extensions;
 using Beam.Models;
 using Beam.Storage;
@@ -11,7 +11,6 @@ using BeamPlayerClient.Api;
 using BeamPlayerClient.Client;
 using BeamPlayerClient.Model;
 using Cysharp.Threading.Tasks;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Beam
@@ -221,7 +220,7 @@ namespace Beam
                 return new BeamResult<PlayerOperationResponse.StatusEnum>(BeamResultType.Error, e.Message);
             }
 
-            var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, cancellationToken);
+            var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, authProvider: null, cancellationToken);
             return result;
         }
 
@@ -345,6 +344,7 @@ namespace Beam
         /// <param name="operationId">Id of the Operation to sign. Returned by Beam API.</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="signingBy">If set to Auto, will try to use a local Session and open Browser if there is no valid Session.</param>
+        /// <param name="authProvider">If included, will override AuthProvider used when creating Operation. Ignored if signing via Session.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
@@ -353,6 +353,7 @@ namespace Beam
             string operationId,
             int chainId = Constants.DefaultChainId,
             OperationSigningBy signingBy = OperationSigningBy.Auto,
+            PlayerOperationResponse.AuthProviderEnum? authProvider = null,
             int secondsTimeout = DefaultTimeoutInSeconds,
             CancellationToken cancellationToken = default)
         {
@@ -397,7 +398,7 @@ namespace Beam
             if (signingBy is OperationSigningBy.Auto or OperationSigningBy.Browser)
             {
                 Log("No active session found, using browser to sign the operation");
-                return await SignOperationUsingBrowserAsync(operation, secondsTimeout, cancellationToken);
+                return await SignOperationUsingBrowserAsync(operation, secondsTimeout, authProvider, cancellationToken);
             }
 
             Log($"No active session found, {nameof(signingBy)} set to {signingBy.ToString()}");
@@ -421,9 +422,20 @@ namespace Beam
         protected async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> SignOperationUsingBrowserAsync(
             PlayerOperationResponse operation,
             int secondsTimeout,
+            PlayerOperationResponse.AuthProviderEnum? authProvider,
             CancellationToken cancellationToken = default)
         {
             var url = operation.Url;
+            if (authProvider.HasValue)
+            {
+                // override provider param if needed
+                var uriBuilder = new UriBuilder(url);
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                query.Set("provider", authProvider.ToString());
+                uriBuilder.Query = query.ToString();
+                url = uriBuilder.ToString();
+
+            }
             Log($"Opening {url}...");
 
             // open identity.onbeam.com, give it operation id
