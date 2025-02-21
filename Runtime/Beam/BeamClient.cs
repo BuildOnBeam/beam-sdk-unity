@@ -35,7 +35,7 @@ namespace Beam
         protected bool m_DebugLog;
         protected Action<string> m_UrlToOpen = url => Application.OpenURL(url);
         protected IStorage m_Storage = new PlayerPrefsStorage();
-        protected bool m_IsInFocus = false;
+        protected bool m_IsInFocus = true;
 
         #region Config
 
@@ -573,10 +573,15 @@ namespace Beam
             }
         }
 
+        // only enable outside of editor due to various issues with OnApplicationPause
+        // m_IsInFocus is hardcoded to true in this case
+        #if !UNITY_EDITOR
         public void OnApplicationPause(bool pauseStatus)
         {
+            Log($"OnApplicationPause: {pauseStatus}");
             m_IsInFocus = !pauseStatus;
         }
+        #endif
 
         /// <summary>
         /// Will retry or return null if received 404.
@@ -589,7 +594,7 @@ namespace Beam
             CancellationToken cancellationToken = default)
             where T : class
         {
-            await UniTask.Delay(1000, cancellationToken: cancellationToken);
+            await UniTask.Delay(4000, cancellationToken: cancellationToken);
 
             var endTime = DateTime.Now.AddSeconds(secondsTimeout);
 
