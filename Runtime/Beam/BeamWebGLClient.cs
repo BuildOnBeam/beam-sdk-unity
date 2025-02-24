@@ -122,7 +122,7 @@ namespace Beam
         {
             Log($"Opening ${createConnectionRequestResponse.Url}");
             // open browser to connect user
-            m_UrlToOpen(createConnectionRequestResponse.Url);
+            OpenUrl(createConnectionRequestResponse.Url);
 
             var pollingResult = await PollForResult(
                 actionToPerform: () =>
@@ -256,7 +256,7 @@ namespace Beam
         {
             Log($"Opening {generateSessionRequestResponse.Url}");
             // open identity.onbeam.com
-            m_UrlToOpen(generateSessionRequestResponse.Url);
+            OpenUrl(generateSessionRequestResponse.Url);
 
             var beamResultModel = new BeamResult<BeamSession>();
 

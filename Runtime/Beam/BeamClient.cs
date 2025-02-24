@@ -148,7 +148,7 @@ namespace Beam
 
             Log($"Opening ${connRequest.Url}");
             // open browser to connect user
-            m_UrlToOpen(connRequest.Url);
+            OpenUrl(connRequest.Url);
 
             var pollingResult = await PollForResult(
                 actionToPerform: () => ConnectorApi.GetConnectionRequestAsync(connRequest.Id, cancellationToken),
@@ -278,7 +278,7 @@ namespace Beam
 
             Log($"Opening {beamSessionRequest.Url}");
             // open identity.onbeam.com
-            m_UrlToOpen(beamSessionRequest.Url);
+            OpenUrl(beamSessionRequest.Url);
 
             var beamResultModel = new BeamResult<BeamSession>();
 
@@ -439,11 +439,11 @@ namespace Beam
             Log($"Opening {url}...");
 
             // open identity.onbeam.com, give it operation id
-            m_UrlToOpen(url);
+            OpenUrl(url);
 
             // start polling for results of the operation
             var now = DateTimeOffset.Now;
-            var pollingResult = await PollForResult<PlayerOperationResponse>(
+            var pollingResult = await PollForResult(
                 actionToPerform: () => OperationApi.GetOperationAsync(operation.Id, cancellationToken),
                 shouldRetry: res => 
                                     // no response
@@ -488,14 +488,14 @@ namespace Beam
             KeyPair activeSessionKeyPair,
             CancellationToken cancellationToken = default)
         {
-            if (operation?.Transactions?.Any() != true)
+            if (operation?.Actions?.Any() != true)
             {
-                Log($"Operation({operation?.Id}) has no transactions to sign, ending");
+                Log($"Operation({operation?.Id}) has no actions to sign, ending");
                 return new BeamResult<PlayerOperationResponse.StatusEnum>
                 {
                     Result = PlayerOperationResponse.StatusEnum.Error,
                     Status = BeamResultType.Error,
-                    Error = "Operation has no transactions to sign"
+                    Error = "Operation has no actions to sign"
                 };
             }
 
@@ -708,6 +708,15 @@ namespace Beam
             {
                 Debug.Log(message);
             }
+        }
+
+        protected void OpenUrl(string url)
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            // we append this to try and close the custom tab afterwards via window.close()
+            url += "&attemptClosure=true";
+#endif
+            m_UrlToOpen(url);
         }
     }
 }
