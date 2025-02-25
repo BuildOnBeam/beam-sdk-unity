@@ -43,6 +43,8 @@ namespace Beam
 
         protected IStorage Storage = new PlayerPrefsStorage();
         protected bool IsInFocus = true;
+
+        protected string MainActivityName = null;
         
 #if UNITY_ANDROID && !UNITY_EDITOR
         protected ChromeCustomTab m_OpenedChromeCustomTab = null;
@@ -120,6 +122,21 @@ namespace Beam
         public BeamClient SetUrlOpener(Action<string> url)
         {
             UrlToOpen = url;
+            return this;
+        }
+
+        /// <summary>
+        /// Default activity name is set to "com.unity3d.player.UnityPlayer". You can use this method to override it if needed.
+        /// Only used on Android.
+        /// </summary>
+        /// <param name="mainActivity"></param>
+        /// <returns></returns>
+        public BeamClient SetMainActivityName(string mainActivity)
+        {
+            #if UNITY_ANDROID && !UNITY_EDITOR
+            MainActivityName = mainActivity;
+            #endif
+
             return this;
         }
 
@@ -744,7 +761,10 @@ namespace Beam
 #elif UNITY_ANDROID && !UNITY_EDITOR
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
             m_OpenedChromeCustomTab = gameObject.AddComponent<ChromeCustomTab>();
-            
+            if (MainActivityName != null)
+            {
+                m_OpenedChromeCustomTab.SetUnityMainActivity(MainActivityName);
+            }
             // we append this to try and close the custom tab afterwards via window.close() in identity.onbeam.com
             url += "&attemptClosure=true";
             m_OpenedChromeCustomTab.OpenCustomTab(url, "#000000", "#000000");

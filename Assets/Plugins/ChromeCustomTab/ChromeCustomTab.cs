@@ -15,6 +15,11 @@ namespace OneDevApp.CustomTabPlugin
         [Tooltip("Android Launcher Activity")]
         [SerializeField]
         private string m_unityMainActivity = "com.unity3d.player.UnityPlayer";
+        
+        public void SetUnityMainActivity(string activityName)
+        {
+            m_unityMainActivity = activityName;
+        }
 
 #pragma warning restore 0414
 
