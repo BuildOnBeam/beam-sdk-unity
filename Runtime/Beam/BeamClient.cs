@@ -13,6 +13,12 @@ using BeamPlayerClient.Model;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
+#if UNITY_IOS
+using Plugins.iOS;
+#elif UNITY_ANDROID && !UNITY_EDITOR
+using OneDevApp.CustomTabPlugin;
+#endif
+
 namespace Beam
 {
     public class BeamClient : MonoBehaviour
@@ -30,12 +36,17 @@ namespace Beam
 
         protected const int DefaultTimeoutInSeconds = 240;
 
-        protected string m_BeamApiKey;
-        protected string m_BeamApiUrl;
-        protected bool m_DebugLog;
-        protected Action<string> m_UrlToOpen = url => Application.OpenURL(url);
-        protected IStorage m_Storage = new PlayerPrefsStorage();
-        protected bool m_IsInFocus = true;
+        protected string BeamApiKey;
+        protected string BeamApiUrl;
+        protected bool DebugLog;
+        protected Action<string> UrlToOpen = null;
+
+        protected IStorage Storage = new PlayerPrefsStorage();
+        protected bool IsInFocus = true;
+        
+#if UNITY_ANDROID && !UNITY_EDITOR
+        protected ChromeCustomTab m_OpenedChromeCustomTab = null;
+#endif
 
         #region Config
 
@@ -51,7 +62,7 @@ namespace Beam
         /// <returns>BeamClient</returns>
         public BeamClient SetBeamApiKey(string publishableApiKey)
         {
-            m_BeamApiKey = publishableApiKey;
+            BeamApiKey = publishableApiKey;
             return this;
         }
 
@@ -73,7 +84,7 @@ namespace Beam
                     break;
             }
 
-            m_BeamApiUrl = apiUrl;
+            BeamApiUrl = apiUrl;
 
             return this;
         }
@@ -85,7 +96,7 @@ namespace Beam
         /// <returns>BeamClient</returns>
         public BeamClient SetStorage(IStorage storage)
         {
-            m_Storage = storage;
+            this.Storage = storage;
             return this;
         }
 
@@ -96,19 +107,19 @@ namespace Beam
         /// <returns>BeamClient</returns>
         public BeamClient SetDebugLogging(bool enable)
         {
-            m_DebugLog = enable;
+            DebugLog = enable;
             return this;
         }
 
         /// <summary>
-        /// Sets a custom callback that should open URLs. By default uses Application.OpenUrl().
+        /// Sets a custom callback that should open URLs. By default uses Application.OpenWebView().
         /// Might be useful when running WebGL to avoid popup blocking, by using various js interop plugins, or when custom WebView is needed.
         /// </summary>
         /// <param name="url">Url to open in a browser or webview. Must keep all query params and casing to work.</param>
         /// <returns>BeamClient</returns>
         public BeamClient SetUrlOpener(Action<string> url)
         {
-            m_UrlToOpen = url;
+            UrlToOpen = url;
             return this;
         }
 
@@ -148,7 +159,7 @@ namespace Beam
 
             Log($"Opening ${connRequest.Url}");
             // open browser to connect user
-            OpenUrl(connRequest.Url);
+            OpenWebView(connRequest.Url);
 
             var pollingResult = await PollForResult(
                 actionToPerform: () => ConnectorApi.GetConnectionRequestAsync(connRequest.Id, cancellationToken),
@@ -156,6 +167,9 @@ namespace Beam
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
+
+
+            CloseWebViewIfPossible();
 
             Log($"Got polling connection request result: {pollingResult.Status.ToString()}");
 
@@ -220,7 +234,8 @@ namespace Beam
                 return new BeamResult<PlayerOperationResponse.StatusEnum>(BeamResultType.Error, e.Message);
             }
 
-            var result = await SignOperationUsingBrowserAsync(operation, secondsTimeout, authProvider: null, cancellationToken);
+            var result =
+                await SignOperationUsingBrowserAsync(operation, secondsTimeout, authProvider: null, cancellationToken);
             return result;
         }
 
@@ -278,7 +293,7 @@ namespace Beam
 
             Log($"Opening {beamSessionRequest.Url}");
             // open identity.onbeam.com
-            OpenUrl(beamSessionRequest.Url);
+            OpenWebView(beamSessionRequest.Url);
 
             var beamResultModel = new BeamResult<BeamSession>();
 
@@ -292,6 +307,8 @@ namespace Beam
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
+            
+            CloseWebViewIfPossible();
 
             if (pollingResult == null)
             {
@@ -416,7 +433,7 @@ namespace Beam
         /// <param name="entityId">EntityId</param>
         public void ClearLocalSession(string entityId)
         {
-            m_Storage.Delete(Constants.Storage.BeamSigningKey + entityId);
+            Storage.Delete(Constants.Storage.BeamSigningKey + entityId);
         }
 
         protected async UniTask<BeamResult<PlayerOperationResponse.StatusEnum>> SignOperationUsingBrowserAsync(
@@ -434,28 +451,30 @@ namespace Beam
                 query.Set("provider", authProvider.ToString());
                 uriBuilder.Query = query.ToString();
                 url = uriBuilder.ToString();
-
             }
+
             Log($"Opening {url}...");
 
             // open identity.onbeam.com, give it operation id
-            OpenUrl(url);
+            OpenWebView(url);
 
             // start polling for results of the operation
             var now = DateTimeOffset.Now;
             var pollingResult = await PollForResult(
                 actionToPerform: () => OperationApi.GetOperationAsync(operation.Id, cancellationToken),
-                shouldRetry: res => 
-                                    // no response
-                                    res == null ||
-                                    // operation is pending
-                                    res.Status == PlayerOperationResponse.StatusEnum.Pending ||
-                                    // operation had an error or was rejected and we're retrying it
-                                    (res.Status != PlayerOperationResponse.StatusEnum.Pending &&
-                                    res.UpdatedAt != null && res.UpdatedAt < now),
+                shouldRetry: res =>
+                    // no response
+                    res == null ||
+                    // operation is pending
+                    res.Status == PlayerOperationResponse.StatusEnum.Pending ||
+                    // operation had an error or was rejected and we're retrying it
+                    (res.Status != PlayerOperationResponse.StatusEnum.Pending &&
+                     res.UpdatedAt != null && res.UpdatedAt < now),
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
+            
+            CloseWebViewIfPossible();
 
             Log($"Got operation({operation.Id}) result: {pollingResult?.Status.ToString()}");
             var beamResult =
@@ -575,13 +594,13 @@ namespace Beam
 
         // only enable outside of editor due to various issues with OnApplicationPause
         // m_IsInFocus is hardcoded to true in this case
-        #if !UNITY_EDITOR
+#if !UNITY_EDITOR
         public void OnApplicationPause(bool pauseStatus)
         {
             Log($"OnApplicationPause: {pauseStatus}");
-            m_IsInFocus = !pauseStatus;
+            IsInFocus = !pauseStatus;
         }
-        #endif
+#endif
 
         /// <summary>
         /// Will retry or return null if received 404.
@@ -601,7 +620,7 @@ namespace Beam
             while ((endTime - DateTime.Now).TotalSeconds > 0)
             {
                 // if we're not in focus, there's no point in polling
-                if (m_IsInFocus)
+                if (IsInFocus)
                 {
                     T result;
                     try
@@ -678,7 +697,7 @@ namespace Beam
         {
             if (!refresh)
             {
-                var privateKey = m_Storage.Get(Constants.Storage.BeamSigningKey + entityId);
+                var privateKey = Storage.Get(Constants.Storage.BeamSigningKey + entityId);
                 if (privateKey != null)
                 {
                     return KeyPair.Load(privateKey);
@@ -686,7 +705,7 @@ namespace Beam
             }
 
             var newKeyPair = KeyPair.Generate();
-            m_Storage.Set(Constants.Storage.BeamSigningKey + entityId, newKeyPair.PrivateHex);
+            Storage.Set(Constants.Storage.BeamSigningKey + entityId, newKeyPair.PrivateHex);
 
             return newKeyPair;
         }
@@ -695,28 +714,60 @@ namespace Beam
         {
             var config = new Configuration
             {
-                BasePath = m_BeamApiUrl,
+                BasePath = BeamApiUrl,
             };
-            config.ApiKey.Add("x-api-key", m_BeamApiKey);
+            config.ApiKey.Add("x-api-key", BeamApiKey);
             config.DefaultHeaders.Add("x-beam-sdk", "unity");
             return config;
         }
 
         protected void Log(string message)
         {
-            if (m_DebugLog)
+            if (DebugLog)
             {
                 Debug.Log(message);
             }
         }
 
-        protected void OpenUrl(string url)
+        protected void OpenWebView(string url)
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
-            // we append this to try and close the custom tab afterwards via window.close()
+            // if someone sets a custom behaviour, use that instead of defaults
+            if (UrlToOpen != null)
+            {
+                UrlToOpen.Invoke(url);
+                return;
+            }
+
+#if UNITY_IOS
+            // opens via Safari View Controller, so that we can automatically close it, use PasswordManagers etc.
+            SFSafariViewController.LaunchUrl(url);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+            // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
+            m_OpenedChromeCustomTab = gameObject.AddComponent<ChromeCustomTab>();
+            
+            // we append this to try and close the custom tab afterwards via window.close() in identity.onbeam.com
             url += "&attemptClosure=true";
+            m_OpenedChromeCustomTab.OpenCustomTab(url, "#000000", "#000000");
+#else
+            // will open external Web Browser application if possible, using default Unity behaviour
+            Application.OpenURL(url);
 #endif
-            m_UrlToOpen(url);
+        }
+
+        protected void CloseWebViewIfPossible()
+        {
+            if (UrlToOpen != null)
+            {
+                // ignore, custom behaviour
+                return;
+            }
+
+#if UNITY_IOS
+            SFSafariViewController.Dismiss();
+#elif UNITY_ANDROID && !UNITY_EDITOR
+            // ignore, can't close Chrome Custom Tab, but it should call window.close() on its own
+#endif
+            // ignore, can't close external application
         }
     }
 }
