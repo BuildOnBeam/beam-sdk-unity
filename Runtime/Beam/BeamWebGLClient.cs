@@ -23,7 +23,7 @@ namespace Beam
         /// </summary>
         /// <param name="publishableApiKey">Publishable Beam API key</param>
         /// <returns>BeamClient</returns>
-        public BeamWebGLClient SetBeamApiKey(string publishableApiKey)
+        public new BeamWebGLClient SetBeamApiKey(string publishableApiKey)
         {
             base.SetBeamApiKey(publishableApiKey);
             return this;
@@ -34,7 +34,7 @@ namespace Beam
         /// </summary>
         /// <param name="environment">BeamEnvironment.Mainnet or BeamEnvironment.Testnet (defaults to Testnet)</param>
         /// <returns>BeamClient</returns>
-        public BeamWebGLClient SetEnvironment(BeamEnvironment environment)
+        public new BeamWebGLClient SetEnvironment(BeamEnvironment environment)
         {
             base.SetEnvironment(environment);
             return this;
@@ -45,7 +45,7 @@ namespace Beam
         /// </summary>
         /// <param name="storage">Storage that implements IStorage</param>
         /// <returns>BeamClient</returns>
-        public BeamWebGLClient SetStorage(IStorage storage)
+        public new BeamWebGLClient SetStorage(IStorage storage)
         {
             base.SetStorage(storage);
             return this;
@@ -56,7 +56,7 @@ namespace Beam
         /// </summary>
         /// <param name="enable">True to enable</param>
         /// <returns>BeamClient</returns>
-        public BeamWebGLClient SetDebugLogging(bool enable)
+        public new BeamWebGLClient SetDebugLogging(bool enable)
         {
             base.SetDebugLogging(enable);
             return this;
@@ -68,7 +68,7 @@ namespace Beam
         /// </summary>
         /// <param name="url">Url to open in a browser or webview. Must keep all query params and casing to work.</param>
         /// <returns>BeamClient</returns>
-        public BeamWebGLClient SetUrlOpener(Action<string> url)
+        public new BeamWebGLClient SetUrlOpener(Action<string> url)
         {
             base.SetUrlOpener(url);
             return this;
@@ -122,7 +122,7 @@ namespace Beam
         {
             Log($"Opening ${createConnectionRequestResponse.Url}");
             // open browser to connect user
-            OpenUrl(createConnectionRequestResponse.Url);
+            OpenWebView(createConnectionRequestResponse.Url);
 
             var pollingResult = await PollForResult(
                 actionToPerform: () =>
@@ -131,6 +131,8 @@ namespace Beam
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
+            
+            CloseWebViewIfPossible();
 
             Log($"Got polling connection request result: {pollingResult.Status.ToString()}");
 
@@ -223,7 +225,6 @@ namespace Beam
             var newKeyPair = GetOrCreateSigningKeyPair(entityId, refresh: true);
 
             // retrieve operation Id to pass further and track result
-            GenerateSessionRequestResponse beamSessionRequest;
             try
             {
                 var res = await SessionsApi.CreateSessionRequestAsync(entityId,
@@ -256,7 +257,7 @@ namespace Beam
         {
             Log($"Opening {generateSessionRequestResponse.Url}");
             // open identity.onbeam.com
-            OpenUrl(generateSessionRequestResponse.Url);
+            OpenWebView(generateSessionRequestResponse.Url);
 
             var beamResultModel = new BeamResult<BeamSession>();
 
@@ -271,6 +272,8 @@ namespace Beam
                 secondsTimeout: 600,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
+            
+            CloseWebViewIfPossible();
 
             if (pollingResult == null)
             {
