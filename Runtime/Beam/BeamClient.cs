@@ -613,7 +613,7 @@ namespace Beam
             CancellationToken cancellationToken = default)
             where T : class
         {
-            await UniTask.Delay(3000, cancellationToken: cancellationToken);
+            await UniTask.Delay(2000, cancellationToken: cancellationToken);
 
             var endTime = DateTime.Now.AddSeconds(secondsTimeout);
 
