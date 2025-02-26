@@ -4,6 +4,7 @@ package com.onbeam.beamchrometabs;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 /**
  * A BroadcastReceiver that handles the Action Intent from the Custom Tab and shows the Url
@@ -18,26 +19,26 @@ public class ActionBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        ActionItemCallback listener = (ActionItemCallback) context;  // initialse
+        ActionItemCallback listener = (ActionItemCallback) context;  // initialize
         String url = intent.getDataString();
         if (url != null) {
             listener.performedAction(intent.getIntExtra(KEY_ACTION_SOURCE, -1));
-            /*String toastText =
+            String toastText =
                     getToastText(context, intent.getIntExtra(KEY_ACTION_SOURCE, -1), url);
-            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();*/
+            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
         }
     }
 
-    /*private String getToastText(Context context, int actionId, String url) {
+    private String getToastText(Context context, int actionId, String url) {
         switch (actionId) {
             case ACTION_ACTION_BUTTON:
-                return "ACTION_ACTION_BUTTON clicked";
+                return "ACTION_ACTION_BUTTON clicked " + url;
             case ACTION_MENU_ITEM:
-                return "ACTION_MENU_ITEM clicked";
+                return "ACTION_MENU_ITEM clicked " + url;
             case ACTION_TOOLBAR:
-                return "ACTION_TOOLBAR clicked";
+                return "ACTION_TOOLBAR clicked " + url;
             default:
-                return "Unknown ACTION_BUTTON clicked";
+                return "Unknown ACTION_BUTTON clicked " + actionId + " " + url;
         }
-    }*/
+    }
 }

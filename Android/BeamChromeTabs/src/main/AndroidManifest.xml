@@ -4,10 +4,12 @@
     <application>
         <activity
             android:name="com.onbeam.beamchrometabs.WebViewActivity"
+            android:launchMode="singleTask"
             android:exported="true" />
         <activity
             android:name="com.onbeam.beamchrometabs.CustomHeadlessActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.Transparent" />
 
         <receiver android:name="com.onbeam.beamchrometabs.ActionBroadcastReceiver" />
