@@ -1,8 +1,10 @@
 {
-    "name": "ChromeCustomTab.Runtime",
+    "name": "ChromeCustomTab",
     "rootNamespace": "",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Android"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

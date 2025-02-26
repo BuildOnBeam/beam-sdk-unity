@@ -14,10 +14,20 @@
     "polygon",
     "beam",
     "onbeam",
-    "smart contracts"
+    "smart contracts",
+    "unity"
+  ],
+  "scopedRegistries": [
+    {
+      "name": "Open UPM Packages",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp.unitask"
+      ]
+    }
   ],
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.1",
-    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.10"
+    "com.cysharp.unitask": "2.5.10"
   }
 }
