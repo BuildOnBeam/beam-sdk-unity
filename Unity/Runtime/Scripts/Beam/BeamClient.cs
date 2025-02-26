@@ -738,7 +738,8 @@ namespace Beam
             }
         }
 
-        protected void OpenWebView(string url)
+        // todo change back
+        public void OpenWebView(string url)
         {
             // if someone sets a custom behaviour, use that instead of defaults
             if (UrlToOpen != null)
