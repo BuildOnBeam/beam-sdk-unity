@@ -12,7 +12,7 @@
     "generators": {
       "unity-player-client": { 
         "generatorName": "csharp",
-        "output": "../Runtime/Beam/Api/BeamPlayerClient",
+        "output": "../Unity/Runtime/Scripts/Beam/Api/BeamPlayerClient",
         "library": "unityWebRequest",
         "templateDir": "./templates",
         "inputSpec": "https://api.testnet.onbeam.com/api/player-json",
