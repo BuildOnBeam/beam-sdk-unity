@@ -13,9 +13,9 @@ using BeamPlayerClient.Model;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-#if UNITY_IOS
+#if UNITY_IOS && !UNITY_EDITOR
 using Plugins.iOS;
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID && !UNITY_EDITOR
 using Beam.ChromeTabs;
 #endif
 
@@ -129,7 +129,7 @@ namespace Beam
         /// <returns></returns>
         public BeamClient SetMainActivityName(string mainActivity)
         {
-            #if UNITY_ANDROID
+            #if UNITY_ANDROID && !UNITY_EDITOR
             MainActivityName = mainActivity;
             #endif
 
@@ -748,11 +748,11 @@ namespace Beam
                 return;
             }
 
-#if UNITY_IOS
+#if UNITY_IOS && !UNITY_EDITOR
             // opens via Safari View Controller, so that we can automatically close it, use PasswordManagers etc.
             Log($"Opening ${url}");
             SFSafariViewController.LaunchUrl(url);
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID && !UNITY_EDITOR
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
             // we append this to try and close the custom tab afterwards via window.close() in identity.onbeam.com
             var uriBuilder = new UriBuilder(url);
@@ -777,9 +777,9 @@ namespace Beam
                 return;
             }
 
-#if UNITY_IOS
+#if UNITY_IOS && !UNITY_EDITOR
             SFSafariViewController.Dismiss();
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID && !UNITY_EDITOR
             // ignore, can't close Chrome Custom Tab, but it should call window.close() on its own
 #endif
             // ignore, can't close external application
