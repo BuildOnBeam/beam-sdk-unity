@@ -755,7 +755,11 @@ namespace Beam
 #elif UNITY_ANDROID
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
             // we append this to try and close the custom tab afterwards via window.close() in identity.onbeam.com
-            url += "&attemptClosure=true";
+            var uriBuilder = new UriBuilder(url);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+            query.Set("attemptClosure", "true");
+            uriBuilder.Query = query.ToString();
+            url = uriBuilder.ToString();
             Log($"Opening ${url}");
             BeamChromeTabs.OpenCustomTab(url, "#000000", "#000000", mainActivity: MainActivityName);
 #else
