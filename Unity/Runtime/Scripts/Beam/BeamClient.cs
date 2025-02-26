@@ -12,12 +12,8 @@ using BeamPlayerClient.Client;
 using BeamPlayerClient.Model;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-
-#if UNITY_IOS && !UNITY_EDITOR
 using Plugins.iOS;
-#elif UNITY_ANDROID && !UNITY_EDITOR
 using Beam.ChromeTabs;
-#endif
 
 namespace Beam
 {
@@ -45,7 +41,7 @@ namespace Beam
         protected bool IsInFocus = true;
 
         protected string MainActivityName = BeamChromeTabs.DefaultUnityMainActivity;
-        
+
         #region Config
 
         public BeamClient()
@@ -129,10 +125,9 @@ namespace Beam
         /// <returns></returns>
         public BeamClient SetMainActivityName(string mainActivity)
         {
-            #if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
             MainActivityName = mainActivity;
-            #endif
-
+#endif
             return this;
         }
 
@@ -318,7 +313,7 @@ namespace Beam
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
-            
+
             CloseWebViewIfPossible();
 
             if (pollingResult == null)
@@ -482,7 +477,7 @@ namespace Beam
                 secondsTimeout: secondsTimeout,
                 secondsBetweenPolls: 1,
                 cancellationToken: cancellationToken);
-            
+
             CloseWebViewIfPossible();
 
             Log($"Got operation({operation.Id}) result: {pollingResult?.Status.ToString()}");
