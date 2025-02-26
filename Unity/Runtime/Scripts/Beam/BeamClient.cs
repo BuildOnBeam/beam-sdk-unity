@@ -170,7 +170,6 @@ namespace Beam
                 return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, e.Message);
             }
 
-            Log($"Opening ${connRequest.Url}");
             // open browser to connect user
             OpenWebView(connRequest.Url);
 
@@ -304,7 +303,6 @@ namespace Beam
                 return new BeamResult<BeamSession>(e);
             }
 
-            Log($"Opening {beamSessionRequest.Url}");
             // open identity.onbeam.com
             OpenWebView(beamSessionRequest.Url);
 
@@ -465,8 +463,6 @@ namespace Beam
                 uriBuilder.Query = query.ToString();
                 url = uriBuilder.ToString();
             }
-
-            Log($"Opening {url}...");
 
             // open identity.onbeam.com, give it operation id
             OpenWebView(url);
@@ -753,13 +749,16 @@ namespace Beam
 
 #if UNITY_IOS
             // opens via Safari View Controller, so that we can automatically close it, use PasswordManagers etc.
+            Log($"Opening ${url}");
             SFSafariViewController.LaunchUrl(url);
 #elif UNITY_ANDROID
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
             // we append this to try and close the custom tab afterwards via window.close() in identity.onbeam.com
             url += "&attemptClosure=true";
+            Log($"Opening ${url}");
             BeamChromeTabs.OpenCustomTab(url, "#000000", "#000000", mainActivity: MainActivityName);
 #else
+            Log($"Opening ${url}");
             // will open external Web Browser application if possible, using default Unity behaviour
             Application.OpenURL(url);
 #endif
