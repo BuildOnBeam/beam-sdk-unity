@@ -23,9 +23,9 @@ public class ActionBroadcastReceiver extends BroadcastReceiver {
         String url = intent.getDataString();
         if (url != null) {
             listener.performedAction(intent.getIntExtra(KEY_ACTION_SOURCE, -1));
-            String toastText =
-                    getToastText(context, intent.getIntExtra(KEY_ACTION_SOURCE, -1), url);
-            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
+//            String toastText =
+//                    getToastText(context, intent.getIntExtra(KEY_ACTION_SOURCE, -1), url);
+//            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
         }
     }
 

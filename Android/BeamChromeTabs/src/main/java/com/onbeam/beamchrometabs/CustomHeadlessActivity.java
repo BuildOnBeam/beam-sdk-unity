@@ -16,15 +16,15 @@ import androidx.browser.customtabs.CustomTabColorSchemeParams;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.FragmentActivity;
 
-public class CustomHeadlessActivity  extends FragmentActivity implements ActionItemCallback{
+public class CustomHeadlessActivity extends FragmentActivity implements ActionItemCallback {
 
     private static final int TOOLBAR_ITEM_ID = 1;
 
     private String urlToLaunch = "";
     private String colorString = "";
     private String secondaryColorString = "";
-    private String  actionLabel = "";
-    private String  menuItemTitle = "";
+    private String actionLabel = "";
+    private String menuItemTitle = "";
     private boolean showTitle = false;
     private boolean urlBarHiding = false;
     private boolean showActionBtn = false;
@@ -32,10 +32,12 @@ public class CustomHeadlessActivity  extends FragmentActivity implements ActionI
     private boolean addDefaultShareItem = false;
     private boolean addToolbarItem = false;
     private boolean customBackButton = false;
+    private boolean isComingFromCallback = false;
 
     private boolean mCustomTabsOpened = false;
 
     private CustomTabActivityHelper mCustomTabActivityHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +90,12 @@ public class CustomHeadlessActivity  extends FragmentActivity implements ActionI
         if (intent.getExtras().containsKey("addToolbarItem")) {
             addToolbarItem = intent.getExtras().getBoolean("addToolbarItem");
         }
+        if (intent.getExtras().containsKey("isComingFromCallback")) {
+            isComingFromCallback = intent.getExtras().getBoolean("isComingFromCallback");
+        } else {
+            isComingFromCallback = false;
+        }
+
         openCustomTab();
     }
 
@@ -104,12 +112,17 @@ public class CustomHeadlessActivity  extends FragmentActivity implements ActionI
     }
 
     private void openCustomTab() {
+        if (isComingFromCallback) {
+            // we're coming back from identity.onbeam.com via deeplink, finish early
+            this.finish();
+            return;
+        }
 
         CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
         CustomTabColorSchemeParams.Builder defaultBuilder = new CustomTabColorSchemeParams.Builder();
-        if(!colorString.isEmpty())
+        if (!colorString.isEmpty())
             defaultBuilder.setToolbarColor(Color.parseColor(colorString));
-        if(!secondaryColorString.isEmpty())
+        if (!secondaryColorString.isEmpty())
             defaultBuilder.setSecondaryToolbarColor(Color.parseColor(secondaryColorString));
         CustomTabColorSchemeParams defaultColors = defaultBuilder.build();
 
@@ -158,7 +171,7 @@ public class CustomHeadlessActivity  extends FragmentActivity implements ActionI
                 android.R.anim.slide_out_right);
         mCustomTabsOpened = true;
         CustomTabActivityHelper.openCustomTab(
-                this, intentBuilder.build(), Uri.parse(urlToLaunch), new WebViewFallback());
+                this, intentBuilder.build(), Uri.parse(urlToLaunch));
     }
 
     private PendingIntent createPendingIntent(int actionSourceId) {
@@ -189,13 +202,13 @@ public class CustomHeadlessActivity  extends FragmentActivity implements ActionI
     public void performedAction(int actionId) {
         switch (actionId) {
             case ActionBroadcastReceiver.ACTION_ACTION_BUTTON:
-                Toast.makeText(CustomHeadlessActivity.this,  "ACTION_ACTION_BUTTON clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomHeadlessActivity.this, "ACTION_ACTION_BUTTON clicked", Toast.LENGTH_SHORT).show();
             case ActionBroadcastReceiver.ACTION_MENU_ITEM:
-                Toast.makeText(this,   "ACTION_MENU_ITEM clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ACTION_MENU_ITEM clicked", Toast.LENGTH_SHORT).show();
             case ActionBroadcastReceiver.ACTION_TOOLBAR:
-                Toast.makeText(this,   "ACTION_TOOLBAR clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ACTION_TOOLBAR clicked", Toast.LENGTH_SHORT).show();
             default:
-                Toast.makeText(this,   "Unknown ACTION_BUTTON clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Unknown ACTION_BUTTON clicked", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -31,12 +31,6 @@ public class CustomTabsHelper {
 
     private CustomTabsHelper() {}
 
-    public static void addKeepAliveExtra(Context context, Intent intent) {
-        Intent keepAliveIntent = new Intent().setClassName(
-                context.getPackageName(), KeepAliveService.class.getCanonicalName());
-        intent.putExtra(EXTRA_CUSTOM_TABS_KEEP_ALIVE, keepAliveIntent);
-    }
-
     /**
      * Goes through all apps that handle VIEW intents and have a warmup service. Picks
      * the one chosen by the user if there is one, otherwise makes a best effort to return a
@@ -104,7 +98,7 @@ public class CustomTabsHelper {
             List<ResolveInfo> handlers = pm.queryIntentActivities(
                     intent,
                     PackageManager.GET_RESOLVED_FILTER);
-            if (handlers.size() == 0) {
+            if (handlers.isEmpty()) {
                 return false;
             }
             for (ResolveInfo resolveInfo : handlers) {
@@ -118,12 +112,5 @@ public class CustomTabsHelper {
             Log.e(TAG, "Runtime exception while getting specialized handlers");
         }
         return false;
-    }
-
-    /**
-     * @return All possible chrome package names that provide custom tabs feature.
-     */
-    public static String[] getPackages() {
-        return new String[]{"", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE, LOCAL_PACKAGE};
     }
 }

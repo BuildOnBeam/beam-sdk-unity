@@ -2,6 +2,7 @@ package com.onbeam.beamchrometabs;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -27,20 +28,16 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
      * @param activity The host activity.
      * @param customTabsIntent a CustomTabsIntent to be used if Custom Tabs is available.
      * @param uri the Uri to be opened.
-     * @param fallback a CustomTabFallback to be used if Custom Tabs is not available.
      */
     public static void openCustomTab(Activity activity,
                                      CustomTabsIntent customTabsIntent,
-                                     Uri uri,
-                                     CustomTabFallback fallback) {
+                                     Uri uri) {
         String packageName = CustomTabsHelper.getPackageNameToUse(activity);
 
         //If we cant find a package name, it means theres no browser that supports
-        //Chrome Custom Tabs installed. So, we fallback to the webview
+        //Chrome Custom Tabs installed. So, we fallback to any browser installed
         if (packageName == null) {
-            if (fallback != null) {
-                fallback.openUri(activity, uri);
-            }
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
         } else {
             customTabsIntent.intent.setPackage(packageName);
             customTabsIntent.launchUrl(activity, uri);
