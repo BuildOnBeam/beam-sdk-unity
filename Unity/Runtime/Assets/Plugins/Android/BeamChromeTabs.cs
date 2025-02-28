@@ -6,8 +6,7 @@ namespace Beam.ChromeTabs
     {
         public const string DefaultUnityMainActivity = "com.unity3d.player.UnityPlayer";
 
-        public static void OpenCustomTab(string urlToLaunch, string colorCode, string secColorCode, bool showTitle = false,
-            bool showUrlBar = false, string mainActivity = DefaultUnityMainActivity)
+        public static void OpenCustomTab(string urlToLaunch, BeamChromeTabsConfig config, BeamChromeTabsCallback callback, string mainActivity = DefaultUnityMainActivity)
         {
             #if UNITY_ANDROID && !UNITY_EDITOR
             if (Application.platform == RuntimePlatform.Android)
@@ -16,16 +15,9 @@ namespace Beam.ChromeTabs
                 {
                     using (var mContext = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
                     {
-                        using (AndroidJavaClass jc = new AndroidJavaClass("com.onbeam.beamchrometabs.CustomTabPlugin"))
+                        using (AndroidJavaClass jc = new AndroidJavaClass("com.onbeam.beamchrometabs.activities.ChromeTabActivity"))
                         {
-                            var mAuthManager = jc.CallStatic<AndroidJavaObject>("getInstance");
-                            mAuthManager.Call<AndroidJavaObject>("setActivity", mContext);
-                            mAuthManager.Call<AndroidJavaObject>("setUrl", urlToLaunch);
-                            mAuthManager.Call<AndroidJavaObject>("setColorString", colorCode);
-                            mAuthManager.Call<AndroidJavaObject>("setSecondaryColorString", secColorCode);
-                            mAuthManager.Call<AndroidJavaObject>("ToggleShowTitle", showTitle);
-                            mAuthManager.Call<AndroidJavaObject>("ToggleUrlBarHiding", showUrlBar);
-                            mAuthManager.Call("openCustomTab");
+                            jc.CallStatic("startActivity", mContext, urlToLaunch, config.ToAndroidJavaClass(), callback);
                         }
                     }
                 }

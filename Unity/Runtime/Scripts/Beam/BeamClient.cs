@@ -40,7 +40,10 @@ namespace Beam
         protected IStorage Storage = new PlayerPrefsStorage();
         protected bool IsInFocus = true;
 
+#if UNITY_ANDROID && !UNITY_EDITOR
         protected string MainActivityName = BeamChromeTabs.DefaultUnityMainActivity;
+        public BeamChromeTabsConfig ChromeTabConfig { get; set; } = new();
+#endif
 
         #region Config
 
@@ -117,6 +120,7 @@ namespace Beam
             return this;
         }
 
+#if UNITY_ANDROID && !UNITY_EDITOR
         /// <summary>
         /// Default activity name is set to "com.unity3d.player.UnityPlayer". You can use this method to override it if needed.
         /// Only used on Android.
@@ -125,12 +129,20 @@ namespace Beam
         /// <returns></returns>
         public BeamClient SetMainActivityName(string mainActivity)
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
             MainActivityName = mainActivity;
-#endif
             return this;
         }
-
+        
+        /// <summary>
+        /// Sets basic configurable properties on Chrome Custom Tabs opened by BeamClient. Only used on Android.
+        /// </summary>
+        public BeamClient SetChromeTabsConfig(BeamChromeTabsConfig config)
+        {
+            ChromeTabConfig = config;
+            
+            return this;
+        }
+#endif
         #endregion
 
         /// <summary>
@@ -733,8 +745,14 @@ namespace Beam
             }
         }
 
-        // todo change back
-        public void OpenWebView(string url)
+        // todo change back to private
+        /// <summary>
+        /// Opens given URL in a way that depends on platform. In case of Android onCancel/onFinished will be called if Chrome Custom Tab is used.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="onCancel"></param>
+        /// <param name="onFinished"></param>
+        public void OpenWebView(string url, Action onCancel = null, Action onFinished = null)
         {
             // if someone sets a custom behaviour, use that instead of defaults
             if (UrlToOpen != null)
@@ -756,7 +774,11 @@ namespace Beam
             uriBuilder.Query = query.ToString();
             url = uriBuilder.ToString();
             Log($"Opening ${url}");
-            BeamChromeTabs.OpenCustomTab(url, "#000000", "#000000", mainActivity: MainActivityName);
+            var callbackTemp = new BeamChromeTabsCallback(
+                onCancel: () => { onCancel?.Invoke(); },
+                onFinished: () => { onFinished?.Invoke(); });
+            ;
+            BeamChromeTabs.OpenCustomTab(url, ChromeTabConfig, callbackTemp, mainActivity: MainActivityName);
 #else
             Log($"Opening ${url}");
             // will open external Web Browser application if possible, using default Unity behaviour

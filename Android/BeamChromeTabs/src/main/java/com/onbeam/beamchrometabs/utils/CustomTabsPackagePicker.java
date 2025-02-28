@@ -1,4 +1,4 @@
-package com.onbeam.beamchrometabs;
+package com.onbeam.beamchrometabs.utils;
 
 
 import android.content.Context;
@@ -14,22 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper class for Custom Tabs.
+ * Helper for picking right package for Chrome Custom Tabs.
  */
-public class CustomTabsHelper {
-    private static final String TAG = "CustomTabsHelper";
+public final class CustomTabsPackagePicker {
+    private static final String TAG = "CustomTabsPackagePicker";
     static final String STABLE_PACKAGE = "com.android.chrome";
     static final String BETA_PACKAGE = "com.chrome.beta";
     static final String DEV_PACKAGE = "com.chrome.dev";
     static final String LOCAL_PACKAGE = "com.google.android.apps.chrome";
-    private static final String EXTRA_CUSTOM_TABS_KEEP_ALIVE =
-            "android.support.customtabs.extra.KEEP_ALIVE";
     private static final String ACTION_CUSTOM_TABS_CONNECTION =
             "android.support.customtabs.action.CustomTabsService";
 
-    private static String sPackageNameToUse;
+    private static String packageNameToUse;
 
-    private CustomTabsHelper() {}
+    private CustomTabsPackagePicker() {}
 
     /**
      * Goes through all apps that handle VIEW intents and have a warmup service. Picks
@@ -42,7 +40,7 @@ public class CustomTabsHelper {
      * @return The package name recommended to use for connecting to custom tabs related components.
      */
     public static String getPackageNameToUse(Context context) {
-        if (sPackageNameToUse != null) return sPackageNameToUse;
+        if (packageNameToUse != null) return packageNameToUse;
 
         PackageManager pm = context.getPackageManager();
         // Get default VIEW intent handler.
@@ -68,23 +66,23 @@ public class CustomTabsHelper {
         // Now packagesSupportingCustomTabs contains all apps that can handle both VIEW intents
         // and service calls.
         if (packagesSupportingCustomTabs.isEmpty()) {
-            sPackageNameToUse = null;
+            packageNameToUse = null;
         } else if (packagesSupportingCustomTabs.size() == 1) {
-            sPackageNameToUse = packagesSupportingCustomTabs.get(0);
+            packageNameToUse = packagesSupportingCustomTabs.get(0);
         } else if (!TextUtils.isEmpty(defaultViewHandlerPackageName)
                 && !hasSpecializedHandlerIntents(context, activityIntent)
                 && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName)) {
-            sPackageNameToUse = defaultViewHandlerPackageName;
+            packageNameToUse = defaultViewHandlerPackageName;
         } else if (packagesSupportingCustomTabs.contains(STABLE_PACKAGE)) {
-            sPackageNameToUse = STABLE_PACKAGE;
+            packageNameToUse = STABLE_PACKAGE;
         } else if (packagesSupportingCustomTabs.contains(BETA_PACKAGE)) {
-            sPackageNameToUse = BETA_PACKAGE;
+            packageNameToUse = BETA_PACKAGE;
         } else if (packagesSupportingCustomTabs.contains(DEV_PACKAGE)) {
-            sPackageNameToUse = DEV_PACKAGE;
+            packageNameToUse = DEV_PACKAGE;
         } else if (packagesSupportingCustomTabs.contains(LOCAL_PACKAGE)) {
-            sPackageNameToUse = LOCAL_PACKAGE;
+            packageNameToUse = LOCAL_PACKAGE;
         }
-        return sPackageNameToUse;
+        return packageNameToUse;
     }
 
     /**
