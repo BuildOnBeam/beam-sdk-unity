@@ -745,14 +745,10 @@ namespace Beam
             }
         }
 
-        // todo change back to private
         /// <summary>
         /// Opens given URL in a way that depends on platform. In case of Android onCancel/onFinished will be called if Chrome Custom Tab is used.
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="onCancel"></param>
-        /// <param name="onFinished"></param>
-        public void OpenWebView(string url, Action onCancel = null, Action onFinished = null)
+        protected void OpenWebView(string url)
         {
             // if someone sets a custom behaviour, use that instead of defaults
             if (UrlToOpen != null)
@@ -767,10 +763,11 @@ namespace Beam
             SFSafariViewController.LaunchUrl(url);
 #elif UNITY_ANDROID && !UNITY_EDITOR
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
-            // we append this to try and close the custom tab afterwards via window.close() in identity.onbeam.com
+            // we append androidCallback to try and close the custom tab afterward
+			// via window.close() or deeplink in identity.onbeam.com
             var uriBuilder = new UriBuilder(url);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-            query.Set("attemptClosure", "true");
+            query.Set("androidCallback", "true");
             uriBuilder.Query = query.ToString();
             url = uriBuilder.ToString();
             Log($"Opening ${url}");
