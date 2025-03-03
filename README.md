@@ -12,7 +12,7 @@ Open Packages/manifest.json and add these lines:
 "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
 ```
 
-##### Note: using  `https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity` will always default to the newest version of the main branch. You probably should lock the url to particular release to avoid potential compatibility issues. To do so, add `#vX.X.X` to the url, like this: `https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity#v0.5.3`.
+##### Note: using  `https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity` will always default to the newest version of the main branch. You probably should lock the url to particular release to avoid potential compatibility issues. To do so, add `#vX.X.X` to the url, like this: `https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity#v1.0.0`.
 
 #### Option 2 - Package Manager Editor UI
 
