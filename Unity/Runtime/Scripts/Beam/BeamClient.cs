@@ -629,7 +629,7 @@ namespace Beam
             CancellationToken cancellationToken = default)
             where T : class
         {
-            await UniTask.Delay(2000, cancellationToken: cancellationToken);
+            await UniTask.Delay(1000, cancellationToken: cancellationToken);
 
             var endTime = DateTime.Now.AddSeconds(secondsTimeout);
 
@@ -658,9 +658,13 @@ namespace Beam
                     {
                         return result;
                     }
+                    await UniTask.Delay(secondsBetweenPolls * 1000, cancellationToken: cancellationToken);
                 }
-
-                await UniTask.Delay(secondsBetweenPolls * 1000, cancellationToken: cancellationToken);
+                else
+                {
+                    // use lower delay when in background so that first check after we come back happens earlier 
+                    await UniTask.Delay(200, cancellationToken: cancellationToken);
+                }
             }
 
             return null;
