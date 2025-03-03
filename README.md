@@ -8,11 +8,11 @@ To install Beam SDK for Unity you have to add following dependencies to your man
 Open Packages/manifest.json and add these lines:
 
 ```
-"beam.sdk.client": "https://github.com/BuildOnBeam/beam-sdk-unity.git",
+"beam.sdk.client": "https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity",
 "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
 ```
 
-##### Note: using  `https://github.com/BuildOnBeam/beam-sdk-unity.git` will always default to the newest version of the main branch. You probably should lock the url to particular release to avoid potential compatibility issues. To do so, add `#vX.X.X` to the url, like this: `https://github.com/BuildOnBeam/beam-sdk-unity.git#v0.5.3`.
+##### Note: using  `https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity` will always default to the newest version of the main branch. You probably should lock the url to particular release to avoid potential compatibility issues. To do so, add `#vX.X.X` to the url, like this: `https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity#v0.5.3`.
 
 #### Option 2 - Package Manager Editor UI
 
@@ -22,7 +22,7 @@ https://docs.unity3d.com/Manual/upm-ui-giturl.html
 
 And add these urls:  
 ```
-https://github.com/BuildOnBeam/beam-sdk-unity.git
+https://github.com/BuildOnBeam/beam-sdk-unity.git?path=/Unity
 https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
 ```
 
@@ -103,12 +103,7 @@ var operationId = "clxn9u(...)0c4bz7av";
             }
 ```
 
-### Examples
-You can find an example implementation using this demo in [beam-sdk-unity-example](https://github.com/BuildOnBeam/beam-sdk-unity-example/tree/main)
-
-### Notes
-
-#### Overriding URL Opener
+### Overriding URL Opener
 By default, we use Unity's Application.OpenURL() to interact with identity.onbeam.com.
 This causes a default browser app to be opened on all platforms which might not be optimal for you as it redirects the user away from your game.
 If you prefer to use your WebView plugin of your choice, you can override the way we open URLs:
@@ -120,8 +115,42 @@ m_BeamClient.SetUrlOpener((url) =>
 ```
 It's important to keep url structure and all search params as-is, as they are used by Beam Identity.
 
-#### Selecting AuthProvider
+### Selecting AuthProvider
 All main BeamClient methods accept an optional argument called `authProvider`. By passing a provider value other than `Any`, you force the User to sign into Beam Identity using that provider. This allows you to skip the initial screen with Social Provider login selection, at the cost of taking the choice away from the User. This can be useful if you want to present Social Providers to choose from within your UI. Please keep in mind that Social Providers we support might change in the future and might then require changes in your UI.
 
-#### WebGL
+### WebGL
 WebGL builds are optimized and have Code Stripping enabled by default. We made sure that our models are not stripped using [Preserve] attributes but if you notice a functionality that seemingly breaks with stripping, please let us know, so we can adjust accordingly.
+
+### Android
+
+We will attempt to use Chrome Custom Tabs if possible on Android, if there is no package that can handle it, we will default to opening *any* browser capable of handling the VIEW intent.
+
+##### Deeplink handling
+When running Unity and building for Android, in order for interactions with Chrome Custom Tabs to work properly, we need you to add this Activity to your custom Manifest:
+```xml
+<activity
+        android:name="com.onbeam.beamchrometabs.activities.CallbackActivity"
+        android:exported="true" >
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="beamexample" android:host="callback" />
+    </intent-filter>
+</activity>
+```
+and replace `beamexample` with your game's unique scheme. Afterward, go to https://dashboard.onbeam.com/ and add the deeplink in form of `beamexample://callback` to your game's settings.
+After this, we will be able to close the Chrome Custom Tab after user's flow is finished and get him back to your game automatically. Otherwise, user has to close the browser window himself.
+
+You can enable custom Manifest by going to Build Settings -> Player Settings -> Android -> Publishing Settings -> Enable Custom Main Manifest under the Build section.
+
+##### Custom MainActivity
+If you are using custom MainActivity, f.e. because of Firebase, you will need to call this method once when setting up BeamClient on Android:
+```csharp
+m_BeamClient.SetMainActivityName("com.google.firebase.MessagingUnityPlayerActivity");
+```
+This allows us to properly open and handle Chrome Custom Tabs from Unity.
+
+
+### Examples
+You can find an example implementation using this demo in [beam-sdk-unity-example](https://github.com/BuildOnBeam/beam-sdk-unity-example/tree/main)
