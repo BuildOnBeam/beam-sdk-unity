@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.onbeam.beamchrometabs'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compileOnly 'androidx.fragment:fragment:1.8.6'
+    compileOnly 'androidx.browser:browser:1.8.0'
+}
+
+assemble.doLast {
+    copy {
+        def aarName = 'BeamChromeTabs-release.aar'
+        println "Copying aar to Unity SDK..."
+        from("$projectDir/build/outputs/aar") {
+            include aarName
+        }
+        into "$projectDir/../../Unity/Runtime/Assets/Plugins/Android"
+        rename aarName, 'BeamChromeTabs.aar'
+        println "Successfully copied aar to Unity SDK"
+    }
+}

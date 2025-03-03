@@ -1,0 +1,33 @@
+{
+  "name": "beam.sdk.client",
+  "version": "1.0.0",
+  "displayName": "Beam SDK",
+  "description": "Official Unity SDK for Beam.",
+  "unity": "2020.3",
+  "author": {
+    "name": "Beam",
+    "email": "development@onbeam.com"
+  },
+  "keywords": [
+    "web3",
+    "ethereum",
+    "polygon",
+    "beam",
+    "onbeam",
+    "smart contracts",
+    "unity"
+  ],
+  "scopedRegistries": [
+    {
+      "name": "Open UPM Packages",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp.unitask"
+      ]
+    }
+  ],
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.cysharp.unitask": "2.5.10"
+  }
+}
