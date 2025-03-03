@@ -772,9 +772,9 @@ namespace Beam
             url = uriBuilder.ToString();
             Log($"Opening ${url}");
             var callbackTemp = new BeamChromeTabsCallback(
-                onCancel: () => { onCancel?.Invoke(); },
-                onFinished: () => { onFinished?.Invoke(); });
-            ;
+                onCancel: () => { },
+                onFinished: () => { }
+            );
             BeamChromeTabs.OpenCustomTab(url, ChromeTabConfig, callbackTemp, mainActivity: MainActivityName);
 #else
             Log($"Opening ${url}");
