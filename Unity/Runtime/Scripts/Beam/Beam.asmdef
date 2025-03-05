@@ -1,4 +1,4 @@
 {
   "name": "Beam",
-  "references":[ "UniTask", "ChromeCustomTab", "SFSafariViewController", "BeamChromeTabs" ]
+  "references":[ "UniTask", "BeamChromeTabs", "BeamWebView" ]
 }
