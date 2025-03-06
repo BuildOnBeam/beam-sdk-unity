@@ -49,11 +49,13 @@ extern "C" {
         callbackURLScheme:callbackScheme
         completionHandler:^(NSURL * _Nullable callbackURL, NSError * _Nullable error) {
             if (error != nil) {
-                if (error.code == ASWebAuthenticationSessionErrorCodeCanceledLogin) {
-                    UnitySendMessage("WebViewCallback", "OnError", "User cancelled");
-                } else {
-                    UnitySendMessage("WebViewCallback", "OnError", [error.localizedDescription UTF8String]);
-                }
+                NSString *errorDetails;
+                                if (error.code == ASWebAuthenticationSessionErrorCodeCanceledLogin) {
+                                    errorDetails = [NSString stringWithFormat:@"%@|User cancelled", urlString];
+                                } else {
+                                    errorDetails = [NSString stringWithFormat:@"%@|%@", urlString, error.localizedDescription];
+                                }
+                                UnitySendMessage("WebViewCallback", "OnError", [errorDetails UTF8String]);
             } else if (callbackURL != nil) {
                 UnitySendMessage("WebViewCallback", "OnSuccess", [callbackURL.absoluteString UTF8String]);
             }

@@ -64,7 +64,18 @@ namespace Plugins.iOS
 #endif
         }
 
-        private void HandleError(string error) => OnWebViewError?.Invoke(error);
+        private void HandleError(string errorDetails)
+        {
+            var parts = errorDetails.Split('|');
+            if (parts.Length == 2)
+            {
+                OnWebViewError?.Invoke($"URL: {parts[0]}, Error: {parts[1]}");
+            }
+            else
+            {
+                OnWebViewError?.Invoke(errorDetails);
+            }
+        }
         private void HandleSuccess(string url) => OnWebViewSuccess?.Invoke(url);
     }
 }

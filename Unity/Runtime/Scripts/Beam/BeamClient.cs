@@ -52,6 +52,20 @@ namespace Beam
         public BeamClient()
         {
             SetEnvironment(BeamEnvironment.Testnet);
+#if UNITY_IOS && !UNITY_EDITOR
+            BeamWebView.OnWebViewClosed += () =>
+            {
+                Log("BeamWebView.OnWebViewClosed");
+            };
+            BeamWebView.OnWebViewError += (val) =>
+            {
+                Log($"BeamWebView.OnWebViewError: {val}");
+            };
+            BeamWebView.OnWebViewSuccess += (val) =>
+            {
+                Log($"BeamWebView.OnWebViewSuccess: {val}");
+            };
+#endif
         }
 
         /// <summary>
@@ -778,8 +792,12 @@ namespace Beam
             url = uriBuilder.ToString();
             Log($"Opening ${url}");
             var callbackTemp = new BeamChromeTabsCallback(
-                onCancel: () => { },
-                onFinished: () => { }
+                onCancel: () => {
+                    Log("BeamChromeTabs onCancel");
+                },
+                onFinished: () => {
+                    Log("BeamChromeTabs onFinished");
+                }
             );
             BeamChromeTabs.OpenCustomTab(url, ChromeTabConfig, callbackTemp, mainActivity: MainActivityName);
 #else
