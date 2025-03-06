@@ -12,8 +12,8 @@ using BeamPlayerClient.Client;
 using BeamPlayerClient.Model;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Plugins.iOS;
 using Beam.ChromeTabs;
+using Plugins.iOS;
 
 namespace Beam
 {
@@ -43,6 +43,8 @@ namespace Beam
 #if UNITY_ANDROID && !UNITY_EDITOR
         protected string MainActivityName = BeamChromeTabs.DefaultUnityMainActivity;
         public BeamChromeTabsConfig ChromeTabConfig { get; set; } = new();
+#elif UNITY_IOS && !UNITY_EDITOR
+        public BeamWebView BeamWebView { get; set; } = new();
 #endif
 
         #region Config
@@ -50,6 +52,20 @@ namespace Beam
         public BeamClient()
         {
             SetEnvironment(BeamEnvironment.Testnet);
+#if UNITY_IOS && !UNITY_EDITOR
+            BeamWebView.OnWebViewClosed += () =>
+            {
+                Log("BeamWebView.OnWebViewClosed");
+            };
+            BeamWebView.OnWebViewError += (val) =>
+            {
+                Log($"BeamWebView.OnWebViewError: {val}");
+            };
+            BeamWebView.OnWebViewSuccess += (val) =>
+            {
+                Log($"BeamWebView.OnWebViewSuccess: {val}");
+            };
+#endif
         }
 
         /// <summary>
@@ -764,7 +780,7 @@ namespace Beam
 #if UNITY_IOS && !UNITY_EDITOR
             // opens via Safari View Controller, so that we can automatically close it, use PasswordManagers etc.
             Log($"Opening ${url}");
-            SFSafariViewController.LaunchUrl(url);
+            BeamWebView.LoadUrl(url);
 #elif UNITY_ANDROID && !UNITY_EDITOR
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
             // we append androidCallback to try and close the custom tab afterward
@@ -776,8 +792,12 @@ namespace Beam
             url = uriBuilder.ToString();
             Log($"Opening ${url}");
             var callbackTemp = new BeamChromeTabsCallback(
-                onCancel: () => { },
-                onFinished: () => { }
+                onCancel: () => {
+                    Log("BeamChromeTabs onCancel");
+                },
+                onFinished: () => {
+                    Log("BeamChromeTabs onFinished");
+                }
             );
             BeamChromeTabs.OpenCustomTab(url, ChromeTabConfig, callbackTemp, mainActivity: MainActivityName);
 #else
@@ -796,7 +816,7 @@ namespace Beam
             }
 
 #if UNITY_IOS && !UNITY_EDITOR
-            SFSafariViewController.Dismiss();
+            BeamWebView.Dismiss();
 #elif UNITY_ANDROID && !UNITY_EDITOR
             // ignore, can't close Chrome Custom Tab, but it should call window.close() on its own
 #endif
