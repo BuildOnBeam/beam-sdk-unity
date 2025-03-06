@@ -1,6 +1,6 @@
 {
   "name": "beam.sdk.client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Beam SDK",
   "description": "Official Unity SDK for Beam.",
   "unity": "2020.3",
