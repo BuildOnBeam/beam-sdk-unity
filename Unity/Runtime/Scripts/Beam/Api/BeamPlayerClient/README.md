@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *AssetsApi* | [**TransferToken**](AssetsApi.md#transfertoken) | **POST** /v1/player/assets/users/{entityId}/transfer-token | Transfer a token (token assets, ERC20)
 *ConnectorApi* | [**CreateConnectionRequest**](ConnectorApi.md#createconnectionrequest) | **POST** /v1/connection/request | 
 *ConnectorApi* | [**GetConnectionRequest**](ConnectorApi.md#getconnectionrequest) | **GET** /v1/connection/request/{requestId} | 
+*ContractApi* | [**ReadContract**](ContractApi.md#readcontract) | **POST** /v1/contract/{contractAddress}/read | Calls a readable contract function
 *ExchangeApi* | [**ConvertInput**](ExchangeApi.md#convertinput) | **POST** /v1/player/exchange/users/{entityId}/convert/input | Swap an exact amount of `tokenIn` for a minimum amount of `tokenOut`
 *ExchangeApi* | [**ConvertToOutput**](ExchangeApi.md#converttooutput) | **POST** /v1/player/exchange/users/{entityId}/convert/output | Swap a maximum amount of `tokenIn` for an exact amount of `tokenOut`
 *ExchangeApi* | [**GetQuoteForInput**](ExchangeApi.md#getquoteforinput) | **GET** /v1/player/exchange/quote/input | Returns the maximum necessary input amount for a token trade, given a desired output amount
@@ -249,6 +250,8 @@ Class | Method | HTTP request | Description
  - [Model.PlayerOperationActionTransaction](PlayerOperationActionTransaction.md)
  - [Model.PlayerOperationResponse](PlayerOperationResponse.md)
  - [Model.PlayerOperationResponseTransactionsInner](PlayerOperationResponseTransactionsInner.md)
+ - [Model.ReadContractRequest](ReadContractRequest.md)
+ - [Model.ReadContractResonse](ReadContractResonse.md)
  - [Model.RefreshContractRequestBody](RefreshContractRequestBody.md)
  - [Model.RefreshTokenRequestBody](RefreshTokenRequestBody.md)
  - [Model.RevokeSessionRequestInput](RevokeSessionRequestInput.md)

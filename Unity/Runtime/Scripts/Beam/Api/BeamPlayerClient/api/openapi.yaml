@@ -2521,6 +2521,47 @@ paths:
       summary: ""
       tags:
       - Ramp
+  /v1/contract/{contractAddress}/read:
+    post:
+      operationId: readContract
+      parameters:
+      - explode: false
+        in: path
+        name: contractAddress
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadContractRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadContractResonse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+      security:
+      - beam-api-key: []
+      summary: Calls a readable contract function
+      tags:
+      - Contract
 components:
   schemas:
     BeamErrorResponse:
@@ -5079,6 +5120,35 @@ components:
           - Apple
           nullable: true
           type: string
+      type: object
+    ReadContractRequest:
+      example:
+        chainId: 0
+        functionName: functionName
+        functionArguments:
+        - functionArguments
+        - functionArguments
+      properties:
+        chainId:
+          default: 13337
+          format: int64
+          type: integer
+        functionName:
+          type: string
+        functionArguments:
+          items:
+            type: string
+          type: array
+      required:
+      - functionArguments
+      - functionName
+      type: object
+    ReadContractResonse:
+      example:
+        result: ""
+      properties:
+        result:
+          nullable: true
       type: object
     check_200_response_info_value:
       additionalProperties: true
