@@ -41,9 +41,8 @@ namespace Beam
         protected IStorage Storage = new PlayerPrefsStorage();
         protected bool IsInFocus = true;
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-        protected string MainActivityName = BeamChromeTabs.DefaultUnityMainActivity;
-        public BeamChromeTabsConfig ChromeTabConfig { get; set; } = new();
+#if UNITY_ANDROID //&& !UNITY_EDITOR
+        protected BeamChromeTabsConfig ChromeTabConfig { get; set; } = new();
 #elif UNITY_IOS && !UNITY_EDITOR
         public BeamWebView BeamWebView { get; set; } = new();
 #endif
@@ -137,19 +136,7 @@ namespace Beam
             return this;
         }
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-        /// <summary>
-        /// Default activity name is set to "com.unity3d.player.UnityPlayer". You can use this method to override it if needed.
-        /// Only used on Android.
-        /// </summary>
-        /// <param name="mainActivity"></param>
-        /// <returns></returns>
-        public BeamClient SetMainActivityName(string mainActivity)
-        {
-            MainActivityName = mainActivity;
-            return this;
-        }
-        
+#if UNITY_ANDROID //&& !UNITY_EDITOR
         /// <summary>
         /// Sets basic configurable properties on Chrome Custom Tabs opened by BeamClient. Only used on Android.
         /// </summary>
@@ -782,7 +769,7 @@ namespace Beam
             // opens via Safari View Controller, so that we can automatically close it, use PasswordManagers etc.
             Log($"Opening ${url}");
             BeamWebView.LoadUrl(url);
-#elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID //&& !UNITY_EDITOR
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS
             // we append androidCallback to try and close the custom tab afterward
 			// via window.close() or deeplink in identity.onbeam.com
@@ -800,7 +787,7 @@ namespace Beam
                     Log("BeamChromeTabs onFinished");
                 }
             );
-            BeamChromeTabs.OpenCustomTab(url, ChromeTabConfig, callbackTemp, mainActivity: MainActivityName);
+            BeamChromeTabs.OpenCustomTab(url, ChromeTabConfig, callbackTemp);
 #else
             Log($"Opening ${url}");
             // will open external Web Browser application if possible, using default Unity behaviour
@@ -818,7 +805,7 @@ namespace Beam
 
 #if UNITY_IOS && !UNITY_EDITOR
             BeamWebView.Dismiss();
-#elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID //&& !UNITY_EDITOR
             // ignore, can't close Chrome Custom Tab, but it should call window.close() on its own
 #endif
             // ignore, can't close external application
