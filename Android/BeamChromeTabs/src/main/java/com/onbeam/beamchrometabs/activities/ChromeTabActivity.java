@@ -1,12 +1,18 @@
 package com.onbeam.beamchrometabs.activities;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Insets;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowInsets;
+import android.view.WindowMetrics;
 
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabColorSchemeParams;
@@ -18,15 +24,14 @@ import com.onbeam.beamchrometabs.utils.BeamChromeTabsConfig;
 import com.onbeam.beamchrometabs.utils.CustomTabsConnector;
 import com.onbeam.beamchrometabs.R;
 
+import java.lang.ref.WeakReference;
+
 public class ChromeTabActivity extends Activity {
 
     private static final int TOOLBAR_ITEM_ID = 1;
 
     private String urlToLaunch = "";
     private String colorString = "";
-    private String secondaryColorString = "";
-    private boolean showTitle = false;
-    private boolean urlBarHiding = false;
     private boolean isComingFromCallback = false;
     private boolean isCustomTabOpened = false;
 
@@ -40,9 +45,6 @@ public class ChromeTabActivity extends Activity {
         Intent intent = new Intent(context, ChromeTabActivity.class);
         intent.putExtra("urlToLaunch", url);
         intent.putExtra("colorString", config.colorString);
-        intent.putExtra("secondaryColorString", config.secondaryColorString);
-        intent.putExtra("showTitle", config.showTitle);
-        intent.putExtra("urlBarHiding", config.urlBarHiding);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -65,9 +67,6 @@ public class ChromeTabActivity extends Activity {
         super.onSaveInstanceState(outState);
         outState.putString("urlToLaunch", urlToLaunch);
         outState.putString("colorString", colorString);
-        outState.putString("secondaryColorString", secondaryColorString);
-        outState.putBoolean("showTitle", showTitle);
-        outState.putBoolean("urlBarHiding", urlBarHiding);
         outState.putBoolean("isComingFromCallback", isComingFromCallback);
         outState.putBoolean("isCustomTabOpened", isCustomTabOpened);
     }
@@ -134,15 +133,6 @@ public class ChromeTabActivity extends Activity {
         if (intent.getExtras().containsKey("colorString")) {
             colorString = intent.getExtras().getString("colorString");
         }
-        if (intent.getExtras().containsKey("secondaryColorString")) {
-            secondaryColorString = intent.getExtras().getString("secondaryColorString");
-        }
-        if (intent.getExtras().containsKey("showTitle")) {
-            showTitle = intent.getExtras().getBoolean("showTitle");
-        }
-        if (intent.getExtras().containsKey("urlBarHiding")) {
-            urlBarHiding = intent.getExtras().getBoolean("urlBarHiding");
-        }
         if (intent.getExtras().containsKey("isComingFromCallback")) {
             isComingFromCallback = intent.getExtras().getBoolean("isComingFromCallback");
         } else {
@@ -165,30 +155,9 @@ public class ChromeTabActivity extends Activity {
     }
 
     private void openCustomTab() {
-        Log.d("ChromeTabActivity", String.format("openCustomTab. urlToLaunch: %s", urlToLaunch));
+        Log.d("ChromeTabActivity", String.format("openCustomTab with session builder. urlToLaunch: %s", urlToLaunch));
 
-        CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-        CustomTabColorSchemeParams.Builder defaultBuilder = new CustomTabColorSchemeParams.Builder();
-        if (!colorString.isEmpty())
-            defaultBuilder.setToolbarColor(Color.parseColor(colorString));
-        if (!secondaryColorString.isEmpty())
-            defaultBuilder.setSecondaryToolbarColor(Color.parseColor(secondaryColorString));
-        CustomTabColorSchemeParams defaultColors = defaultBuilder.build();
-
-        intentBuilder.setDefaultColorSchemeParams(defaultColors);
-
-        intentBuilder.setShowTitle(showTitle);
-
-        intentBuilder.setUrlBarHidingEnabled(urlBarHiding);
-
-        /*if (customBackButton) {
-            intentBuilder.setCloseButtonIcon(toBitmap(getDrawable(R.drawable.ic_arrow_back)));
-        }*/
-
-        intentBuilder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-        intentBuilder.setExitAnimations(this, android.R.anim.slide_in_left,
-                android.R.anim.slide_out_right);
+        customTabsConnector.openCustomTab(Uri.parse(urlToLaunch), this.colorString);
         isCustomTabOpened = true;
-        customTabsConnector.openCustomTab(intentBuilder.build(), Uri.parse(urlToLaunch));
     }
 }

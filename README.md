@@ -144,13 +144,6 @@ After this, we will be able to close the Chrome Custom Tab after user's flow is 
 
 You can enable custom Manifest by going to Build Settings -> Player Settings -> Android -> Publishing Settings -> Enable Custom Main Manifest under the Build section.
 
-##### Custom MainActivity
-If you are using custom MainActivity, f.e. because of Firebase, you will need to call this method once when setting up BeamClient on Android:
-```csharp
-m_BeamClient.SetMainActivityName("com.google.firebase.MessagingUnityPlayerActivity");
-```
-This allows us to properly open and handle Chrome Custom Tabs from Unity.
-
 
 ### Examples
 You can find an example implementation using this demo in [beam-sdk-unity-example](https://github.com/BuildOnBeam/beam-sdk-unity-example/tree/main)
