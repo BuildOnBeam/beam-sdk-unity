@@ -48,7 +48,7 @@ public class CustomTabsConnector extends CustomTabsServiceConnection {
         this.session = new AtomicReference<>();
         this.customTabsCallback = callback;
         this.sessionLatch = new CountDownLatch(1);
-        packageName = CustomTabsPackagePicker.getPackageNameToUse(context);
+        this.packageName = CustomTabsPackagePicker.getPackageNameToUse(context);
     }
 
     @Override
@@ -99,11 +99,10 @@ public class CustomTabsConnector extends CustomTabsServiceConnection {
                     intentBuilder.setDefaultColorSchemeParams(defaultColors);
 
                     intentBuilder.setShareState(CustomTabsIntent.SHARE_STATE_OFF);
-                    intentBuilder.setInitialActivityHeightPx(getCustomTabsHeight(context), CustomTabsIntent.ACTIVITY_HEIGHT_FIXED);
+                    intentBuilder.setInitialActivityHeightPx(getCustomTabsHeight(context));
 
-                    CustomTabsIntent customTabsIntent = intentBuilder.build();
-                    customTabsIntent.launchUrl(context, uri);
-                } catch (ActivityNotFoundException ex) {
+                    intentBuilder.build().launchUrl(context, uri);
+                } catch (Exception ex) {
                     Log.e("CustomTabsConnector", "Encountered an error when trying to open Custom Tabs", ex);
                     // Failed to launch Custom Tab browser, so launch in browser
                     context.startActivity(new Intent(Intent.ACTION_VIEW, uri));

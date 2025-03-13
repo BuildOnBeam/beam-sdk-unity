@@ -23,8 +23,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'androidx.fragment:fragment:1.8.6'
-    compileOnly 'androidx.browser:browser:1.8.0'
+    implementation 'androidx.browser:browser:1.8.0'
 }
 
 assemble.doLast {

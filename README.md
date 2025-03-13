@@ -125,6 +125,18 @@ WebGL builds are optimized and have Code Stripping enabled by default. We made s
 
 We will attempt to use Chrome Custom Tabs if possible on Android, if there is no package that can handle it, we will default to opening *any* browser capable of handling the VIEW intent.
 
+### Minification - ProGuard
+If you enable Minify for your Android builds, you will need to also enable Custom Proguard File in project settings and add these to proguard-user.txt:
+```
+-dontwarn com.onbeam.**
+-keep class com.onbeam.** { *; }
+-keep interface com.onbeam.** { *; }
+
+-dontwarn androidx.**
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
+```
+
 ##### Deeplink handling
 When running Unity and building for Android, in order for interactions with Chrome Custom Tabs to work properly, we need you to add this Activity to your custom Manifest:
 ```xml

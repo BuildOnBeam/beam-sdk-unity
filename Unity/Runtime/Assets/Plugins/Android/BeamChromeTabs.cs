@@ -6,7 +6,7 @@ namespace Beam.ChromeTabs
     {
         public static void OpenCustomTab(string urlToLaunch, BeamChromeTabsConfig config, BeamChromeTabsCallback callback)
         {
-            #if UNITY_ANDROID //&& !UNITY_EDITOR
+            #if UNITY_ANDROID && !UNITY_EDITOR
             if (Application.platform == RuntimePlatform.Android)
             {
                 using (var javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
