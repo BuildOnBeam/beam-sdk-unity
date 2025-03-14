@@ -26,6 +26,8 @@ tags:
   name: Activity
 - description: Retrieve stats for the assets in your game
   name: Stats
+- description: Interact with your Contracts
+  name: Contract
 paths:
   /v1/health/services:
     get:
@@ -5123,11 +5125,11 @@ components:
       type: object
     ReadContractRequest:
       example:
+        functionArgs:
+        - functionArgs
+        - functionArgs
         chainId: 0
         functionName: functionName
-        functionArguments:
-        - functionArguments
-        - functionArguments
       properties:
         chainId:
           default: 13337
@@ -5135,12 +5137,12 @@ components:
           type: integer
         functionName:
           type: string
-        functionArguments:
+        functionArgs:
           items:
             type: string
           type: array
       required:
-      - functionArguments
+      - functionArgs
       - functionName
       type: object
     ReadContractResonse:

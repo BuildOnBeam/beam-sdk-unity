@@ -41,9 +41,9 @@ namespace BeamPlayerClient.Model
         /// </summary>
         /// <param name="chainId">chainId (default to 13337).</param>
         /// <param name="functionName">functionName (required).</param>
-        /// <param name="functionArguments">functionArguments (required).</param>
+        /// <param name="functionArgs">functionArgs (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public ReadContractRequest(long chainId = 13337, string functionName = default(string), List<string> functionArguments = default(List<string>))
+        public ReadContractRequest(long chainId = 13337, string functionName = default(string), List<string> functionArgs = default(List<string>))
         {
             // to ensure "functionName" is required (not null)
             if (functionName == null)
@@ -51,12 +51,12 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("functionName is a required property for ReadContractRequest and cannot be null");
             }
             this.FunctionName = functionName;
-            // to ensure "functionArguments" is required (not null)
-            if (functionArguments == null)
+            // to ensure "functionArgs" is required (not null)
+            if (functionArgs == null)
             {
-                throw new ArgumentNullException("functionArguments is a required property for ReadContractRequest and cannot be null");
+                throw new ArgumentNullException("functionArgs is a required property for ReadContractRequest and cannot be null");
             }
-            this.FunctionArguments = functionArguments;
+            this.FunctionArgs = functionArgs;
             this.ChainId = chainId;
         }
 
@@ -75,11 +75,11 @@ namespace BeamPlayerClient.Model
         public string FunctionName { get; set; }
 
         /// <summary>
-        /// Gets or Sets FunctionArguments
+        /// Gets or Sets FunctionArgs
         /// </summary>
-        [DataMember(Name = "functionArguments", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "functionArgs", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public List<string> FunctionArguments { get; set; }
+        public List<string> FunctionArgs { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -92,7 +92,7 @@ namespace BeamPlayerClient.Model
             sb.Append("class ReadContractRequest {\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  FunctionName: ").Append(FunctionName).Append("\n");
-            sb.Append("  FunctionArguments: ").Append(FunctionArguments).Append("\n");
+            sb.Append("  FunctionArgs: ").Append(FunctionArgs).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
