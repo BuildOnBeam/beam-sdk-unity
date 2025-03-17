@@ -125,6 +125,13 @@ WebGL builds are optimized and have Code Stripping enabled by default. We made s
 
 We will attempt to use Chrome Custom Tabs if possible on Android, if there is no package that can handle it, we will default to opening *any* browser capable of handling the VIEW intent.
 
+#### Custom gradle
+In order for Beam SDK to work properly, you have to enable custom Gradle file in project settings and add this dependency:
+```
+implementation 'androidx.browser:browser:1.8.0'
+```
+
+
 #### Minification - ProGuard
 If you enable Minify for your Android builds, you will need to also enable Custom Proguard File in project settings and add these to proguard-user.txt:
 ```
