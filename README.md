@@ -126,8 +126,11 @@ WebGL builds are optimized and have Code Stripping enabled by default. We made s
 We will attempt to use Chrome Custom Tabs if possible on Android, if there is no package that can handle it, we will default to opening *any* browser capable of handling the VIEW intent.
 
 #### Custom gradle
-In order for Beam SDK to work properly, you have to enable custom Gradle file in project settings and add this dependency:
-```
+In order for Beam SDK to work properly, we need `androidx.browser:browser:1.8.0` dependency.  
+If you are using [EDM4U](https://github.com/googlesamples/unity-jar-resolver) you don't have to do anything.
+
+If you don't, you have to enable custom Gradle file in project settings and add this dependency:
+```gradle
 implementation 'androidx.browser:browser:1.8.0'
 ```
 
