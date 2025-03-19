@@ -4590,6 +4590,9 @@ components:
         address: address
         chainId: 0
         suggestedExpiry: 2000-01-23T04:56:07.000+00:00
+        contracts:
+        - contracts
+        - contracts
       properties:
         address:
           type: string
@@ -4609,6 +4612,12 @@ components:
           - Apple
           nullable: true
           type: string
+        contracts:
+          description: List of contract addresses to be used in the session
+          items:
+            type: string
+          nullable: true
+          type: array
         chainId:
           default: 13337
           format: int64
@@ -4623,6 +4632,9 @@ components:
         chainId: 0
         id: id
         openfortId: openfortId
+        contracts:
+        - contracts
+        - contracts
         url: https://openapi-generator.tech
         status: Pending
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -4651,12 +4663,17 @@ components:
           type: string
         address:
           type: string
+        contracts:
+          items:
+            type: string
+          type: array
         url:
           format: uri
           type: string
       required:
       - address
       - chainId
+      - contracts
       - createdAt
       - id
       - openfortId
@@ -4717,6 +4734,9 @@ components:
         chainId: 0
         id: id
         openfortId: openfortId
+        contracts:
+        - contracts
+        - contracts
         status: Pending
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -4744,9 +4764,14 @@ components:
           type: string
         address:
           type: string
+        contracts:
+          items:
+            type: string
+          type: array
       required:
       - address
       - chainId
+      - contracts
       - createdAt
       - id
       - openfortId

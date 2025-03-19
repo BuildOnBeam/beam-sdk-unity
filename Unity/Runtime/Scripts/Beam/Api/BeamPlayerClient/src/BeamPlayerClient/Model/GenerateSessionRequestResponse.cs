@@ -78,9 +78,10 @@ namespace BeamPlayerClient.Model
         /// <param name="chainId">chainId (required).</param>
         /// <param name="openfortId">openfortId (required).</param>
         /// <param name="address">address (required).</param>
+        /// <param name="contracts">contracts (required).</param>
         /// <param name="url">url (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public GenerateSessionRequestResponse(StatusEnum status = default(StatusEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), long chainId = default(long), string openfortId = default(string), string address = default(string), string url = default(string))
+        public GenerateSessionRequestResponse(StatusEnum status = default(StatusEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), long chainId = default(long), string openfortId = default(string), string address = default(string), List<string> contracts = default(List<string>), string url = default(string))
         {
             this.Status = status;
             // to ensure "id" is required (not null)
@@ -109,6 +110,12 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("address is a required property for GenerateSessionRequestResponse and cannot be null");
             }
             this.Address = address;
+            // to ensure "contracts" is required (not null)
+            if (contracts == null)
+            {
+                throw new ArgumentNullException("contracts is a required property for GenerateSessionRequestResponse and cannot be null");
+            }
+            this.Contracts = contracts;
             // to ensure "url" is required (not null)
             if (url == null)
             {
@@ -160,6 +167,13 @@ namespace BeamPlayerClient.Model
         public string Address { get; set; }
 
         /// <summary>
+        /// Gets or Sets Contracts
+        /// </summary>
+        [DataMember(Name = "contracts", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public List<string> Contracts { get; set; }
+
+        /// <summary>
         /// Gets or Sets Url
         /// </summary>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
@@ -182,6 +196,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  OpenfortId: ").Append(OpenfortId).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  Contracts: ").Append(Contracts).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

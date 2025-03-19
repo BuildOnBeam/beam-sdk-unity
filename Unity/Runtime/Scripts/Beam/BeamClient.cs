@@ -270,6 +270,7 @@ namespace Beam
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
+        /// <param name="contracts">Optional contracts to include within the session. These should be contracts you plan on interacting with that would require users signature. If left out or empty, it will automatically use all your game and some global contracts in the session.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<BeamSession>> CreateSessionAsync(string entityId,
@@ -278,6 +279,7 @@ namespace Beam
             int secondsTimeout = DefaultTimeoutInSeconds,
             GenerateSessionUrlRequestInput.AuthProviderEnum authProvider =
                 GenerateSessionUrlRequestInput.AuthProviderEnum.Any,
+            List<string> contracts = null,
             CancellationToken cancellationToken = default)
         {
             Log("Retrieving active session");
@@ -303,7 +305,7 @@ namespace Beam
             {
                 var res = await SessionsApi.CreateSessionRequestAsync(entityId,
                     new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
-                        chainId: chainId, authProvider: authProvider), cancellationToken);
+                        chainId: chainId, contracts: contracts, authProvider: authProvider), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 beamSessionRequest = res;

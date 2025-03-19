@@ -78,8 +78,9 @@ namespace BeamPlayerClient.Model
         /// <param name="chainId">chainId (required).</param>
         /// <param name="openfortId">openfortId (required).</param>
         /// <param name="address">address (required).</param>
+        /// <param name="contracts">contracts (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public GetSessionRequestResponse(StatusEnum status = default(StatusEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), long chainId = default(long), string openfortId = default(string), string address = default(string))
+        public GetSessionRequestResponse(StatusEnum status = default(StatusEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), long chainId = default(long), string openfortId = default(string), string address = default(string), List<string> contracts = default(List<string>))
         {
             this.Status = status;
             // to ensure "id" is required (not null)
@@ -108,6 +109,12 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("address is a required property for GetSessionRequestResponse and cannot be null");
             }
             this.Address = address;
+            // to ensure "contracts" is required (not null)
+            if (contracts == null)
+            {
+                throw new ArgumentNullException("contracts is a required property for GetSessionRequestResponse and cannot be null");
+            }
+            this.Contracts = contracts;
         }
 
         /// <summary>
@@ -153,6 +160,13 @@ namespace BeamPlayerClient.Model
         public string Address { get; set; }
 
         /// <summary>
+        /// Gets or Sets Contracts
+        /// </summary>
+        [DataMember(Name = "contracts", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public List<string> Contracts { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -168,6 +182,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  OpenfortId: ").Append(OpenfortId).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  Contracts: ").Append(Contracts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

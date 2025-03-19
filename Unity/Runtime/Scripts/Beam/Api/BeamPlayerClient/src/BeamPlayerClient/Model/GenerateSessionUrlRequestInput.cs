@@ -82,9 +82,10 @@ namespace BeamPlayerClient.Model
         /// <param name="address">address (required).</param>
         /// <param name="suggestedExpiry">suggestedExpiry.</param>
         /// <param name="authProvider">Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI. (default to AuthProviderEnum.Any).</param>
+        /// <param name="contracts">List of contract addresses to be used in the session.</param>
         /// <param name="chainId">chainId (default to 13337).</param>
         [UnityEngine.Scripting.Preserve]
-        public GenerateSessionUrlRequestInput(string address = default(string), DateTime? suggestedExpiry = default(DateTime?), AuthProviderEnum? authProvider = AuthProviderEnum.Any, long chainId = 13337)
+        public GenerateSessionUrlRequestInput(string address = default(string), DateTime? suggestedExpiry = default(DateTime?), AuthProviderEnum? authProvider = AuthProviderEnum.Any, List<string> contracts = default(List<string>), long chainId = 13337)
         {
             // to ensure "address" is required (not null)
             if (address == null)
@@ -94,6 +95,7 @@ namespace BeamPlayerClient.Model
             this.Address = address;
             this.SuggestedExpiry = suggestedExpiry;
             this.AuthProvider = authProvider;
+            this.Contracts = contracts;
             this.ChainId = chainId;
         }
 
@@ -110,6 +112,14 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "suggestedExpiry", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public DateTime? SuggestedExpiry { get; set; }
+
+        /// <summary>
+        /// List of contract addresses to be used in the session
+        /// </summary>
+        /// <value>List of contract addresses to be used in the session</value>
+        [DataMember(Name = "contracts", EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public List<string> Contracts { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
@@ -130,6 +140,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  SuggestedExpiry: ").Append(SuggestedExpiry).Append("\n");
             sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
+            sb.Append("  Contracts: ").Append(Contracts).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
