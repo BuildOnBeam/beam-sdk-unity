@@ -1,12 +1,7 @@
 {
-    "name": "Beam",
-    "rootNamespace": "",
-    "references": [
-        "UniTask",
-        "BeamChromeTabs",
-        "BeamWebView",
-        "Nethereum"
-    ],
+    "name": "Nethereum",
+    "rootNamespace": "Nethereum",
+    "references": [],
     "includePlatforms": [
         "Android",
         "Editor",
