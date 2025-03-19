@@ -1,4 +1,35 @@
 {
-  "name": "Beam",
-  "references":[ "UniTask", "BeamChromeTabs", "BeamWebView" ]
+    "name": "Beam",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "BeamChromeTabs",
+        "BeamWebView"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS",
+        "LinuxStandalone64",
+        "macOSStandalone",
+        "Switch",
+        "PS4",
+        "PS5",
+        "WSA",
+        "VisionOS",
+        "WebGL",
+        "WindowsStandalone32",
+        "WindowsStandalone64",
+        "GameCoreXboxOne",
+        "XboxOne",
+        "GameCoreScarlett"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
