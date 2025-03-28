@@ -147,6 +147,7 @@ namespace Beam
             return this;
         }
 #endif
+
         #endregion
 
         /// <summary>
@@ -266,7 +267,7 @@ namespace Beam
         /// Opens an external browser to sign a Session.
         /// </summary>
         /// <param name="entityId">Entity Id of the User performing signing</param>
-        /// <param name="suggestedExpiry">Suggested expiration date for Session. It will be presented in the identity.onbea.com as pre-selected.</param>
+        /// <param name="suggestedExpiry">Suggested expiration date for Session. It will be presented in the identity.onbeam.com as pre-selected. IMPORTANT: Needs to have specified DateTimeKind, if left Unspecified, we will defaul to Local</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
@@ -303,8 +304,17 @@ namespace Beam
             GenerateSessionRequestResponse beamSessionRequest;
             try
             {
+                var correctedDateTime = suggestedExpiry;
+                if (correctedDateTime.HasValue && correctedDateTime.Value.Kind == DateTimeKind.Unspecified)
+                {
+                    // copy suggestedExpiry into correctedDateTime but with DateTimeKind.Local
+                    correctedDateTime = new DateTime(suggestedExpiry.Value.Year, suggestedExpiry.Value.Month,
+                        suggestedExpiry.Value.Day, suggestedExpiry.Value.Hour, suggestedExpiry.Value.Minute,
+                        suggestedExpiry.Value.Second, suggestedExpiry.Value.Millisecond, DateTimeKind.Local);
+                }
+
                 var res = await SessionsApi.CreateSessionRequestAsync(entityId,
-                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
+                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: correctedDateTime,
                         chainId: chainId, contracts: contracts, authProvider: authProvider), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
@@ -664,6 +674,7 @@ namespace Beam
                     {
                         return result;
                     }
+
                     await UniTask.Delay(secondsBetweenPolls * 1000, cancellationToken: cancellationToken);
                 }
                 else
