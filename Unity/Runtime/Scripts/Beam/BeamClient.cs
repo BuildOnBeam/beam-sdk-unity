@@ -44,7 +44,8 @@ namespace Beam
 #if UNITY_ANDROID && !UNITY_EDITOR
         protected BeamChromeTabsConfig ChromeTabConfig { get; set; } = new();
 #elif UNITY_IOS && !UNITY_EDITOR
-        public BeamWebView BeamWebView { get; set; } = new();
+        protected BeamWebView BeamWebView { get; set; }
+        protected string BeamWebViewError { get; set; }
 #endif
 
         #region Config
@@ -52,20 +53,6 @@ namespace Beam
         public BeamClient()
         {
             SetEnvironment(BeamEnvironment.Testnet);
-#if UNITY_IOS && !UNITY_EDITOR
-            BeamWebView.OnWebViewClosed += () =>
-            {
-                Log("BeamWebView.OnWebViewClosed");
-            };
-            BeamWebView.OnWebViewError += (val) =>
-            {
-                Log($"BeamWebView.OnWebViewError: {val}");
-            };
-            BeamWebView.OnWebViewSuccess += (val) =>
-            {
-                Log($"BeamWebView.OnWebViewSuccess: {val}");
-            };
-#endif
         }
 
         /// <summary>
@@ -136,6 +123,22 @@ namespace Beam
             return this;
         }
 
+        public void Start()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            if (BeamWebView == null)
+            {
+                BeamWebView = gameObject.AddComponent<BeamWebView>();
+                BeamWebView.OnWebViewClosed += () => { Log("BeamWebView.OnWebViewClosed"); };
+                BeamWebView.OnWebViewError += (val) =>
+                {
+                    Log($"BeamWebView.OnWebViewError: {val}");
+                    BeamWebViewError = val;
+                };
+            }
+#endif
+        }
+
 #if UNITY_ANDROID && !UNITY_EDITOR
         /// <summary>
         /// Sets basic configurable properties on Chrome Custom Tabs opened by BeamClient. Only used on Android.
@@ -195,9 +198,16 @@ namespace Beam
 
             CloseWebViewIfPossible();
 
-            Log($"Got polling connection request result: {pollingResult.Status.ToString()}");
+            if (pollingResult.IsOk)
+            {
+                Log($"Got polling connection request result: {pollingResult.Result.Status.ToString()}");
 
-            return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Status);
+                return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Result.Status);
+            }
+
+            Log($"Got polling connection request result: {pollingResult.Error}");
+
+            return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, pollingResult.Error);
         }
 
         /// <summary>
@@ -343,14 +353,15 @@ namespace Beam
                 cancellationToken: cancellationToken);
 
             CloseWebViewIfPossible();
-
-            if (pollingResult == null)
+            
+            if (!pollingResult.IsOk)
             {
-                return new BeamResult<BeamSession>(BeamResultType.Error,
-                    "Polling for created session encountered an error or timed out");
+                Log($"Got polling session request result: {pollingResult.Error}");
+
+                return new BeamResult<BeamSession>(BeamResultType.Error, pollingResult.Error);
             }
 
-            switch (pollingResult.Status)
+            switch (pollingResult.Result.Status)
             {
                 case GetSessionRequestResponse.StatusEnum.Pending:
                     beamResultModel.Status = BeamResultType.Pending;
@@ -508,12 +519,19 @@ namespace Beam
 
             CloseWebViewIfPossible();
 
-            Log($"Got operation({operation.Id}) result: {pollingResult?.Status.ToString()}");
+            if (!pollingResult.IsOk)
+            {
+                Log($"Got operation result: {pollingResult.Error}");
+
+                return new BeamResult<PlayerOperationResponse.StatusEnum>(BeamResultType.Error, pollingResult.Error);
+            }
+
+            Log($"Got operation({operation.Id}) result: {pollingResult.Result?.Status.ToString()}");
             var beamResult =
-                new BeamResult<PlayerOperationResponse.StatusEnum>(pollingResult?.Status ??
+                new BeamResult<PlayerOperationResponse.StatusEnum>(pollingResult.Result?.Status ??
                                                                    PlayerOperationResponse.StatusEnum.Error);
 
-            switch (pollingResult?.Status)
+            switch (pollingResult.Result?.Status)
             {
                 case PlayerOperationResponse.StatusEnum.Pending:
                 case PlayerOperationResponse.StatusEnum.Executed:
@@ -637,7 +655,7 @@ namespace Beam
         /// <summary>
         /// Will retry or return null if received 404.
         /// </summary>
-        protected async UniTask<T> PollForResult<T>(
+        protected async UniTask<BeamPollingResult<T>> PollForResult<T>(
             Func<UniTask<T>> actionToPerform,
             Func<T, bool> shouldRetry,
             int secondsTimeout = DefaultTimeoutInSeconds,
@@ -651,6 +669,18 @@ namespace Beam
 
             while ((endTime - DateTime.Now).TotalSeconds > 0)
             {
+                #if UNITY_IOS && !UNITY_EDITOR
+                if (!string.IsNullOrWhiteSpace(BeamWebViewError))
+                {
+                    var error = BeamWebViewError;
+                    BeamWebViewError = null;
+                    return new BeamPollingResult<T>
+                    {
+                        Error = error,
+                        Result = null
+                    };
+                }
+                #endif
                 // if we're not in focus, there's no point in polling
                 if (IsInFocus)
                 {
@@ -663,7 +693,11 @@ namespace Beam
                     {
                         if (e.ErrorCode == 404)
                         {
-                            return null;
+                            return new BeamPollingResult<T>
+                            {
+                                Error = "Operation was not found. Something went wrong.",
+                                Result = null
+                            };
                         }
 
                         throw;
@@ -672,7 +706,11 @@ namespace Beam
                     var retry = shouldRetry.Invoke(result);
                     if (!retry)
                     {
-                        return result;
+                        return new BeamPollingResult<T>
+                        {
+                            Error = null,
+                            Result = result
+                        };
                     }
 
                     await UniTask.Delay(secondsBetweenPolls * 1000, cancellationToken: cancellationToken);
@@ -684,7 +722,11 @@ namespace Beam
                 }
             }
 
-            return null;
+            return new BeamPollingResult<T>
+            {
+                Error = "Timed out",
+                Result = null
+            };
         }
 
         protected async UniTask<(BeamSession, KeyPair)> GetActiveSessionAndKeysAsync(
@@ -781,6 +823,8 @@ namespace Beam
 #if UNITY_IOS && !UNITY_EDITOR
             // opens via Safari View Controller, so that we can automatically close it, use PasswordManagers etc.
             Log($"Opening ${url}");
+            // clear recent error just in case
+            BeamWebViewError = null;
             BeamWebView.LoadUrl(url);
 #elif UNITY_ANDROID && !UNITY_EDITOR
             // opens via Chrome Custom Tab, similar to Safari View Controller on iOS

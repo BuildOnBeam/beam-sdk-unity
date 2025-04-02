@@ -55,9 +55,9 @@ extern "C" {
                                 } else {
                                     errorDetails = [NSString stringWithFormat:@"%@|%@", urlString, error.localizedDescription];
                                 }
-                                UnitySendMessage("WebViewCallback", "OnError", [errorDetails UTF8String]);
+                                UnitySendMessage("BeamWebView", "HandleError", [errorDetails UTF8String]);
             } else if (callbackURL != nil) {
-                UnitySendMessage("WebViewCallback", "OnSuccess", [callbackURL.absoluteString UTF8String]);
+                UnitySendMessage("BeamWebView", "HandleSuccess", [callbackURL.absoluteString UTF8String]);
             }
             self->authSession = nil;
     }];

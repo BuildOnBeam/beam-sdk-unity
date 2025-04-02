@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace Plugins.iOS
 {
-    public class BeamWebView : IDisposable
+    public class BeamWebView : MonoBehaviour
     {
 #if UNITY_IOS && !UNITY_EDITOR
         [DllImport("__Internal")]
@@ -30,6 +31,7 @@ namespace Plugins.iOS
 #if UNITY_IOS && !UNITY_EDITOR
             nativeWebView = _CreateWebView();
 #endif
+            name = "BeamWebView";
         }
 
         public void LoadUrl(string url)

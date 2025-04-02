@@ -134,9 +134,16 @@ namespace Beam
             
             CloseWebViewIfPossible();
 
-            Log($"Got polling connection request result: {pollingResult.Status.ToString()}");
+            if (pollingResult.IsOk)
+            {
+                Log($"Got polling connection request result: {pollingResult.Result.Status.ToString()}");
 
-            return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Status);
+                return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Result.Status);
+            }
+
+            Log($"Got polling connection request result: {pollingResult.Error}");
+
+            return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, pollingResult.Error);
         }
 
         /// <summary>
@@ -275,13 +282,14 @@ namespace Beam
             
             CloseWebViewIfPossible();
 
-            if (pollingResult == null)
+            if (!pollingResult.IsOk)
             {
-                return new BeamResult<BeamSession>(BeamResultType.Error,
-                    "Polling for created session encountered an error or timed out");
+                Log($"Got polling session request result: {pollingResult.Error}");
+
+                return new BeamResult<BeamSession>(BeamResultType.Error, pollingResult.Error);
             }
 
-            switch (pollingResult.Status)
+            switch (pollingResult.Result.Status)
             {
                 case GetSessionRequestResponse.StatusEnum.Pending:
                     beamResultModel.Status = BeamResultType.Pending;
