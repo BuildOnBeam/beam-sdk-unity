@@ -80,7 +80,7 @@ namespace Beam
                     apiUrl = "https://api.onbeam.com";
                     break;
                 default:
-                    apiUrl = "https://api.testnet.onbeam.com";
+                    apiUrl = "https://api.preview.onbeam.com";
                     break;
             }
 
