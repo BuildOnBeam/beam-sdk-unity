@@ -79,24 +79,28 @@ namespace Beam
         /// <summary>
         /// Retrieves Connection Request data. Use with <see cref="StartConnectingUserToGameAsync"/>
         /// </summary>
-        /// <param name="entityId">Entity Id of the User performing signing</param>
+        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign user an entityId automatically.</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<CreateConnectionRequestResponse>> GetUserConnectionRequestAsync(
-            string entityId,
+            string entityId = null,
             int chainId = Constants.DefaultChainId,
             CreateConnectionRequestInput.AuthProviderEnum authProvider =
                 CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrWhiteSpace(entityId))
+            {
+                entityId = null;
+            }
             Log("Retrieving connection request");
             CreateConnectionRequestResponse connRequest;
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId),
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider),
                     cancellationToken);
 
                 return new BeamResult<CreateConnectionRequestResponse>(connRequest);

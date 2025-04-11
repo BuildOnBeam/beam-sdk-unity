@@ -80,7 +80,7 @@ namespace Beam
                     apiUrl = "https://api.onbeam.com";
                     break;
                 default:
-                    apiUrl = "https://api.testnet.onbeam.com";
+                    apiUrl = "https://api.preview.onbeam.com";
                     break;
             }
 
@@ -158,13 +158,45 @@ namespace Beam
         /// This will also happen on first possible action signed by user in the browser but can be used on it's own to
         /// simplify the first interaction.
         /// </summary>
-        /// <param name="entityId">Entity Id of the User performing signing</param>
+        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign user an entityId automatically.</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
+        [Obsolete("Please use ConnectUserToGameAsyncV2")]
         public async UniTask<BeamResult<GetConnectionRequestResponse.StatusEnum>> ConnectUserToGameAsync(
+            string entityId = null,
+            int chainId = Constants.DefaultChainId,
+            int secondsTimeout = DefaultTimeoutInSeconds,
+            CreateConnectionRequestInput.AuthProviderEnum authProvider =
+                CreateConnectionRequestInput.AuthProviderEnum.Any,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await ConnectUserToGameAsyncV2(
+                entityId, chainId, secondsTimeout, authProvider, cancellationToken);
+
+            return new BeamResult<GetConnectionRequestResponse.StatusEnum>
+            {
+                BeamApiError = result.BeamApiError,
+                Error = result.Error,
+                Result = result.Result?.Status ?? GetConnectionRequestResponse.StatusEnum.Error,
+                Status = result.Status
+            };
+        }
+
+        /// <summary>
+        /// Will connect User to your game.
+        /// This will also happen on first possible action signed by user in the browser but can be used on it's own to
+        /// simplify the first interaction.
+        /// </summary>
+        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign user an entityId automatically.</param>
+        /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
+        /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
+        /// <param name="cancellationToken">Optional CancellationToken</param>
+        /// <returns>UniTask</returns>
+        public async UniTask<BeamResult<GetConnectionRequestResponse>> ConnectUserToGameAsyncV2(
             string entityId,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
@@ -172,17 +204,22 @@ namespace Beam
                 CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrWhiteSpace(entityId))
+            {
+                entityId = null;
+            }
+
             Log("Retrieving connection request");
             CreateConnectionRequestResponse connRequest;
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId),
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider),
                     cancellationToken);
             }
             catch (ApiException e)
             {
-                return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, e.Message);
+                return new BeamResult<GetConnectionRequestResponse>(BeamResultType.Error, e.Message);
             }
 
             // open browser to connect user
@@ -202,12 +239,12 @@ namespace Beam
             {
                 Log($"Got polling connection request result: {pollingResult.Result.Status.ToString()}");
 
-                return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Result.Status);
+                return new BeamResult<GetConnectionRequestResponse>(pollingResult.Result);
             }
 
             Log($"Got polling connection request result: {pollingResult.Error}");
 
-            return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, pollingResult.Error);
+            return new BeamResult<GetConnectionRequestResponse>(BeamResultType.Error, pollingResult.Error);
         }
 
         /// <summary>
