@@ -115,8 +115,9 @@ namespace BeamPlayerClient.Model
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
         /// <param name="entityId">entityId (required).</param>
+        /// <param name="gameId">gameId (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public GetConnectionRequestResponse(StatusEnum status = default(StatusEnum), AuthProviderEnum authProvider = default(AuthProviderEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string entityId = default(string))
+        public GetConnectionRequestResponse(StatusEnum status = default(StatusEnum), AuthProviderEnum authProvider = default(AuthProviderEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string entityId = default(string), string gameId = default(string))
         {
             this.Status = status;
             this.AuthProvider = authProvider;
@@ -139,6 +140,12 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("entityId is a required property for GetConnectionRequestResponse and cannot be null");
             }
             this.EntityId = entityId;
+            // to ensure "gameId" is required (not null)
+            if (gameId == null)
+            {
+                throw new ArgumentNullException("gameId is a required property for GetConnectionRequestResponse and cannot be null");
+            }
+            this.GameId = gameId;
         }
 
         /// <summary>
@@ -170,6 +177,13 @@ namespace BeamPlayerClient.Model
         public string EntityId { get; set; }
 
         /// <summary>
+        /// Gets or Sets GameId
+        /// </summary>
+        [DataMember(Name = "gameId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string GameId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -184,6 +198,7 @@ namespace BeamPlayerClient.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  EntityId: ").Append(EntityId).Append("\n");
+            sb.Append("  GameId: ").Append(GameId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

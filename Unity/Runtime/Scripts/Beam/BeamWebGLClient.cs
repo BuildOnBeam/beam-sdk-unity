@@ -238,9 +238,9 @@ namespace Beam
             // retrieve operation Id to pass further and track result
             try
             {
-                var res = await SessionsApi.CreateSessionRequestAsync(entityId,
-                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
-                        authProvider: authProvider, chainId: chainId), cancellationToken);
+                var res = await SessionsApi.CreateSessionRequestV2Async(
+                    new GenerateSessionUrlRequestInput(newKeyPair.keyPair.Account.Address, suggestedExpiry: suggestedExpiry,
+                        authProvider: authProvider, chainId: chainId, entityId: entityId), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 return new BeamResult<GenerateSessionRequestResponse>(res);

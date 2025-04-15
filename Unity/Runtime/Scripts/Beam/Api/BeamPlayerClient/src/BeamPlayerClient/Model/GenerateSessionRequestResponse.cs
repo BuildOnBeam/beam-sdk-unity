@@ -114,13 +114,15 @@ namespace BeamPlayerClient.Model
         /// <param name="id">id (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
+        /// <param name="entityId">entityId (required).</param>
+        /// <param name="gameId">gameId (required).</param>
         /// <param name="chainId">chainId (required).</param>
         /// <param name="openfortId">openfortId (required).</param>
         /// <param name="address">address (required).</param>
         /// <param name="contracts">contracts (required).</param>
         /// <param name="url">url (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public GenerateSessionRequestResponse(StatusEnum status = default(StatusEnum), AuthProviderEnum authProvider = default(AuthProviderEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), long chainId = default(long), string openfortId = default(string), string address = default(string), List<string> contracts = default(List<string>), string url = default(string))
+        public GenerateSessionRequestResponse(StatusEnum status = default(StatusEnum), AuthProviderEnum authProvider = default(AuthProviderEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string entityId = default(string), string gameId = default(string), long chainId = default(long), string openfortId = default(string), string address = default(string), List<string> contracts = default(List<string>), string url = default(string))
         {
             this.Status = status;
             this.AuthProvider = authProvider;
@@ -137,6 +139,18 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("updatedAt is a required property for GenerateSessionRequestResponse and cannot be null");
             }
             this.UpdatedAt = updatedAt;
+            // to ensure "entityId" is required (not null)
+            if (entityId == null)
+            {
+                throw new ArgumentNullException("entityId is a required property for GenerateSessionRequestResponse and cannot be null");
+            }
+            this.EntityId = entityId;
+            // to ensure "gameId" is required (not null)
+            if (gameId == null)
+            {
+                throw new ArgumentNullException("gameId is a required property for GenerateSessionRequestResponse and cannot be null");
+            }
+            this.GameId = gameId;
             this.ChainId = chainId;
             // to ensure "openfortId" is required (not null)
             if (openfortId == null)
@@ -184,6 +198,20 @@ namespace BeamPlayerClient.Model
         [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
         public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EntityId
+        /// </summary>
+        [DataMember(Name = "entityId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string EntityId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets GameId
+        /// </summary>
+        [DataMember(Name = "gameId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string GameId { get; set; }
 
         /// <summary>
         /// Gets or Sets ChainId
@@ -234,6 +262,8 @@ namespace BeamPlayerClient.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  EntityId: ").Append(EntityId).Append("\n");
+            sb.Append("  GameId: ").Append(GameId).Append("\n");
             sb.Append("  ChainId: ").Append(ChainId).Append("\n");
             sb.Append("  OpenfortId: ").Append(OpenfortId).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
