@@ -1973,7 +1973,7 @@ paths:
       summary: ""
       tags:
       - Sessions
-      x-sunset: 2025-06-01
+      x-sunset: 2025-07-01
   /v1/player/sessions/users/{entityId}/revoke:
     post:
       operationId: revokeSession
@@ -4669,10 +4669,12 @@ components:
       type: object
     GenerateSessionRequestResponse:
       example:
+        gameId: gameId
         authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         address: address
         chainId: 0
+        entityId: entityId
         id: id
         openfortId: openfortId
         contracts:
@@ -4705,6 +4707,11 @@ components:
           format: date-time
           nullable: true
           type: string
+        entityId:
+          nullable: true
+          type: string
+        gameId:
+          type: string
         chainId:
           format: int64
           type: integer
@@ -4726,6 +4733,8 @@ components:
       - chainId
       - contracts
       - createdAt
+      - entityId
+      - gameId
       - id
       - openfortId
       - status
@@ -4780,10 +4789,12 @@ components:
       type: object
     GetSessionRequestResponse:
       example:
+        gameId: gameId
         authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         address: address
         chainId: 0
+        entityId: entityId
         id: id
         openfortId: openfortId
         contracts:
@@ -4815,6 +4826,11 @@ components:
           format: date-time
           nullable: true
           type: string
+        entityId:
+          nullable: true
+          type: string
+        gameId:
+          type: string
         chainId:
           format: int64
           type: integer
@@ -4833,6 +4849,8 @@ components:
       - chainId
       - contracts
       - createdAt
+      - entityId
+      - gameId
       - id
       - openfortId
       - status
@@ -4923,6 +4941,7 @@ components:
       type: object
     CreateConnectionRequestResponse:
       example:
+        gameId: gameId
         authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         entityId: entityId
@@ -4957,6 +4976,8 @@ components:
         entityId:
           nullable: true
           type: string
+        gameId:
+          type: string
         url:
           format: uri
           type: string
@@ -4964,6 +4985,7 @@ components:
       - authProvider
       - createdAt
       - entityId
+      - gameId
       - id
       - status
       - updatedAt
@@ -4971,6 +4993,7 @@ components:
       type: object
     GetConnectionRequestResponse:
       example:
+        gameId: gameId
         authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         entityId: entityId
@@ -5004,10 +5027,13 @@ components:
         entityId:
           nullable: true
           type: string
+        gameId:
+          type: string
       required:
       - authProvider
       - createdAt
       - entityId
+      - gameId
       - id
       - status
       - updatedAt
