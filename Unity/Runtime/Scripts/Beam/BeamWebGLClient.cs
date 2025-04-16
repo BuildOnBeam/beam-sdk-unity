@@ -79,28 +79,24 @@ namespace Beam
         /// <summary>
         /// Retrieves Connection Request data. Use with <see cref="StartConnectingUserToGameAsync"/>
         /// </summary>
-        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign user an entityId automatically.</param>
+        /// <param name="entityId">Entity Id of the User performing signing</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
         public async UniTask<BeamResult<CreateConnectionRequestResponse>> GetUserConnectionRequestAsync(
-            string entityId = null,
+            string entityId,
             int chainId = Constants.DefaultChainId,
             CreateConnectionRequestInput.AuthProviderEnum authProvider =
                 CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrWhiteSpace(entityId))
-            {
-                entityId = null;
-            }
             Log("Retrieving connection request");
             CreateConnectionRequestResponse connRequest;
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, authProvider: authProvider),
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId),
                     cancellationToken);
 
                 return new BeamResult<CreateConnectionRequestResponse>(connRequest);
@@ -238,9 +234,9 @@ namespace Beam
             // retrieve operation Id to pass further and track result
             try
             {
-                var res = await SessionsApi.CreateSessionRequestV2Async(
-                    new GenerateSessionUrlRequestInput(newKeyPair.keyPair.Account.Address, suggestedExpiry: suggestedExpiry,
-                        authProvider: authProvider, chainId: chainId, entityId: entityId), cancellationToken);
+                var res = await SessionsApi.CreateSessionRequestAsync(entityId,
+                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: suggestedExpiry,
+                        authProvider: authProvider, chainId: chainId), cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 return new BeamResult<GenerateSessionRequestResponse>(res);
