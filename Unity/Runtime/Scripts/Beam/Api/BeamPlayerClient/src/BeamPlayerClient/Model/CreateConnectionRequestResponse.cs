@@ -64,6 +64,44 @@ namespace BeamPlayerClient.Model
         [UnityEngine.Scripting.Preserve]
         public StatusEnum Status { get; set; }
         /// <summary>
+        /// Defines AuthProvider
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AuthProviderEnum
+        {
+            /// <summary>
+            /// Enum Any for value: Any
+            /// </summary>
+            [EnumMember(Value = "Any")]
+            Any = 1,
+
+            /// <summary>
+            /// Enum Google for value: Google
+            /// </summary>
+            [EnumMember(Value = "Google")]
+            Google = 2,
+
+            /// <summary>
+            /// Enum Discord for value: Discord
+            /// </summary>
+            [EnumMember(Value = "Discord")]
+            Discord = 3,
+
+            /// <summary>
+            /// Enum Apple for value: Apple
+            /// </summary>
+            [EnumMember(Value = "Apple")]
+            Apple = 4
+        }
+
+
+        /// <summary>
+        /// Gets or Sets AuthProvider
+        /// </summary>
+        [DataMember(Name = "authProvider", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public AuthProviderEnum AuthProvider { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateConnectionRequestResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -72,14 +110,18 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="CreateConnectionRequestResponse" /> class.
         /// </summary>
         /// <param name="status">status (required).</param>
+        /// <param name="authProvider">authProvider (required).</param>
         /// <param name="id">id (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="updatedAt">updatedAt (required).</param>
+        /// <param name="entityId">entityId (required).</param>
+        /// <param name="gameId">gameId (required).</param>
         /// <param name="url">url (required).</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateConnectionRequestResponse(StatusEnum status = default(StatusEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string url = default(string))
+        public CreateConnectionRequestResponse(StatusEnum status = default(StatusEnum), AuthProviderEnum authProvider = default(AuthProviderEnum), string id = default(string), DateTime createdAt = default(DateTime), DateTime? updatedAt = default(DateTime?), string entityId = default(string), string gameId = default(string), string url = default(string))
         {
             this.Status = status;
+            this.AuthProvider = authProvider;
             // to ensure "id" is required (not null)
             if (id == null)
             {
@@ -93,6 +135,18 @@ namespace BeamPlayerClient.Model
                 throw new ArgumentNullException("updatedAt is a required property for CreateConnectionRequestResponse and cannot be null");
             }
             this.UpdatedAt = updatedAt;
+            // to ensure "entityId" is required (not null)
+            if (entityId == null)
+            {
+                throw new ArgumentNullException("entityId is a required property for CreateConnectionRequestResponse and cannot be null");
+            }
+            this.EntityId = entityId;
+            // to ensure "gameId" is required (not null)
+            if (gameId == null)
+            {
+                throw new ArgumentNullException("gameId is a required property for CreateConnectionRequestResponse and cannot be null");
+            }
+            this.GameId = gameId;
             // to ensure "url" is required (not null)
             if (url == null)
             {
@@ -123,6 +177,20 @@ namespace BeamPlayerClient.Model
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
+        /// Gets or Sets EntityId
+        /// </summary>
+        [DataMember(Name = "entityId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string EntityId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets GameId
+        /// </summary>
+        [DataMember(Name = "gameId", IsRequired = true, EmitDefaultValue = true)]
+        [UnityEngine.Scripting.Preserve]
+        public string GameId { get; set; }
+
+        /// <summary>
         /// Gets or Sets Url
         /// </summary>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
@@ -139,9 +207,12 @@ namespace BeamPlayerClient.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateConnectionRequestResponse {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  AuthProvider: ").Append(AuthProvider).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  EntityId: ").Append(EntityId).Append("\n");
+            sb.Append("  GameId: ").Append(GameId).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

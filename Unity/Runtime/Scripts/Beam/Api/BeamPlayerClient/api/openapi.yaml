@@ -1933,6 +1933,7 @@ paths:
       - Exchange
   /v1/player/sessions/users/{entityId}/request:
     post:
+      deprecated: true
       operationId: createSessionRequest
       parameters:
       - explode: false
@@ -1972,6 +1973,7 @@ paths:
       summary: ""
       tags:
       - Sessions
+      x-sunset: 2025-07-01
   /v1/player/sessions/users/{entityId}/revoke:
     post:
       operationId: revokeSession
@@ -2143,6 +2145,40 @@ paths:
       tags:
       - Sessions
       x-sunset: 2025-03-01
+  /v2/player/sessions/request:
+    post:
+      operationId: createSessionRequestV2
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateSessionUrlRequestInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateSessionRequestResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+      security:
+      - beam-api-key: []
+      summary: ""
+      tags:
+      - Sessions
   /v2/player/sessions/users/{entityId}/{accountAddress}/active:
     get:
       operationId: getActiveSessionV2
@@ -4589,12 +4625,18 @@ components:
         authProvider: Any
         address: address
         chainId: 0
+        entityId: entityId
         suggestedExpiry: 2000-01-23T04:56:07.000+00:00
         contracts:
         - contracts
         - contracts
       properties:
         address:
+          type: string
+        entityId:
+          maxLength: 250
+          minLength: 3
+          nullable: true
           type: string
         suggestedExpiry:
           format: date-time
@@ -4627,9 +4669,12 @@ components:
       type: object
     GenerateSessionRequestResponse:
       example:
+        gameId: gameId
+        authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         address: address
         chainId: 0
+        entityId: entityId
         id: id
         openfortId: openfortId
         contracts:
@@ -4645,6 +4690,13 @@ components:
           - Accepted
           - Error
           type: string
+        authProvider:
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          type: string
         id:
           format: cuid
           type: string
@@ -4654,6 +4706,11 @@ components:
         updatedAt:
           format: date-time
           nullable: true
+          type: string
+        entityId:
+          nullable: true
+          type: string
+        gameId:
           type: string
         chainId:
           format: int64
@@ -4672,9 +4729,12 @@ components:
           type: string
       required:
       - address
+      - authProvider
       - chainId
       - contracts
       - createdAt
+      - entityId
+      - gameId
       - id
       - openfortId
       - status
@@ -4729,9 +4789,12 @@ components:
       type: object
     GetSessionRequestResponse:
       example:
+        gameId: gameId
+        authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
         address: address
         chainId: 0
+        entityId: entityId
         id: id
         openfortId: openfortId
         contracts:
@@ -4746,6 +4809,13 @@ components:
           - Accepted
           - Error
           type: string
+        authProvider:
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          type: string
         id:
           format: cuid
           type: string
@@ -4755,6 +4825,11 @@ components:
         updatedAt:
           format: date-time
           nullable: true
+          type: string
+        entityId:
+          nullable: true
+          type: string
+        gameId:
           type: string
         chainId:
           format: int64
@@ -4770,9 +4845,12 @@ components:
           type: array
       required:
       - address
+      - authProvider
       - chainId
       - contracts
       - createdAt
+      - entityId
+      - gameId
       - id
       - openfortId
       - status
@@ -4841,12 +4919,12 @@ components:
     CreateConnectionRequestInput:
       example:
         authProvider: Any
-        chainId: 0
         entityId: entityId
       properties:
         entityId:
           maxLength: 250
           minLength: 3
+          nullable: true
           type: string
         authProvider:
           default: Any
@@ -4860,16 +4938,13 @@ components:
           - Apple
           nullable: true
           type: string
-        chainId:
-          default: 13337
-          format: int64
-          type: integer
-      required:
-      - entityId
       type: object
     CreateConnectionRequestResponse:
       example:
+        gameId: gameId
+        authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
+        entityId: entityId
         id: id
         url: https://openapi-generator.tech
         status: Pending
@@ -4881,6 +4956,13 @@ components:
           - Connected
           - Error
           type: string
+        authProvider:
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          type: string
         id:
           format: cuid
           type: string
@@ -4891,11 +4973,19 @@ components:
           format: date-time
           nullable: true
           type: string
+        entityId:
+          nullable: true
+          type: string
+        gameId:
+          type: string
         url:
           format: uri
           type: string
       required:
+      - authProvider
       - createdAt
+      - entityId
+      - gameId
       - id
       - status
       - updatedAt
@@ -4903,7 +4993,10 @@ components:
       type: object
     GetConnectionRequestResponse:
       example:
+        gameId: gameId
+        authProvider: Any
         createdAt: 2000-01-23T04:56:07.000+00:00
+        entityId: entityId
         id: id
         status: Pending
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -4914,6 +5007,13 @@ components:
           - Connected
           - Error
           type: string
+        authProvider:
+          enum:
+          - Any
+          - Google
+          - Discord
+          - Apple
+          type: string
         id:
           format: cuid
           type: string
@@ -4924,8 +5024,16 @@ components:
           format: date-time
           nullable: true
           type: string
+        entityId:
+          nullable: true
+          type: string
+        gameId:
+          type: string
       required:
+      - authProvider
       - createdAt
+      - entityId
+      - gameId
       - id
       - status
       - updatedAt
