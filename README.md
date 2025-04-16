@@ -37,6 +37,31 @@ var beamClient = gameObject.AddComponent<BeamClient>()
                 .SetStorage(yourCustomStorageImplementation); // optional, defaults to PlayerPrefs storage;
 ```
 
+### Connecting your user to Beam
+This is an operation that ideally should only be called once. You can assign the user your own label we call `entityId` and then use it to refer to that player. 
+In case you don't want to assign it yourself, on first Connection to the game, user will be automatically assigned his EOA address and we will return it as a result of `ConnectUserToGameAsyncV2` or `CreateSessionAsync`. You can then store it and use it with other functionalities of Beam API/SDKs.
+```csharp
+            var result = await beamClient.ConnectUserToGameAsyncV2(BeamEntityId); // will also work without entityId
+            if (result.Status == BeamResultType.Success)
+            {
+                var user = await beamClient.UsersApi.GetUserAsync(result.Result.EntityId);
+                // you can now perform Operations with this User
+            }
+```
+
+
+### Creating a session:
+If you haven't connected your user to the game before, first `CreateSessionAsync` will do that for you(it will be part of the flow when user is on identity.onbeam.com).
+```csharp
+            var activeSessionResult = await m_BeamClient.CreateSessionAsync(BeamEntityId);
+            if (activeSessionResult.Status == BeamResultType.Success)
+            {
+                var session = activeSessionResult.Result;
+                // you can now sign Operations without leaving the game
+            }
+```
+
+
 ### Checking for an active session
 
 ```csharp
@@ -46,16 +71,6 @@ var beamClient = gameObject.AddComponent<BeamClient>()
                 var session = activeSessionResult.Result;
                 var validUntil = session.EndTime;
                 // (...)
-            }
-```
-
-### Creating a session:
-```csharp
-            var activeSessionResult = await m_BeamClient.CreateSessionAsync(BeamEntityId);
-            if (activeSessionResult.Status == BeamResultType.Success)
-            {
-                var session = activeSessionResult.Result;
-                // you can now sign Operations without leaving the game
             }
 ```
 
