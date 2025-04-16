@@ -33,6 +33,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <returns>GenerateSessionRequestResponse</returns>
+        [Obsolete]
         GenerateSessionRequestResponse CreateSessionRequest(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput);
 
         /// <summary>
@@ -45,7 +46,26 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <returns>ApiResponse of GenerateSessionRequestResponse</returns>
+        [Obsolete]
         ApiResponse<GenerateSessionRequestResponse> CreateSessionRequestWithHttpInfo(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <returns>GenerateSessionRequestResponse</returns>
+        GenerateSessionRequestResponse CreateSessionRequestV2(GenerateSessionUrlRequestInput generateSessionUrlRequestInput);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <returns>ApiResponse of GenerateSessionRequestResponse</returns>
+        ApiResponse<GenerateSessionRequestResponse> CreateSessionRequestV2WithHttpInfo(GenerateSessionUrlRequestInput generateSessionUrlRequestInput);
         /// <summary>
         /// 
         /// </summary>
@@ -170,6 +190,7 @@ namespace BeamPlayerClient.Api
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GenerateSessionRequestResponse</returns>
+        [Obsolete]
         Cysharp.Threading.Tasks.UniTask<GenerateSessionRequestResponse> CreateSessionRequestAsync(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
@@ -183,7 +204,31 @@ namespace BeamPlayerClient.Api
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GenerateSessionRequestResponse)</returns>
+        [Obsolete]
         Cysharp.Threading.Tasks.UniTask<ApiResponse<GenerateSessionRequestResponse>> CreateSessionRequestWithHttpInfoAsync(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateSessionRequestResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<GenerateSessionRequestResponse> CreateSessionRequestV2Async(GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateSessionRequestResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GenerateSessionRequestResponse>> CreateSessionRequestV2WithHttpInfoAsync(GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -464,6 +509,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <returns>GenerateSessionRequestResponse</returns>
+        [Obsolete]
         public GenerateSessionRequestResponse CreateSessionRequest(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput)
         {
             BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse> localVarResponse = CreateSessionRequestWithHttpInfo(entityId, generateSessionUrlRequestInput);
@@ -477,6 +523,7 @@ namespace BeamPlayerClient.Api
         /// <param name="entityId"></param>
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <returns>ApiResponse of GenerateSessionRequestResponse</returns>
+        [Obsolete]
         public BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse> CreateSessionRequestWithHttpInfo(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput)
         {
             // verify the required parameter 'entityId' is set
@@ -533,6 +580,7 @@ namespace BeamPlayerClient.Api
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GenerateSessionRequestResponse</returns>
+        [Obsolete]
         public async Cysharp.Threading.Tasks.UniTask<GenerateSessionRequestResponse> CreateSessionRequestAsync(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             var task = CreateSessionRequestWithHttpInfoAsync(entityId, generateSessionUrlRequestInput, cancellationToken);
@@ -548,6 +596,7 @@ namespace BeamPlayerClient.Api
         /// <param name="generateSessionUrlRequestInput"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GenerateSessionRequestResponse)</returns>
+        [Obsolete]
         public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse>> CreateSessionRequestWithHttpInfoAsync(string entityId, GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'entityId' is set
@@ -595,6 +644,136 @@ namespace BeamPlayerClient.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateSessionRequest", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <returns>GenerateSessionRequestResponse</returns>
+        public GenerateSessionRequestResponse CreateSessionRequestV2(GenerateSessionUrlRequestInput generateSessionUrlRequestInput)
+        {
+            BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse> localVarResponse = CreateSessionRequestV2WithHttpInfo(generateSessionUrlRequestInput);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <returns>ApiResponse of GenerateSessionRequestResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse> CreateSessionRequestV2WithHttpInfo(GenerateSessionUrlRequestInput generateSessionUrlRequestInput)
+        {
+            // verify the required parameter 'generateSessionUrlRequestInput' is set
+            if (generateSessionUrlRequestInput == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'generateSessionUrlRequestInput' when calling SessionsApi->CreateSessionRequestV2");
+
+            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateSessionUrlRequestInput;
+
+            // authentication (beam-api-key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GenerateSessionRequestResponse>("/v2/player/sessions/request", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSessionRequestV2", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateSessionRequestResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<GenerateSessionRequestResponse> CreateSessionRequestV2Async(GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            var task = CreateSessionRequestV2WithHttpInfoAsync(generateSessionUrlRequestInput, cancellationToken);
+            BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse> localVarResponse = await task;
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateSessionUrlRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateSessionRequestResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GenerateSessionRequestResponse>> CreateSessionRequestV2WithHttpInfoAsync(GenerateSessionUrlRequestInput generateSessionUrlRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'generateSessionUrlRequestInput' is set
+            if (generateSessionUrlRequestInput == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'generateSessionUrlRequestInput' when calling SessionsApi->CreateSessionRequestV2");
+
+
+            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateSessionUrlRequestInput;
+
+            // authentication (beam-api-key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<GenerateSessionRequestResponse>("/v2/player/sessions/request", localVarRequestOptions, this.Configuration, cancellationToken);
+
+            var localVarResponse = await task;
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSessionRequestV2", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -158,13 +158,45 @@ namespace Beam
         /// This will also happen on first possible action signed by user in the browser but can be used on it's own to
         /// simplify the first interaction.
         /// </summary>
-        /// <param name="entityId">Entity Id of the User performing signing</param>
+        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign user an entityId automatically.</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
         /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
+        [Obsolete("Please use ConnectUserToGameAsyncV2")]
         public async UniTask<BeamResult<GetConnectionRequestResponse.StatusEnum>> ConnectUserToGameAsync(
+            string entityId = null,
+            int chainId = Constants.DefaultChainId,
+            int secondsTimeout = DefaultTimeoutInSeconds,
+            CreateConnectionRequestInput.AuthProviderEnum authProvider =
+                CreateConnectionRequestInput.AuthProviderEnum.Any,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await ConnectUserToGameAsyncV2(
+                entityId, chainId, secondsTimeout, authProvider, cancellationToken);
+
+            return new BeamResult<GetConnectionRequestResponse.StatusEnum>
+            {
+                BeamApiError = result.BeamApiError,
+                Error = result.Error,
+                Result = result.Result?.Status ?? GetConnectionRequestResponse.StatusEnum.Error,
+                Status = result.Status
+            };
+        }
+
+        /// <summary>
+        /// Will connect User to your game.
+        /// This will also happen on first possible action signed by user in the browser but can be used on it's own to
+        /// simplify the first interaction.
+        /// </summary>
+        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign user an entityId automatically.</param>
+        /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
+        /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
+        /// <param name="authProvider">Optional authProvider, if set to Any(default), User will be able to choose social login provider. Useful if you want to present Google/Discord/Apple/etc options within your UI.</param>
+        /// <param name="cancellationToken">Optional CancellationToken</param>
+        /// <returns>UniTask</returns>
+        public async UniTask<BeamResult<GetConnectionRequestResponse>> ConnectUserToGameAsyncV2(
             string entityId,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
@@ -172,17 +204,22 @@ namespace Beam
                 CreateConnectionRequestInput.AuthProviderEnum.Any,
             CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrWhiteSpace(entityId))
+            {
+                entityId = null;
+            }
+
             Log("Retrieving connection request");
             CreateConnectionRequestResponse connRequest;
             try
             {
                 connRequest = await ConnectorApi.CreateConnectionRequestAsync(
-                    new CreateConnectionRequestInput(entityId, authProvider: authProvider, chainId: chainId),
+                    new CreateConnectionRequestInput(entityId, authProvider: authProvider),
                     cancellationToken);
             }
             catch (ApiException e)
             {
-                return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, e.Message);
+                return new BeamResult<GetConnectionRequestResponse>(BeamResultType.Error, e.Message);
             }
 
             // open browser to connect user
@@ -202,12 +239,12 @@ namespace Beam
             {
                 Log($"Got polling connection request result: {pollingResult.Result.Status.ToString()}");
 
-                return new BeamResult<GetConnectionRequestResponse.StatusEnum>(pollingResult.Result.Status);
+                return new BeamResult<GetConnectionRequestResponse>(pollingResult.Result);
             }
 
             Log($"Got polling connection request result: {pollingResult.Error}");
 
-            return new BeamResult<GetConnectionRequestResponse.StatusEnum>(BeamResultType.Error, pollingResult.Error);
+            return new BeamResult<GetConnectionRequestResponse>(BeamResultType.Error, pollingResult.Error);
         }
 
         /// <summary>
@@ -276,7 +313,7 @@ namespace Beam
         /// <summary>
         /// Opens an external browser to sign a Session.
         /// </summary>
-        /// <param name="entityId">Entity Id of the User performing signing</param>
+        /// <param name="entityId">Entity Id of the User performing signing. If null, we will assign entityId and return it..</param>
         /// <param name="suggestedExpiry">Suggested expiration date for Session. It will be presented in the identity.onbeam.com as pre-selected. IMPORTANT: Needs to have specified DateTimeKind, if left Unspecified, we will defaul to Local</param>
         /// <param name="chainId">ChainId to perform operation on. Defaults to 13337.</param>
         /// <param name="secondsTimeout">Optional timeout in seconds, defaults to 240</param>
@@ -284,7 +321,8 @@ namespace Beam
         /// <param name="contracts">Optional contracts to include within the session. These should be contracts you plan on interacting with that would require users signature. If left out or empty, it will automatically use all your game and some global contracts in the session.</param>
         /// <param name="cancellationToken">Optional CancellationToken</param>
         /// <returns>UniTask</returns>
-        public async UniTask<BeamResult<BeamSession>> CreateSessionAsync(string entityId,
+        public async UniTask<BeamResult<BeamSession>> CreateSessionAsync(
+            string entityId = null,
             DateTime? suggestedExpiry = null,
             int chainId = Constants.DefaultChainId,
             int secondsTimeout = DefaultTimeoutInSeconds,
@@ -293,12 +331,17 @@ namespace Beam
             List<string> contracts = null,
             CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrWhiteSpace(entityId))
+            {
+                entityId = null;
+            }
+
             Log("Retrieving active session");
             var (activeSession, _) = await GetActiveSessionAndKeysAsync(entityId, chainId, cancellationToken);
 
             if (activeSession != null)
             {
-                Log("Already has an active session, ending early");
+                Log("Already has an active sessiong, ending early");
                 return new BeamResult<BeamSession>(BeamResultType.Error, "Already has an active session")
                 {
                     Result = activeSession
@@ -308,7 +351,7 @@ namespace Beam
             Log("No active session found, refreshing local KeyPair");
 
             // refresh keypair to make sure we have no conflicts with existing sessions
-            var newKeyPair = GetOrCreateSigningKeyPair(entityId, refresh: true);
+            var (newKeyPair, _) = GetOrCreateSigningKeyPair(entityId, refresh: true);
 
             // retrieve operation Id to pass further and track result
             GenerateSessionRequestResponse beamSessionRequest;
@@ -323,9 +366,11 @@ namespace Beam
                         suggestedExpiry.Value.Second, suggestedExpiry.Value.Millisecond, DateTimeKind.Local);
                 }
 
-                var res = await SessionsApi.CreateSessionRequestAsync(entityId,
-                    new GenerateSessionUrlRequestInput(newKeyPair.Account.Address, suggestedExpiry: correctedDateTime,
-                        chainId: chainId, contracts: contracts, authProvider: authProvider), cancellationToken);
+                var res = await SessionsApi.CreateSessionRequestV2Async(
+                    new GenerateSessionUrlRequestInput(address: newKeyPair.Account.Address,
+                        suggestedExpiry: correctedDateTime,
+                        chainId: chainId, contracts: contracts, authProvider: authProvider, entityId: entityId),
+                    cancellationToken);
 
                 Log($"Created session request: {res.Id} to check for session result");
                 beamSessionRequest = res;
@@ -353,7 +398,7 @@ namespace Beam
                 cancellationToken: cancellationToken);
 
             CloseWebViewIfPossible();
-            
+
             if (!pollingResult.IsOk)
             {
                 Log($"Got polling session request result: {pollingResult.Error}");
@@ -378,11 +423,17 @@ namespace Beam
                     throw new ArgumentOutOfRangeException();
             }
 
+            // if we did not use entityId(null), we should get entityId assigned by identity.onbeam.com back in the result
+            var usedEntityId = pollingResult.Result.EntityId;
+
+            // so overwrite local KeyPair with this entityId, before verifying in beam-api that session is valid
+            StoreKeyPairForEntity(newKeyPair, usedEntityId);
+
             Log("Retrieving newly created Session");
             // retrieve newly created session
             if (!error)
             {
-                var (beamSession, _) = await GetActiveSessionAndKeysAsync(entityId, chainId, cancellationToken);
+                var (beamSession, _) = await GetActiveSessionAndKeysAsync(usedEntityId, chainId, cancellationToken);
                 if (beamSession != null)
                 {
                     beamResultModel.Result = beamSession;
@@ -669,7 +720,7 @@ namespace Beam
 
             while ((endTime - DateTime.Now).TotalSeconds > 0)
             {
-                #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
                 if (!string.IsNullOrWhiteSpace(BeamWebViewError))
                 {
                     var error = BeamWebViewError;
@@ -680,7 +731,7 @@ namespace Beam
                         Result = null
                     };
                 }
-                #endif
+#endif
                 // if we're not in focus, there's no point in polling
                 if (IsInFocus)
                 {
@@ -735,19 +786,28 @@ namespace Beam
             CancellationToken cancellationToken = default)
         {
             BeamSession beamSession = null;
-            var keyPair = GetOrCreateSigningKeyPair(entityId);
+            var keyPairResult = GetOrCreateSigningKeyPair(entityId);
+            var keyPair = keyPairResult.keyPair;
+            var entityForThisKeyPair = keyPairResult.entityId;
+
+            // if we don't have entityId stored for this KP, user was never even connected/retrieved on this device
+            if (entityForThisKeyPair == null)
+            {
+                return (null, keyPair);
+            }
 
             // check if we have the session in API for current KeyPair
             // we need to always get it from remote to make sure User didn't revoke it
             try
             {
-                var res = await SessionsApi.GetActiveSessionV2Async(entityId, keyPair.Account.Address,
+                var res = await SessionsApi.GetActiveSessionV2Async(entityForThisKeyPair, keyPair.Account.Address,
                     chainId, cancellationToken);
                 if (res.Session != null)
                 {
                     beamSession = new BeamSession
                     {
                         Id = res.Session.Id,
+                        EntityId = entityForThisKeyPair,
                         StartTime = res.Session.StartTime,
                         EndTime = res.Session.EndTime,
                         SessionAddress = res.Session.SessionAddress
@@ -772,21 +832,34 @@ namespace Beam
             return (null, keyPair);
         }
 
-        protected KeyPair GetOrCreateSigningKeyPair(string entityId, bool refresh = false)
+        protected (KeyPair keyPair, string entityId) GetOrCreateSigningKeyPair(string entityId, bool refresh = false)
         {
+            var normalizedEntityId = entityId;
+            if (string.IsNullOrWhiteSpace(entityId))
+            {
+                normalizedEntityId = null;
+            }
+
             if (!refresh)
             {
-                var privateKey = Storage.Get(Constants.Storage.BeamSigningKey + entityId);
+                var privateKey = Storage.Get(Constants.Storage.BeamSigningKey + normalizedEntityId);
                 if (privateKey != null)
                 {
-                    return KeyPair.Load(privateKey);
+                    return (KeyPair.Load(privateKey), normalizedEntityId);
                 }
             }
 
             var newKeyPair = KeyPair.Generate();
-            Storage.Set(Constants.Storage.BeamSigningKey + entityId, newKeyPair.PrivateHex);
+            Storage.Set(Constants.Storage.BeamSigningKey + normalizedEntityId, newKeyPair.PrivateHex);
 
-            return newKeyPair;
+            return (newKeyPair, normalizedEntityId);
+        }
+
+        protected KeyPair StoreKeyPairForEntity(KeyPair keyPair, string entityId)
+        {
+            Storage.Set(Constants.Storage.BeamSigningKey + entityId, keyPair.PrivateHex);
+
+            return keyPair;
         }
 
         protected Configuration GetConfiguration()
