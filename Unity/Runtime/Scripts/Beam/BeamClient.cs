@@ -52,7 +52,7 @@ namespace Beam
 
         public BeamClient()
         {
-            SetEnvironment(BeamEnvironment.Testnet);
+            SetEnvironment(BeamEnvironment.Beta);
         }
 
         /// <summary>
@@ -77,10 +77,11 @@ namespace Beam
             switch (environment)
             {
                 case BeamEnvironment.Mainnet:
+                case BeamEnvironment.Production:
                     apiUrl = "https://api.onbeam.com";
                     break;
                 default:
-                    apiUrl = "https://api.testnet.onbeam.com";
+                    apiUrl = "https://api.beta.onbeam.com";
                     break;
             }
 
