@@ -32,7 +32,7 @@ To use the package, initialize `BeamClient`:
 ```csharp
 var beamClient = gameObject.AddComponent<BeamClient>()
                 .SetBeamApiKey("your-publishable-api-key") // set your Publishable(!) API key
-                .SetEnvironment(BeamEnvironment.Testnet) // defaults to Testnet
+                .SetEnvironment(BeamEnvironment.Beta) // defaults to Beta
                 .SetDebugLogging(true) // optional, defaults to false
                 .SetStorage(yourCustomStorageImplementation); // optional, defaults to PlayerPrefs storage;
 ```
