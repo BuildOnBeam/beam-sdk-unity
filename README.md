@@ -32,7 +32,7 @@ To use the package, initialize `BeamClient`:
 ```csharp
 var beamClient = gameObject.AddComponent<BeamClient>()
                 .SetBeamApiKey("your-publishable-api-key") // set your Publishable(!) API key
-                .SetEnvironment(BeamEnvironment.Testnet) // defaults to Testnet
+                .SetEnvironment(BeamEnvironment.Beta) // defaults to Beta
                 .SetDebugLogging(true) // optional, defaults to false
                 .SetStorage(yourCustomStorageImplementation); // optional, defaults to PlayerPrefs storage;
 ```
@@ -184,3 +184,11 @@ You can enable custom Manifest by going to Build Settings -> Player Settings -> 
 
 ### Examples
 You can find an example implementation using this demo in [beam-sdk-unity-example](https://github.com/BuildOnBeam/beam-sdk-unity-example/tree/main)
+
+### Others
+#### .NET Framework compatibility
+If you are building with .NET Framework compatibility for some reason, you may need to create a `csc.rsp` file in your `/Assets` directory with following content:
+```
+-r:System.Web.dll
+```
+For more information on why, refer to [Unity Manual](https://docs.unity3d.com/Manual/dotnet-profile-assemblies.html)
