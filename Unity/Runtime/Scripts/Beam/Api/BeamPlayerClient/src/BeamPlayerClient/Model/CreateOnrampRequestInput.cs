@@ -32,6 +32,32 @@ namespace BeamPlayerClient.Model
     public partial class CreateOnrampRequestInput
     {
         /// <summary>
+        /// Defines Platform
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PlatformEnum
+        {
+            /// <summary>
+            /// Enum Transak for value: transak
+            /// </summary>
+            [EnumMember(Value = "transak")]
+            Transak = 1,
+
+            /// <summary>
+            /// Enum Thirdweb for value: thirdweb
+            /// </summary>
+            [EnumMember(Value = "thirdweb")]
+            Thirdweb = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Platform
+        /// </summary>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        [UnityEngine.Scripting.Preserve]
+        public PlatformEnum? Platform { get; set; }
+        /// <summary>
         /// Defines Token
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -41,7 +67,13 @@ namespace BeamPlayerClient.Model
             /// Enum BEAM for value: BEAM
             /// </summary>
             [EnumMember(Value = "BEAM")]
-            BEAM = 1
+            BEAM = 1,
+
+            /// <summary>
+            /// Enum FP for value: FP
+            /// </summary>
+            [EnumMember(Value = "FP")]
+            FP = 2
         }
 
 
@@ -94,6 +126,7 @@ namespace BeamPlayerClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOnrampRequestInput" /> class.
         /// </summary>
+        /// <param name="platform">platform (default to PlatformEnum.Transak).</param>
         /// <param name="token">token (default to TokenEnum.BEAM).</param>
         /// <param name="tokenAmount">tokenAmount.</param>
         /// <param name="fiatAmount">fiatAmount.</param>
@@ -102,8 +135,9 @@ namespace BeamPlayerClient.Model
         /// <param name="chainId">chainId (default to 13337).</param>
         /// <param name="authProvider">Auth Provider for the user to use. If it&#39;s Any, user will be able to choose his preferred login method. Useful when you want to present social login choice in your UI. (default to AuthProviderEnum.Any).</param>
         [UnityEngine.Scripting.Preserve]
-        public CreateOnrampRequestInput(TokenEnum? token = TokenEnum.BEAM, string tokenAmount = default(string), string fiatAmount = default(string), string paymentCurrency = @"USD", bool canChangeAmount = false, long chainId = 13337, AuthProviderEnum? authProvider = AuthProviderEnum.Any)
+        public CreateOnrampRequestInput(PlatformEnum? platform = PlatformEnum.Transak, TokenEnum? token = TokenEnum.BEAM, string tokenAmount = default(string), string fiatAmount = default(string), string paymentCurrency = @"USD", bool canChangeAmount = false, long chainId = 13337, AuthProviderEnum? authProvider = AuthProviderEnum.Any)
         {
+            this.Platform = platform;
             this.Token = token;
             this.TokenAmount = tokenAmount;
             this.FiatAmount = fiatAmount;
@@ -158,6 +192,7 @@ namespace BeamPlayerClient.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateOnrampRequestInput {\n");
+            sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("  TokenAmount: ").Append(TokenAmount).Append("\n");
             sb.Append("  FiatAmount: ").Append(FiatAmount).Append("\n");

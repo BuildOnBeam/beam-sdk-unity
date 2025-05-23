@@ -2559,6 +2559,48 @@ paths:
       summary: ""
       tags:
       - Ramp
+  /v1/player/ramp/quote/on/{entityId}:
+    post:
+      operationId: getOnRampQuote
+      parameters:
+      - explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOnrampRequestInput'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOnRampQuoteResponse'
+          description: ""
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeamErrorResponse'
+          description: ""
+      security:
+      - beam-api-key: []
+      - beam-api-key: []
+      summary: ""
+      tags:
+      - Ramp
   /v1/contract/{contractAddress}/read:
     post:
       operationId: readContract
@@ -2870,31 +2912,6 @@ components:
         chainId: 0
         processing: SignOnly
         id: id
-        transactions:
-        - data: ""
-          signature: signature
-          actionId: actionId
-          externalId: externalId
-          operationId: operationId
-          sponsored: true
-          id: id
-          openfortId: openfortId
-          type: OpenfortTransaction
-          hash: hash
-          transactionHash: transactionHash
-          status: Pending
-        - data: ""
-          signature: signature
-          actionId: actionId
-          externalId: externalId
-          operationId: operationId
-          sponsored: true
-          id: id
-          openfortId: openfortId
-          type: OpenfortTransaction
-          hash: hash
-          transactionHash: transactionHash
-          status: Pending
         userId: userId
         actions:
         - signature:
@@ -2980,11 +2997,6 @@ components:
           items:
             $ref: '#/components/schemas/PlayerOperationAction'
           type: array
-        transactions:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/PlayerOperationResponse_transactions_inner'
-          type: array
         url:
           format: uri
           type: string
@@ -2997,7 +3009,6 @@ components:
       - id
       - processing
       - status
-      - transactions
       - updatedAt
       - url
       - userId
@@ -4398,11 +4409,6 @@ components:
       type: object
     ConfirmOperationRequest:
       example:
-        transactions:
-        - signature: signature
-          id: id
-        - signature: signature
-          id: id
         actions:
         - signature: signature
           id: id
@@ -4418,14 +4424,9 @@ components:
           - Executed
           - Error
           type: string
-        transactions:
-          items:
-            $ref: '#/components/schemas/ConfirmOperationRequest_transactions_inner'
-          nullable: true
-          type: array
         actions:
           items:
-            $ref: '#/components/schemas/ConfirmOperationRequest_transactions_inner'
+            $ref: '#/components/schemas/ConfirmOperationRequest_actions_inner'
           nullable: true
           type: array
       required:
@@ -5222,12 +5223,20 @@ components:
         tokenAmount: tokenAmount
         canChangeAmount: false
         paymentCurrency: USD
+        platform: transak
         token: BEAM
       properties:
+        platform:
+          default: transak
+          enum:
+          - transak
+          - thirdweb
+          type: string
         token:
           default: BEAM
           enum:
           - BEAM
+          - FP
           type: string
         tokenAmount:
           type: string
@@ -5255,6 +5264,21 @@ components:
           - Apple
           nullable: true
           type: string
+      type: object
+    GetOnRampQuoteResponse:
+      example:
+        quote:
+          output:
+            tokenAdress: tokenAdress
+            tokenAmount: tokenAmount
+          input:
+            fiatAmount: fiatAmount
+            paymentCurrency: paymentCurrency
+      properties:
+        quote:
+          $ref: '#/components/schemas/GetOnRampQuoteResponse_quote'
+      required:
+      - quote
       type: object
     ReadContractRequest:
       example:
@@ -5702,77 +5726,6 @@ components:
       - operationId
       - type
       title: PlayerOperationAction
-      type: object
-    PlayerOperationResponse_transactions_inner:
-      example:
-        data: ""
-        signature: signature
-        actionId: actionId
-        externalId: externalId
-        operationId: operationId
-        sponsored: true
-        id: id
-        openfortId: openfortId
-        type: OpenfortTransaction
-        hash: hash
-        transactionHash: transactionHash
-        status: Pending
-      properties:
-        status:
-          enum:
-          - Pending
-          - Signed
-          - Rejected
-          - Executed
-          - Error
-          type: string
-        id:
-          format: cuid
-          type: string
-        openfortId:
-          nullable: true
-          type: string
-        sponsored:
-          type: boolean
-        actionId:
-          nullable: true
-          type: string
-        hash:
-          nullable: true
-          type: string
-        type:
-          enum:
-          - OpenfortTransaction
-          - OpenfortReservoirOrder
-          - OpenfortRevokeSession
-          nullable: true
-          type: string
-        externalId:
-          nullable: true
-          type: string
-        signature:
-          nullable: true
-          type: string
-        transactionHash:
-          nullable: true
-          type: string
-        operationId:
-          format: cuid
-          nullable: true
-          type: string
-        data:
-          nullable: true
-      required:
-      - actionId
-      - externalId
-      - id
-      - openfortId
-      - operationId
-      - signature
-      - sponsored
-      - status
-      - transactionHash
-      - type
       type: object
     GetAssetsForContractBodyInput_attributes_inner:
       example:
@@ -6516,7 +6469,7 @@ components:
       - id
       - wallets
       type: object
-    ConfirmOperationRequest_transactions_inner:
+    ConfirmOperationRequest_actions_inner:
       example:
         signature: signature
         id: id
@@ -6684,6 +6637,49 @@ components:
       - asset
       - contract
       - transaction
+      type: object
+    GetOnRampQuoteResponse_quote_input:
+      example:
+        fiatAmount: fiatAmount
+        paymentCurrency: paymentCurrency
+      properties:
+        paymentCurrency:
+          type: string
+        fiatAmount:
+          type: string
+      required:
+      - fiatAmount
+      - paymentCurrency
+      type: object
+    GetOnRampQuoteResponse_quote_output:
+      example:
+        tokenAdress: tokenAdress
+        tokenAmount: tokenAmount
+      properties:
+        tokenAdress:
+          type: string
+        tokenAmount:
+          type: string
+      required:
+      - tokenAdress
+      - tokenAmount
+      type: object
+    GetOnRampQuoteResponse_quote:
+      example:
+        output:
+          tokenAdress: tokenAdress
+          tokenAmount: tokenAmount
+        input:
+          fiatAmount: fiatAmount
+          paymentCurrency: paymentCurrency
+      properties:
+        input:
+          $ref: '#/components/schemas/GetOnRampQuoteResponse_quote_input'
+        output:
+          $ref: '#/components/schemas/GetOnRampQuoteResponse_quote_output'
+      required:
+      - input
+      - output
       type: object
   securitySchemes:
     beam-api-key:
