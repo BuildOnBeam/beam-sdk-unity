@@ -46,6 +46,26 @@ namespace BeamPlayerClient.Api
         /// <param name="createOnrampRequestInput"></param>
         /// <returns>ApiResponse of PlayerOperationResponse</returns>
         ApiResponse<PlayerOperationResponse> CreateOnrampRequestWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <returns>GetOnRampQuoteResponse</returns>
+        GetOnRampQuoteResponse GetOnRampQuote(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <returns>ApiResponse of GetOnRampQuoteResponse</returns>
+        ApiResponse<GetOnRampQuoteResponse> GetOnRampQuoteWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput);
         #endregion Synchronous Operations
     }
 
@@ -80,6 +100,31 @@ namespace BeamPlayerClient.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlayerOperationResponse)</returns>
         Cysharp.Threading.Tasks.UniTask<ApiResponse<PlayerOperationResponse>> CreateOnrampRequestWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetOnRampQuoteResponse</returns>
+        Cysharp.Threading.Tasks.UniTask<GetOnRampQuoteResponse> GetOnRampQuoteAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetOnRampQuoteResponse)</returns>
+        Cysharp.Threading.Tasks.UniTask<ApiResponse<GetOnRampQuoteResponse>> GetOnRampQuoteWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -362,6 +407,150 @@ namespace BeamPlayerClient.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateOnrampRequest", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <returns>GetOnRampQuoteResponse</returns>
+        public GetOnRampQuoteResponse GetOnRampQuote(string entityId, CreateOnrampRequestInput createOnrampRequestInput)
+        {
+            BeamPlayerClient.Client.ApiResponse<GetOnRampQuoteResponse> localVarResponse = GetOnRampQuoteWithHttpInfo(entityId, createOnrampRequestInput);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <returns>ApiResponse of GetOnRampQuoteResponse</returns>
+        public BeamPlayerClient.Client.ApiResponse<GetOnRampQuoteResponse> GetOnRampQuoteWithHttpInfo(string entityId, CreateOnrampRequestInput createOnrampRequestInput)
+        {
+            // verify the required parameter 'entityId' is set
+            if (entityId == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'entityId' when calling RampApi->GetOnRampQuote");
+
+            // verify the required parameter 'createOnrampRequestInput' is set
+            if (createOnrampRequestInput == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'createOnrampRequestInput' when calling RampApi->GetOnRampQuote");
+
+            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("entityId", BeamPlayerClient.Client.ClientUtils.ParameterToString(entityId)); // path parameter
+            localVarRequestOptions.Data = createOnrampRequestInput;
+
+            // authentication (beam-api-key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GetOnRampQuoteResponse>("/v1/player/ramp/quote/on/{entityId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetOnRampQuote", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetOnRampQuoteResponse</returns>
+        public async Cysharp.Threading.Tasks.UniTask<GetOnRampQuoteResponse> GetOnRampQuoteAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            var task = GetOnRampQuoteWithHttpInfoAsync(entityId, createOnrampRequestInput, cancellationToken);
+            BeamPlayerClient.Client.ApiResponse<GetOnRampQuoteResponse> localVarResponse = await task;
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BeamPlayerClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="entityId"></param>
+        /// <param name="createOnrampRequestInput"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetOnRampQuoteResponse)</returns>
+        public async Cysharp.Threading.Tasks.UniTask<BeamPlayerClient.Client.ApiResponse<GetOnRampQuoteResponse>> GetOnRampQuoteWithHttpInfoAsync(string entityId, CreateOnrampRequestInput createOnrampRequestInput, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'entityId' is set
+            if (entityId == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'entityId' when calling RampApi->GetOnRampQuote");
+
+            // verify the required parameter 'createOnrampRequestInput' is set
+            if (createOnrampRequestInput == null)
+                throw new BeamPlayerClient.Client.ApiException(400, "Missing required parameter 'createOnrampRequestInput' when calling RampApi->GetOnRampQuote");
+
+
+            BeamPlayerClient.Client.RequestOptions localVarRequestOptions = new BeamPlayerClient.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = BeamPlayerClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = BeamPlayerClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("entityId", BeamPlayerClient.Client.ClientUtils.ParameterToString(entityId)); // path parameter
+            localVarRequestOptions.Data = createOnrampRequestInput;
+
+            // authentication (beam-api-key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("x-api-key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("x-api-key", this.Configuration.GetApiKeyWithPrefix("x-api-key"));
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<GetOnRampQuoteResponse>("/v1/player/ramp/quote/on/{entityId}", localVarRequestOptions, this.Configuration, cancellationToken);
+
+            var localVarResponse = await task;
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetOnRampQuote", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -140,6 +140,7 @@ Class | Method | HTTP request | Description
 *OperationApi* | [**GetOperation**](OperationApi.md#getoperation) | **GET** /v1/player/operation/{opId} | Returns operation data for given id. Used by Game SDKs to get transaction results.
 *OperationApi* | [**ProcessOperation**](OperationApi.md#processoperation) | **PATCH** /v1/player/operation/{opId} | Updates operation result for given id
 *RampApi* | [**CreateOnrampRequest**](RampApi.md#createonramprequest) | **POST** /v1/player/ramp/on/{entityId} | 
+*RampApi* | [**GetOnRampQuote**](RampApi.md#getonrampquote) | **POST** /v1/player/ramp/quote/on/{entityId} | 
 *SessionsApi* | [**CreateSessionRequest**](SessionsApi.md#createsessionrequest) | **POST** /v1/player/sessions/users/{entityId}/request | 
 *SessionsApi* | [**CreateSessionRequestV2**](SessionsApi.md#createsessionrequestv2) | **POST** /v2/player/sessions/request | 
 *SessionsApi* | [**GetActiveSession**](SessionsApi.md#getactivesession) | **GET** /v1/player/sessions/users/{entityId}/{accountAddress}/active | 
@@ -183,7 +184,7 @@ Class | Method | HTTP request | Description
  - [Model.CommonStatsResponseCount](CommonStatsResponseCount.md)
  - [Model.CommonUserActivityRequestInput](CommonUserActivityRequestInput.md)
  - [Model.ConfirmOperationRequest](ConfirmOperationRequest.md)
- - [Model.ConfirmOperationRequestTransactionsInner](ConfirmOperationRequestTransactionsInner.md)
+ - [Model.ConfirmOperationRequestActionsInner](ConfirmOperationRequestActionsInner.md)
  - [Model.ConvertTokenRequestInput](ConvertTokenRequestInput.md)
  - [Model.CreateAssetOfferRequestInput](CreateAssetOfferRequestInput.md)
  - [Model.CreateConnectionRequestInput](CreateConnectionRequestInput.md)
@@ -223,6 +224,10 @@ Class | Method | HTTP request | Description
  - [Model.GetChainCurrenciesResponseDataInner](GetChainCurrenciesResponseDataInner.md)
  - [Model.GetConnectionRequestResponse](GetConnectionRequestResponse.md)
  - [Model.GetListedAssetsBodyInput](GetListedAssetsBodyInput.md)
+ - [Model.GetOnRampQuoteResponse](GetOnRampQuoteResponse.md)
+ - [Model.GetOnRampQuoteResponseQuote](GetOnRampQuoteResponseQuote.md)
+ - [Model.GetOnRampQuoteResponseQuoteInput](GetOnRampQuoteResponseQuoteInput.md)
+ - [Model.GetOnRampQuoteResponseQuoteOutput](GetOnRampQuoteResponseQuoteOutput.md)
  - [Model.GetOwnerAssetsBodyInput](GetOwnerAssetsBodyInput.md)
  - [Model.GetOwnerAssetsResponse](GetOwnerAssetsResponse.md)
  - [Model.GetOwnersResponse](GetOwnersResponse.md)
@@ -250,7 +255,6 @@ Class | Method | HTTP request | Description
  - [Model.PlayerOperationActionSignature](PlayerOperationActionSignature.md)
  - [Model.PlayerOperationActionTransaction](PlayerOperationActionTransaction.md)
  - [Model.PlayerOperationResponse](PlayerOperationResponse.md)
- - [Model.PlayerOperationResponseTransactionsInner](PlayerOperationResponseTransactionsInner.md)
  - [Model.ReadContractRequest](ReadContractRequest.md)
  - [Model.ReadContractResonse](ReadContractResonse.md)
  - [Model.RefreshContractRequestBody](RefreshContractRequestBody.md)

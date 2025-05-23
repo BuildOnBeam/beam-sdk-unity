@@ -84,29 +84,20 @@ namespace BeamPlayerClient.Model
         /// Initializes a new instance of the <see cref="ConfirmOperationRequest" /> class.
         /// </summary>
         /// <param name="status">status (required).</param>
-        /// <param name="transactions">transactions.</param>
         /// <param name="actions">actions.</param>
         [UnityEngine.Scripting.Preserve]
-        public ConfirmOperationRequest(StatusEnum status = default(StatusEnum), List<ConfirmOperationRequestTransactionsInner> transactions = default(List<ConfirmOperationRequestTransactionsInner>), List<ConfirmOperationRequestTransactionsInner> actions = default(List<ConfirmOperationRequestTransactionsInner>))
+        public ConfirmOperationRequest(StatusEnum status = default(StatusEnum), List<ConfirmOperationRequestActionsInner> actions = default(List<ConfirmOperationRequestActionsInner>))
         {
             this.Status = status;
-            this.Transactions = transactions;
             this.Actions = actions;
         }
-
-        /// <summary>
-        /// Gets or Sets Transactions
-        /// </summary>
-        [DataMember(Name = "transactions", EmitDefaultValue = true)]
-        [UnityEngine.Scripting.Preserve]
-        public List<ConfirmOperationRequestTransactionsInner> Transactions { get; set; }
 
         /// <summary>
         /// Gets or Sets Actions
         /// </summary>
         [DataMember(Name = "actions", EmitDefaultValue = true)]
         [UnityEngine.Scripting.Preserve]
-        public List<ConfirmOperationRequestTransactionsInner> Actions { get; set; }
+        public List<ConfirmOperationRequestActionsInner> Actions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,7 +109,6 @@ namespace BeamPlayerClient.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ConfirmOperationRequest {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
