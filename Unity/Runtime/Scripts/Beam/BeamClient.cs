@@ -493,8 +493,10 @@ namespace Beam
                 Log($"Encountered an error retrieving operation({operationId}): {e.Message} {e.ErrorContent}");
                 return new BeamResult<PlayerOperationResponse.StatusEnum>(e);
             }
-
-            if (signingBy is OperationSigningBy.Auto or OperationSigningBy.Session)
+            
+            // if more than one actions and at least one has a signature, otherwise try Browser
+            var hasActionsToSign = operation.Actions.Any(a => a.Signature != null || a.Transaction != null);
+            if (signingBy is OperationSigningBy.Auto or OperationSigningBy.Session && hasActionsToSign)
             {
                 Log("Retrieving active session");
                 var (activeSession, activeSessionKeyPair) =
