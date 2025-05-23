@@ -622,7 +622,7 @@ namespace Beam
 
             var confirmationModel = new ConfirmOperationRequest(
                 ConfirmOperationRequest.StatusEnum.Pending,
-                actions: new List<ConfirmOperationRequestTransactionsInner>());
+                actions: new List<ConfirmOperationRequestActionsInner>());
 
             Log($"Signing operation({operation.Id}) actions...");
             foreach (var action in operation.Actions)
@@ -653,7 +653,7 @@ namespace Beam
                             throw new ArgumentOutOfRangeException();
                     }
 
-                    confirmationModel.Actions.Add(new ConfirmOperationRequestTransactionsInner(action.Id, signature));
+                    confirmationModel.Actions.Add(new ConfirmOperationRequestActionsInner(action.Id, signature));
                 }
                 catch (ApiException e)
                 {
